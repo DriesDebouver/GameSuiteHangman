@@ -1,14 +1,13 @@
 package domain;
 import domain.*;
 
-public class Cirkel {
+public class Cirkel extends Vorm {
 	private int radius;
 	private Punt middelPunt;
 	
-	public Cirkel(int radius, Punt middelPunt) throws DomainException{
+	public Cirkel(Punt middelPunt, int radius) throws DomainException{
 		this.setRadius(radius);
 		this.setMiddelPunt(middelPunt);
-		
 	}
 
 	public int getRadius() {

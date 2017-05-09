@@ -1,18 +1,26 @@
 package domain;
 
+import static org.junit.Assert.*;
+
+import org.junit.Before;
 import org.junit.Test;
 
 public class CirkelTest {
 	
-
-	@Test
-	public void Driehoek_moet_DrieHoek_aanmaken_met_gegeven_hoekpunten() {
-		Driehoek drieHoek = new Driehoek(punt1, punt2, punt3);
-
-		assertEquals(punt1, drieHoek.getHoekPunt1());
-		assertEquals(punt2, drieHoek.getHoekPunt2());
-		assertEquals(punt3, drieHoek.getHoekPunt3());
-	}
+	private int xCoordinaat;
+	private int yCoordinaat;
+	private Punt punt;
+	private Cirkel cirkel;
 	
+	@Before
+	public void setUp()throws Exception{
+		xCoordinaat = 5;
+		yCoordinaat = 10;
+		punt = new Punt(xCoordinaat, yCoordinaat);
+	}
+	@Test
+	public void cirkel_met_geldige_raidus_en_middelpunt()throws Exception{
+		cirkel = new Cirkel(5,punt);
+	}
 
 }
