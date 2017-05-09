@@ -12,36 +12,32 @@ public class Driehoek extends Vorm {
 		if (hoekPunt1 == null || hoekPunt2 == null || hoekPunt3 == null) {
 			throw new DomainException("hoekpunt mag niet null zijn.");
 		}
-		hoekpunten[1] = hoekPunt1;
-		hoekpunten[2] = hoekPunt2;
-		hoekpunten[3] = hoekPunt3;
+		hoekpunten[0] = hoekPunt1;
+		hoekpunten[1] = hoekPunt2;
+		hoekpunten[2] = hoekPunt3;
+		if ((hoekPunt2.getX() - hoekPunt1.getX())*(hoekPunt3.getY()-hoekPunt1.getY()) == (hoekPunt3.getX()-hoekPunt1.getX())*(hoekPunt2.getY()-hoekPunt1.getY())) {
+			throw new DomainException("Hoekpunten liggen op 1 lijn.");
+		}
 	}
 	public Punt[] getHoekpunten() {
 		return hoekpunten;
 	}
 	public Punt getHoekPunt1() {
-		return hoekpunten[1];
+		return hoekpunten[0];
 	}
 	public Punt getHoekPunt2() {
-		return hoekpunten[2];
+		return hoekpunten[1];
 	}
 	public Punt getHoekPunt3() {
-		return hoekpunten[3];
+		return hoekpunten[2];
 	}
 	
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof Driehoek) {
 			Driehoek driehoek = (Driehoek) object;
-			boolean allFound = false;
 			for (Punt punt: driehoek.getHoekpunten()) {
-				boolean thisfound = false;
-				for (Punt punt2: this.getHoekpunten()) {
-					if (punt.equals(punt2)) {
-						thisfound = true;
-					}
-				}
-				if (!thisfound) {
+				if (hoekpuntenContains(punt)) {
 					return false;
 				}
 			}
@@ -52,9 +48,18 @@ public class Driehoek extends Vorm {
 	}
 	@Override
 	public String toString() {
-		String stringDriehoek = "Driehoek: hoekpunt1: " + hoekpunten[1].toString() + " - hoekpunt2: " + hoekpunten[2].toString() + " - hoekpunt3: " + hoekpunten[3].toString();
+		String stringDriehoek = "Driehoek: hoekpunt1: " + hoekpunten[0].toString() + " - hoekpunt2: " + hoekpunten[1].toString() + " - hoekpunt3: " + hoekpunten[2].toString();
 		System.out.println(stringDriehoek);
 		return stringDriehoek;
+	}
+	
+	private boolean hoekpuntenContains(Punt punt) {
+		for (Punt punt2: this.getHoekpunten()) {
+			if(punt2.equals(punt)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
