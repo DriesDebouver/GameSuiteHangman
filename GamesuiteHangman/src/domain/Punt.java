@@ -44,7 +44,6 @@ public class Punt {
 	@Override
 	public String toString() {
 		String returnString = "(" + this.getX() + ", " + this.getY() + ")";
-		System.out.println(returnString);
 		return returnString;
 	}
 
