@@ -1,11 +1,13 @@
 package domain;
 
+import domain.DomainException;
+
 public class Speler {
 
 	private String naam;
 	private int score;
 	
-	public Speler(String naam) {
+	public Speler(String naam) throws DomainException {
 		if (naam == null || naam.trim().isEmpty()) {
 			throw new DomainException("Naam is leeg!");
 		}
