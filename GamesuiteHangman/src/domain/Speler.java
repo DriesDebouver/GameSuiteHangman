@@ -29,10 +29,13 @@ public class Speler {
 		this.score = score;
 	}
 	
-	public void addToScore(int score) {
+	public void addToScore(int score) throws DomainException {
+		if ((this.score + score) < 0) {
+			throw new DomainException("Score is negatief!");
+		}
+		
 		this.score = this.getScore() + score;
 	}
-	
 	
 	public boolean equals(Object object) {
 		if (object == null) {
