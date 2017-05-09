@@ -56,7 +56,6 @@ public class DriehoekTest {
 	@Test
 	public void equals_moet_false_teruggeven_als_hoekPunt3_verschillend() throws DomainException{
 		Driehoek drieHoek = new Driehoek(punt1, punt2, punt3);
-		drieHoek.toString();
 		Driehoek andereDriehoek = new Driehoek(zelfdeAlsPunt1, zelfdeAlsPunt2, verschillendVanPunt3);
 		assertFalse(drieHoek.equals(andereDriehoek));
 	}
@@ -65,6 +64,29 @@ public class DriehoekTest {
 	public void equals_moet_false_teruggeven_als_parameter_null() throws DomainException{
 		Driehoek drieHoek = new Driehoek(punt1, punt2, punt3);
 		assertFalse(drieHoek.equals(null));
+	}	
+
+	@Test (expected = DomainException.class)
+	public void DrieHoek_Moet_exception_gooien_als_hoekpunten_op_zelfde_X_lijn_liggen() throws DomainException  {
+		Punt puntZelfdeXLijn = new Punt(punt1.getX(),punt1.getY()+1);
+		Punt puntZelfdeXLijn2 = new Punt(punt1.getX(),punt1.getY()+2);
+		new Driehoek(punt1, puntZelfdeXLijn, puntZelfdeXLijn2);
+	}	
+
+	@Test (expected = DomainException.class)
+	public void DrieHoek_Moet_exception_gooien_als_hoekpunten_op_zelfde_Y_lijn_liggen() throws DomainException  {
+		Punt puntZelfdeYLijn = new Punt(punt1.getX()+1,punt1.getY());
+		Punt puntZelfdeYLijn2 = new Punt(punt1.getX()+2,punt1.getY());
+		new Driehoek(punt1, puntZelfdeYLijn, puntZelfdeYLijn2);
 	}
+	
+	@Test
+	public void equals_moet_true_teruggeven_als_zelfde_punten_uit_volgorde_zijn() throws DomainException{
+		Driehoek drieHoek = new Driehoek(punt1, punt2, punt3);
+		Driehoek drieHoek2 = new Driehoek(punt3, punt2, punt1);
+		System.out.println(drieHoek.toString());
+		System.out.println(drieHoek2.toString());
+		assertTrue(drieHoek.equals(drieHoek2));
+	}	
 
 }
