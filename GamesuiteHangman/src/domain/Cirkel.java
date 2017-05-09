@@ -5,7 +5,7 @@ public class Cirkel {
 	private int radius;
 	private Punt middelPunt;
 	
-	public Cirkel(int radius, Punt middelPunt) throws DomainException{
+	public Cirkel( Punt middelPunt,int radius) throws DomainException{
 		this.setRadius(radius);
 		this.setMiddelPunt(middelPunt);
 		
