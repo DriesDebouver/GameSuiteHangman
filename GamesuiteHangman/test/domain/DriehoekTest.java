@@ -84,8 +84,6 @@ public class DriehoekTest {
 	public void equals_moet_true_teruggeven_als_zelfde_punten_uit_volgorde_zijn() throws DomainException{
 		Driehoek drieHoek = new Driehoek(punt1, punt2, punt3);
 		Driehoek drieHoek2 = new Driehoek(punt3, punt2, punt1);
-		System.out.println(drieHoek.toString());
-		System.out.println(drieHoek2.toString());
 		assertTrue(drieHoek.equals(drieHoek2));
 	}	
 	
