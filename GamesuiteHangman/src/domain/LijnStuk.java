@@ -18,6 +18,7 @@ public class LijnStuk extends Vorm {
 	}
 	
 	public void setStartEnEindPunt(Punt startPunt, Punt eindPunt) throws DomainException {
+		//fixed, vergelijk punten niet met ==, maar met equals, dat gedefinieerd is in Punt
 		if (startPunt.equals(eindPunt)) {
 			throw new DomainException("Startpunt is gelijk aan Eindpunt!");
 		}
@@ -32,6 +33,8 @@ public class LijnStuk extends Vorm {
 	}
 	
 	@Override
+	//TODO: Dit test of eindpunt en startpunt van object hetzelfde zijn, niet of object==this
+	// belangrijk: twee lijnstukken met die hetzelfde zijn maar dan met eindpunt en startpunt omgedraaid zijn hetzelfde lijnstuk
 	public boolean equals(Object object) {
 		if (object instanceof LijnStuk) {
 			LijnStuk lijnstuk = (LijnStuk) object;
