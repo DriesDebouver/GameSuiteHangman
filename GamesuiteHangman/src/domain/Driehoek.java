@@ -37,7 +37,7 @@ public class Driehoek extends Vorm {
 		if (object instanceof Driehoek) {
 			Driehoek driehoek = (Driehoek) object;
 			for (Punt punt: driehoek.getHoekpunten()) {
-				if (hoekpuntenContains(punt)) {
+				if (!hoekpuntenContains(punt)) {
 					return false;
 				}
 			}
