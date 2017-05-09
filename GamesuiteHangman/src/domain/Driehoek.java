@@ -12,9 +12,13 @@ public class Driehoek extends Vorm {
 		if (hoekPunt1 == null || hoekPunt2 == null || hoekPunt3 == null) {
 			throw new DomainException("hoekpunt mag niet null zijn.");
 		}
+		if(hoekPunt1.equals(hoekPunt2) || hoekPunt1.equals(hoekPunt3) || hoekPunt3.equals(hoekPunt2)) {
+			throw new DomainException("Geef 3 verschillende hoekpunten!");
+		}
 		hoekpunten[0] = hoekPunt1;
 		hoekpunten[1] = hoekPunt2;
 		hoekpunten[2] = hoekPunt3;
+		//TODO check if two points are the same
 		if ((hoekPunt2.getX() - hoekPunt1.getX())*(hoekPunt3.getY()-hoekPunt1.getY()) == (hoekPunt3.getX()-hoekPunt1.getX())*(hoekPunt2.getY()-hoekPunt1.getY())) {
 			throw new DomainException("Hoekpunten liggen op 1 lijn.");
 		}

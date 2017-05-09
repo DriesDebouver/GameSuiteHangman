@@ -88,5 +88,20 @@ public class DriehoekTest {
 		System.out.println(drieHoek2.toString());
 		assertTrue(drieHoek.equals(drieHoek2));
 	}	
+	
+	@Test (expected = DomainException.class)
+	public void DrieHoek_Moet_exception_gooien_als_twee_eerste_hoekpunten_hetzelfde_zijn() throws DomainException  {
+		new Driehoek(punt1, punt1, punt2);
+	}
+	
+	@Test (expected = DomainException.class)
+	public void DrieHoek_Moet_exception_gooien_als_twee_laatste_hoekpunten_hetzelfde_zijn() throws DomainException  {
+		new Driehoek(punt1, punt2, punt2);
+	}
+	
+	@Test (expected = DomainException.class)
+	public void DrieHoek_Moet_exception_gooien_als_alle_drie_hoekpunten_hetzelfde_zijn() throws DomainException  {
+		new Driehoek(punt3, punt3, punt3);
+	}
 
 }
