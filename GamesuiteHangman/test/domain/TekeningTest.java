@@ -18,7 +18,7 @@ public class TekeningTest {
 	private Vorm schouwNietInTekening;
 	
 	@Before
-	public void setUp() {
+	public void setUp() throws DomainException {
 		gebouw = new Rechthoek(new Punt(100, 200), 200, 180);
 		dak = new Driehoek(new Punt(100, 200), new Punt(300, 200), new Punt(200, 100));
 		deur = new Rechthoek(new Punt(130, 280), 50,100);
@@ -30,62 +30,62 @@ public class TekeningTest {
 	}
 
 	@Test
-	public void Tekening_moet_een_tekening_aanmaken_met_een_geldige_naam_en_0_vormen() {
+	public void Tekening_moet_een_tekening_aanmaken_met_een_geldige_naam_en_0_vormen() throws DomainException {
 		Tekening huis = new Tekening("huis");
 		assertEquals("huis", huis.getNaam());
 		assertEquals(0, huis.getAantalVormen());
 	}
 
 	@Test (expected = IllegalArgumentException.class)
-	public void Tekening_moet_exception_gooien_als_naam_null() {
+	public void Tekening_moet_exception_gooien_als_naam_null() throws DomainException {
 		new Tekening(null);
 	}
 
 	@Test (expected = IllegalArgumentException.class)
-	public void Tekening_moet_exception_gooien_als_naam_leeg() {
+	public void Tekening_moet_exception_gooien_als_naam_leeg() throws DomainException {
 		new Tekening("");
 	}
 
 	@Test 
-	public void getAantalVormen_moet_aantal_vormen_teruggeven() {
+	public void getAantalVormen_moet_aantal_vormen_teruggeven() throws DomainException {
 		Tekening huis = createHuisZonderShouw();
 		assertEquals(7, huis.getAantalVormen());
 	}
 
 	@Test
-	public void bevat_geeft_true_als_gegeven_vorm_deel_uitmaakt_van_de_tekening(){
+	public void bevat_geeft_true_als_gegeven_vorm_deel_uitmaakt_van_de_tekening() throws DomainException{
 		Tekening huis = createHuisZonderShouw();
 		assertTrue(huis.bevat(deur));
 	}
 
 	@Test
-	public void bevat_geeft_false__als_gegeven_vorm_geen_deel_uitmaakt_van_de_tekening(){
+	public void bevat_geeft_false__als_gegeven_vorm_geen_deel_uitmaakt_van_de_tekening() throws DomainException{
 		Tekening huis = createHuisZonderShouw();
 		assertFalse(huis.bevat(schouwNietInTekening));
 	}
 	
 	@Test
-	public void equals_moet_false_teruggeven_als_parameter_null(){
+	public void equals_moet_false_teruggeven_als_parameter_null() throws DomainException{
 		Tekening huis = createHuisZonderShouw();
 		assertFalse(huis.equals(null));
 	}
 	
 	@Test
-	public void equals_moet_false_teruggeven_als_parameter_tekening_is_met_verschillend_aantal_vormen(){
+	public void equals_moet_false_teruggeven_als_parameter_tekening_is_met_verschillend_aantal_vormen() throws DomainException{
 		Tekening huis = createHuisZonderShouw();
 		Tekening huisMetSchouw = createHuisMetSchouw();
 		assertFalse(huis.equals(huisMetSchouw));
 	}
 	
 	@Test
-	public void equals_moet_false_teruggeven_als_parameter_tekening_is_met_zelfde_aantal_vormen_ander_vorm(){
+	public void equals_moet_false_teruggeven_als_parameter_tekening_is_met_zelfde_aantal_vormen_ander_vorm() throws DomainException{
 		Tekening huis = createHuisZonderShouw();
 		Tekening huisMetSchouwZonderDeur = createHuisMetSchouwZonderDeur();
 		assertFalse(huis.equals(huisMetSchouwZonderDeur));
 	}
 	
 	@Test
-	public void equals_moet_true_teruggeven_als_parameter_tekening_is_met_zelfde_aantal_vormen_andere_volgorde(){
+	public void equals_moet_true_teruggeven_als_parameter_tekening_is_met_zelfde_aantal_vormen_andere_volgorde() throws DomainException{
 		Tekening huis = createHuisZonderShouw();
 		Tekening huisMetSchouwZonderDeur = createHuisMetSchouwZonderDeur();
 		huisMetSchouwZonderDeur.verwijder(schouwNietInTekening);
@@ -94,7 +94,7 @@ public class TekeningTest {
 	}
 	
 	@Test
-	public void equals_moet_true_teruggeven_alsparameter_tekening_is_met_zelfde_aantal_vormen_zelfde_volgorde(){
+	public void equals_moet_true_teruggeven_alsparameter_tekening_is_met_zelfde_aantal_vormen_zelfde_volgorde() throws DomainException{
 		Tekening huis = createHuisZonderShouw();
 		Tekening huisMetSchouw = createHuisMetSchouw();
 		huisMetSchouw.verwijder(schouwNietInTekening);
@@ -102,7 +102,7 @@ public class TekeningTest {
 	}
 
 
-	public Tekening createHuisMetSchouw() {
+	public Tekening createHuisMetSchouw() throws DomainException {
 		Tekening huisMetSchouw = new Tekening("huisMetSchouw");
 		huisMetSchouw.voegToe(gebouw);
 		huisMetSchouw.voegToe(dak);
@@ -115,7 +115,7 @@ public class TekeningTest {
 		return huisMetSchouw;
 	}
 
-	public Tekening createHuisZonderShouw() {
+	public Tekening createHuisZonderShouw() throws DomainException {
 		Tekening huis = new Tekening("huis");
 		huis.voegToe(gebouw);
 		huis.voegToe(dak);
@@ -127,7 +127,7 @@ public class TekeningTest {
 		return huis;
 	}
 
-	public Tekening createHuisMetSchouwZonderDeur() {
+	public Tekening createHuisMetSchouwZonderDeur() throws DomainException {
 		Tekening huisMetSchouwZonderDeur = new Tekening("huisMetSchouwZonderDeur");
 		huisMetSchouwZonderDeur.voegToe(gebouw);
 		huisMetSchouwZonderDeur.voegToe(dak);

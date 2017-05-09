@@ -9,8 +9,11 @@ public class Tekening {
 	private static final int MAX_Y = 399;
 	
 	
-	public Tekening(String naam){ 
+	public Tekening(String naam) throws DomainException { 
 		super();
+		if (naam == null || naam.trim().isEmpty()) {
+			throw new DomainException("naam is null of leeg!");
+		}
 		this.naam = naam;
 	}
 	
@@ -39,7 +42,7 @@ public class Tekening {
 	}
 	
 	public String toString(){
-		
+		return "";
 	}
 	
 	public boolean equals(Object object){
