@@ -1,6 +1,7 @@
 package ui;
 
 import domain.DomainException;
+import domain.Driehoek;
 import domain.Punt;
 import domain.Rechthoek;
 import domain.Speler;
@@ -19,7 +20,7 @@ public class PictionaryUi {
 	}
 	
 	public void showMenu() throws DomainException {
-		Object[] shapes = {"Punt","Cirkel","Rechthoek"};
+		Object[] shapes = {"Punt","Cirkel","Rechthoek","Driehoek"};
 		Object keuze = JOptionPane.showInputDialog(null,"Wat wilt u tekenen", "input", JOptionPane.INFORMATION_MESSAGE, null, shapes, null);
 		if (keuze.equals("Punt")) {
 			askForPunt();
@@ -29,6 +30,9 @@ public class PictionaryUi {
 		}
 		if (keuze.equals("Rechthoek")) {
 			askForRechthoek();
+		}
+		if (keuze.equals("Driehoek")) {
+			askForDriehoek();
 		}
 	} 
 	
@@ -56,7 +60,19 @@ public class PictionaryUi {
 		checkParamInt(hoogte);
 		Rechthoek rechthoek = new Rechthoek(linkerBovenHoek, Integer.parseInt(breedte), Integer.parseInt(hoogte));
 		JOptionPane.showMessageDialog(null, "U heeft een correct rechthoek aangemaakt: " + rechthoek.toString());
-		//TODO: add punt to game/speler?//TODO
+		//TODO: add punt to game/speler?
+	}
+	
+	private void askForDriehoek() throws DomainException {
+		JOptionPane.showMessageDialog(null, "Geef coordinaten van eerste hoekpunt in.");
+		Punt hoekPunt1 = askForPuntCoord();
+		JOptionPane.showMessageDialog(null, "Geef coordinaten van tweede hoekpunt in.");
+		Punt hoekPunt2 = askForPuntCoord();
+		JOptionPane.showMessageDialog(null, "Geef coordinaten van derde hoekpunt in.");
+		Punt hoekPunt3 = askForPuntCoord();
+		Driehoek driehoek = new Driehoek(hoekPunt1, hoekPunt2, hoekPunt3);
+		JOptionPane.showMessageDialog(null, "U heeft een correct driehoek aangemaakt: " + driehoek.toString());
+		//TODO: add driehoek to game/speler?
 	}
 	
 	private void checkParamInt(String coord) throws DomainException {
