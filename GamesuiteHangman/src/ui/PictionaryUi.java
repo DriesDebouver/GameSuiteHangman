@@ -22,7 +22,7 @@ public class PictionaryUi {
 		Object[] shapes = {"Punt","Cirkel","Rechthoek"};
 		Object keuze = JOptionPane.showInputDialog(null,"Wat wilt u tekenen", "input", JOptionPane.INFORMATION_MESSAGE, null, shapes, null);
 		if (keuze.equals("Punt")) {
-			askForPuntCoord();
+			askForPunt();
 		}
 		if (keuze.equals("Cirkel")) {
 			//TODO
