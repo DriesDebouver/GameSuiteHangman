@@ -18,7 +18,7 @@ public class LijnStuk extends Vorm {
 	}
 	
 	public void setStartEnEindPunt(Punt startPunt, Punt eindPunt) throws DomainException {
-		if (startPunt == eindPunt) {
+		if (startPunt.equals(eindPunt)) {
 			throw new DomainException("Startpunt is gelijk aan Eindpunt!");
 		}
 	}
