@@ -1,5 +1,6 @@
 package ui;
 
+import domain.DomainException;
 import domain.Punt;
 import domain.Speler;
 import javax.swing.JOptionPane;
@@ -20,7 +21,15 @@ public class PictionaryUi {
 	
 	private void getPunt() {
 		String xcoord = JOptionPane.showInputDialog("x coordinaat van een punt:");
+		while (xcoord == null || xcoord.trim().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Please enter correct x value.");
+			xcoord = JOptionPane.showInputDialog("x coordinaat van een punt:");
+		}
 		String ycoord = JOptionPane.showInputDialog("y coordinaat van een punt:");
+		while (ycoord == null || ycoord.trim().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Please enter correct y value.");
+			ycoord = JOptionPane.showInputDialog("y coordinaat van een punt:");
+		}
 		Punt punt = new Punt(Integer.parseInt(xcoord), Integer.parseInt(ycoord));
 		JOptionPane.showMessageDialog(null, "U heeft een correct punt aangemaakt: " + punt.toString());
 		//TODO: add punt to game/speler?
