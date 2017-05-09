@@ -20,6 +20,7 @@ public class PictionaryUi {
 	}
 	
 	public void showMenu() throws DomainException {
+		//TODO Ipv domain exceptions laten gooien, deze opvangen en als error message ingeven en terug opnieuw methode oproepen voor nieuwe poging!!!
 		Object[] shapes = {"Punt","Cirkel","Rechthoek","Driehoek"};
 		Object keuze = JOptionPane.showInputDialog(null,"Wat wilt u tekenen", "input", JOptionPane.INFORMATION_MESSAGE, null, shapes, null);
 		if (keuze.equals("Punt")) {
