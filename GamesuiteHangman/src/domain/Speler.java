@@ -42,8 +42,6 @@ public class Speler {
 			return false;
 		}
 		Speler speler = (Speler) object;
-		System.out.println(this.score);
-		System.out.println(speler.getScore());
 		if (this.naam.equals(speler.getNaam()) && this.score == speler.getScore()) {
 			return true;
 		}
