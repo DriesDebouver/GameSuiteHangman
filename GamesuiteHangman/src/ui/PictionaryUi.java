@@ -2,6 +2,7 @@ package ui;
 
 import domain.DomainException;
 import domain.Driehoek;
+import domain.LijnStuk;
 import domain.Punt;
 import domain.Rechthoek;
 import domain.Speler;
@@ -21,10 +22,13 @@ public class PictionaryUi {
 	
 	public void showMenu() throws DomainException {
 		//TODO Ipv domain exceptions laten gooien, deze opvangen en als error message ingeven en terug opnieuw methode oproepen voor nieuwe poging!!!
-		Object[] shapes = {"Punt","Cirkel","Rechthoek","Driehoek"};
+		Object[] shapes = {"Punt","Lijnstuk","Cirkel","Rechthoek","Driehoek"};
 		Object keuze = JOptionPane.showInputDialog(null,"Wat wilt u tekenen", "input", JOptionPane.INFORMATION_MESSAGE, null, shapes, null);
 		if (keuze.equals("Punt")) {
 			askForPunt();
+		}
+		if (keuze.equals("Lijnstuk")) {
+			askForLijnstuk();
 		}
 		if (keuze.equals("Cirkel")) {
 			//TODO
@@ -48,17 +52,18 @@ public class PictionaryUi {
 		}
 	}
 	
-	private Punt askForPuntCoord() throws DomainException {
+	private void askForLijnstuk() {
 		try {
-			String xcoord = JOptionPane.showInputDialog("x coordinaat van een punt:");
-			checkParamInt(xcoord);
-			String ycoord = JOptionPane.showInputDialog("y coordinaat van een punt:");
-			checkParamInt(ycoord);
-			Punt punt = new Punt(Integer.parseInt(xcoord), Integer.parseInt(ycoord));
-			return punt;
+			JOptionPane.showMessageDialog(null, "Geef coordinaten van beginpunt in.");
+			Punt beginpunt = askForPuntCoord();
+			JOptionPane.showMessageDialog(null, "Geef coordinaten van eindpunt in.");
+			Punt eindpunt = askForPuntCoord();
+			LijnStuk lijnstuk = new LijnStuk(beginpunt,eindpunt);
+			JOptionPane.showMessageDialog(null, "U heeft een correct lijnstuk aangemaakt: " + lijnstuk.toString());
+			//TODO: add lijnstuk to game/speler?
 		} catch (DomainException e) {
-			JOptionPane.showMessageDialog(null,e.getMessage());
-			return askForPuntCoord();
+			JOptionPane.showMessageDialog(null, e.getMessage());
+			askForLijnstuk();
 		}
 	}
 	
@@ -105,6 +110,20 @@ public class PictionaryUi {
 		// \\d+   --> one or more digits
 		if (!coord.matches("^?\\d+$")) {
 			throw new DomainException("Geef positieve nummers.");
+		}
+	}
+	
+	private Punt askForPuntCoord() throws DomainException {
+		try {
+			String xcoord = JOptionPane.showInputDialog("x coordinaat van een punt:");
+			checkParamInt(xcoord);
+			String ycoord = JOptionPane.showInputDialog("y coordinaat van een punt:");
+			checkParamInt(ycoord);
+			Punt punt = new Punt(Integer.parseInt(xcoord), Integer.parseInt(ycoord));
+			return punt;
+		} catch (DomainException e) {
+			JOptionPane.showMessageDialog(null,e.getMessage());
+			return askForPuntCoord();
 		}
 	}
 
