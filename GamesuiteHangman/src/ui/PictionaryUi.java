@@ -15,6 +15,7 @@ public class PictionaryUi {
 	
 	public void showMenu() {
 		getPunt();
+		//TODO: Menu van maken
 	}
 	
 	private void getPunt() {
