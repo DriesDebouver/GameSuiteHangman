@@ -5,6 +5,8 @@ public class LijnStuk extends Vorm {
 	private Punt startPunt;
 	private Punt eindPunt;
 	
+	private Omhullende omhullende;
+	
 	public LijnStuk(Punt startPunt, Punt eindPunt) throws DomainException {
 		super();
 		if (startPunt == null) {
@@ -15,10 +17,11 @@ public class LijnStuk extends Vorm {
 			throw new DomainException("Eindpunt is null!");
 		}
 		this.eindPunt = eindPunt;
+		omhullende = this.getOmhullende();
 	}
 	
 	public void setStartEnEindPunt(Punt startPunt, Punt eindPunt) throws DomainException {
-		if (startPunt == eindPunt) {
+		if (startPunt.equals(eindPunt)) {
 			throw new DomainException("Startpunt is gelijk aan Eindpunt!");
 		}
 	}
@@ -45,6 +48,17 @@ public class LijnStuk extends Vorm {
 	}
 	
 	public String toString() {
-		return "";
+		String returnString = "Lijn: startpunt: " + this.getStartPunt() + " - eindpunt: " + this.getEindPunt();
+		returnString = returnString + "\n" + omhullende.toString();
+		return returnString;
+	}
+
+	@Override
+	public Omhullende getOmhullende() throws DomainException {
+		int omhulBreedte = Math.abs(this.getEindPunt().getX() - this.getStartPunt().getX());
+		int omhulHoogte = Math.abs(this.getEindPunt().getY() - this.getStartPunt().getY());
+		int omhulX = Math.min(this.getEindPunt().getX(), this.getStartPunt().getX());
+		int omhulY = Math.min(this.getEindPunt().getY(), this.getStartPunt().getY());
+		return new Omhullende(new Punt(omhulX,omhulY), omhulBreedte, omhulHoogte);
 	}
 }
