@@ -5,10 +5,12 @@ public class Cirkel extends Vorm{
 
 	private int radius;
 	private Punt middelPunt;
+	private Omhullende omhullende;
 	
 	public Cirkel(Punt middelPunt, int radius) throws DomainException{
 		this.setRadius(radius);
 		this.setMiddelPunt(middelPunt);
+		this.omhullende = this.getOmhullende();
 	}
 
 	public int getRadius() {
@@ -33,8 +35,10 @@ public class Cirkel extends Vorm{
 	}
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return "middelpunt: " + this.middelPunt.toString() + "- straal:" + this.getRadius();
+		String returnString = "middelpunt: " + this.middelPunt.toString() + " - straal:" + this.getRadius();
+		returnString += "\n" + omhullende;
+		System.out.println(returnString);
+		return returnString;
 	}
 	@Override
 	public boolean equals(Object obj){
@@ -45,5 +49,13 @@ public class Cirkel extends Vorm{
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public Omhullende getOmhullende() throws DomainException {
+		int diagonaal = this.getRadius() *2;
+		Punt punt = new Punt(this.middelPunt.getX() - this.getRadius(), this.middelPunt.getY() - this.getRadius());
+		omhullende = new Omhullende(punt, diagonaal, diagonaal);
+		return new Omhullende(punt, diagonaal, diagonaal);
 	}
 	}

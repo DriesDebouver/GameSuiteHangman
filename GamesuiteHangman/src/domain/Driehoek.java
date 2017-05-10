@@ -68,6 +68,7 @@ public class Driehoek extends Vorm {
 		Punt omhulHoek = new Punt(minX,minY);
 		int omhulBreedte = Math.abs(maxX - minX);
 		int omhulHoogte = Math.abs(maxY - minY);
+		omhullende = new Omhullende(omhulHoek, omhulBreedte, omhulHoogte);
 		return new Omhullende(omhulHoek, omhulBreedte, omhulHoogte);
 	}
 

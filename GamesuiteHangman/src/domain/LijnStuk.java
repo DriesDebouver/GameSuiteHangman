@@ -69,6 +69,7 @@ public class LijnStuk extends Vorm {
 		int omhulHoogte = Math.abs(this.getEindPunt().getY() - this.getStartPunt().getY());
 		int omhulX = Math.min(this.getEindPunt().getX(), this.getStartPunt().getX());
 		int omhulY = Math.min(this.getEindPunt().getY(), this.getStartPunt().getY());
+		omhullende = new Omhullende(new Punt(omhulX,omhulY), omhulBreedte, omhulHoogte);
 		return new Omhullende(new Punt(omhulX,omhulY), omhulBreedte, omhulHoogte);
 	}
 

@@ -1,6 +1,6 @@
 package domain;
 
-public class Omhullende extends Vorm{
+public class Omhullende extends Vorm {
 	private Punt positieLinksBoven;
 	private int breedte;
 	private int hoogte;
@@ -66,5 +66,9 @@ public class Omhullende extends Vorm{
 	public String toString() {
 		String omhullendeString = "Omhullende: " + this.getPositieLinksBoven() + " - " + this.getBreedte() + " - " + this.getHoogte();
 		return omhullendeString;
+	}
+	@Override
+	public Omhullende getOmhullende() throws DomainException {
+		return new Omhullende(this.getPositieLinksBoven(), this.getBreedte(), this.getHoogte());
 	}
 }
