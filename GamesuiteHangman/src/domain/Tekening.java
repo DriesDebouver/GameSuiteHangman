@@ -9,16 +9,16 @@ public class Tekening {
 	private static final int MIN_Y = 0;
 	private static final int MAX_X = 399;
 	private static final int MAX_Y = 399;
-	private ArrayList<Vorm> Tekening = new ArrayList<Vorm>();
+	private ArrayList<Vorm> tekening = new ArrayList<Vorm>();
 	
 	public Tekening(String naam)throws Exception{ 
 		super();
 		this.setNaam(naam);
 	}
 	
-	public ArrayList<Vorm> getTekening(){
+	public ArrayList<Vorm> gettekening(){
 		
-		return Tekening;
+		return tekening;
 	}
 	
 	public String getNaam(){
@@ -37,33 +37,35 @@ public class Tekening {
 		if(vorm==null){
 			throw new DomainException("Geen geldige vorm");
 		}
-		this.Tekening.add(vorm);
+		this.tekening.add(vorm);
 	}
 	
 	public Vorm getVorm(int index){
-		return Tekening.get(index);
+		return tekening.get(index);
 	}
 	
 	public int getAantalVormen(){
-	return Tekening.size();
+	return tekening.size();
 	}
 	
 	public void verwijder(Vorm vorm){
-		for(Vorm v: Tekening){
-			if(v == vorm){
-				Tekening.remove(v);
+		for(int i = 0;i<tekening.size();i++){
+			if(tekening.get(i).equals(vorm)){
+				tekening.remove(i);
+				
 			}
+			break;
 		}
 	}
 	
 	public boolean bevat(Vorm vorm){
-		return Tekening.contains(vorm);
+		return tekening.contains(vorm);
 	}
 	
 	public String toString(){
-		String s = "Tekening met naam" + this.naam + "bestaat uit" + Tekening.size() + "vormen:\n";
+		String s = "tekening met naam" + this.naam + "bestaat uit" + tekening.size() + "vormen:\n";
 		String t = "";
-		for(Vorm v : Tekening){
+		for(Vorm v : tekening){
 			t = v.toString() + "\n";
 		}
 		return s + t;
@@ -72,10 +74,12 @@ public class Tekening {
 	public boolean equals(Object object){
 		if(object == null){return false;}
 		Tekening t1 = (Tekening)object;
-		if(this.naam == t1.getNaam() && this.Tekening == t1.getTekening()){
-			return true;
+		if(tekening.size() != t1.getAantalVormen()){return false;}
+		for(int i=0 ; i< tekening.size(); i++){
+			if(!tekening.get(i).equals(t1)){return false;}
 		}
-		return false;
+		
+		return true;
 	}
 	
 }
