@@ -55,5 +55,23 @@ public class LijnStukTest {
 		punt1 = punt2;
 		new LijnStuk(punt1, punt2);
 	}
+	
+	@Test 
+	public void equals_testen_door_zelfde_lijnstuk_te_vergelijken() throws DomainException {
+		LijnStuk lijnstuk1 = new LijnStuk(punt1, punt2);
+		LijnStuk lijnstuk2 = new LijnStuk(punt1, punt2);
+		assertTrue(lijnstuk1.equals(lijnstuk2));
+	}
+	@Test 
+	public void equals_testen_door_zelfde_lijnstuk_met_punten_omgedraaid_te_vergelijken() throws DomainException {
+		LijnStuk lijnstuk1 = new LijnStuk(punt1, punt2);
+		LijnStuk lijnstuk2 = new LijnStuk(punt2, punt1);
+		assertTrue(lijnstuk1.equals(lijnstuk2));
+	}@Test 
+	public void equals_testen_door_verschillende_lijnstukken_te_vergelijken() throws DomainException {
+		LijnStuk lijnstuk1 = new LijnStuk(punt1, punt2);
+		LijnStuk lijnstuk2 = new LijnStuk(new Punt(5,6), new Punt(10, 10));
+		assertFalse(lijnstuk1.equals(lijnstuk2));
+	}
 }
 	
