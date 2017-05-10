@@ -12,7 +12,7 @@ public class OmhullendeTest {
 	private Omhullende omhullende;
 
 	@Before
-	public void setUp() {
+	public void setUp() throws DomainException {
 		linkerBovenhoek = new Punt(200, 200);
 		breedte = 20;
 		hoogte = 40;
@@ -20,61 +20,61 @@ public class OmhullendeTest {
 	}
 
 	@Test
-	public void Omhullende_moet_omhullende_aanmaken_met_gegeven_linkerbovenhoek_breedte_en_hoogte() {
+	public void Omhullende_moet_omhullende_aanmaken_met_gegeven_linkerbovenhoek_breedte_en_hoogte() throws DomainException {
 		Omhullende omhullende = new Omhullende(linkerBovenhoek,breedte, hoogte);
-		assertEquals(linkerBovenhoek, omhullende.getLinkerBovenhoek());
+		assertEquals(linkerBovenhoek, omhullende.getPositieLinksBoven());
 		assertEquals(hoogte, omhullende.getHoogte());
 		assertEquals(breedte, omhullende.getBreedte());
 	}
 	
 	@Test (expected = DomainException.class)
-	public void Omhullende_Moet_exception_gooien_als_linkerbovenhoek_null()  {
+	public void Omhullende_Moet_exception_gooien_als_linkerbovenhoek_null() throws DomainException  {
 		new Omhullende(null, breedte, hoogte);
 	}
 	
 	@Test (expected = DomainException.class)
-	public void Omhullende_Moet_exception_gooien_als_breedte_kleiner_dan_0()  {
+	public void Omhullende_Moet_exception_gooien_als_breedte_kleiner_dan_0() throws DomainException  {
 		new Omhullende(linkerBovenhoek, -1, hoogte);
 	}
 	
 	@Test (expected = DomainException.class)
-	public void Omhullende_Moet_exception_gooien_als_hoogte_kleiner_dan_0()  {
+	public void Omhullende_Moet_exception_gooien_als_hoogte_kleiner_dan_0() throws DomainException  {
 		new Omhullende(linkerBovenhoek, breedte, -1);
 	}
 
 	@Test
-	public void Omhullende_Moet_omhullende_maken_als_breedte_gelijk_aan_0()  {
+	public void Omhullende_Moet_omhullende_maken_als_breedte_gelijk_aan_0() throws DomainException  {
 		Omhullende omhullende = new Omhullende(linkerBovenhoek,0, hoogte);
 		assertEquals(0, omhullende.getBreedte());
 	}
 	
 	@Test
-	public void Omhullende_Moet_omhullende_maken_als_hoogte_gelijk_aan_0()  {
+	public void Omhullende_Moet_omhullende_maken_als_hoogte_gelijk_aan_0() throws DomainException  {
 		Omhullende omhullende = new Omhullende(linkerBovenhoek,breedte, 0);
 		assertEquals(0, omhullende.getHoogte());
 	}
 	
 	@Test
-	public void equals_moet_true_teruggeven_als_linkerbovenhoek_breedte_hoogte_gelijk_zijn(){
+	public void equals_moet_true_teruggeven_als_linkerbovenhoek_breedte_hoogte_gelijk_zijn() throws DomainException{
 		Omhullende zelfdeOmhullende = new Omhullende(linkerBovenhoek,breedte, hoogte);
 		assertTrue(omhullende.equals(zelfdeOmhullende));
 	}
 	
 	@Test
-	public void equals_moet_false_teruggeven_als_linkerbovenhoek_verschilt(){
+	public void equals_moet_false_teruggeven_als_linkerbovenhoek_verschilt() throws DomainException{
 		Punt andereLinkerBovenhoek = new Punt(100,100);
 		Omhullende verschillendeOmhullende = new Omhullende(andereLinkerBovenhoek, breedte, hoogte);
 		assertFalse(omhullende.equals(verschillendeOmhullende));
 	}
 	
 	@Test
-	public void equals_moet_false_teruggeven_als_breedte_verschilt(){
+	public void equals_moet_false_teruggeven_als_breedte_verschilt() throws DomainException{
 		Omhullende verschillendeOmhullende = new Omhullende(linkerBovenhoek, breedte + 10, hoogte);
 		assertFalse(omhullende.equals(verschillendeOmhullende));
 	}
 	
 	@Test
-	public void equals_moet_false_teruggeven_als_hoogte_verschilt(){
+	public void equals_moet_false_teruggeven_als_hoogte_verschilt() throws DomainException{
 		Omhullende verschillendeOmhullende = new Omhullende(linkerBovenhoek, breedte, hoogte + 10);
 		assertFalse(omhullende.equals(verschillendeOmhullende));
 	}
@@ -86,10 +86,23 @@ public class OmhullendeTest {
 	
 	@Test
 	public void getMinimumX_geeft_juiste_waarde_terug(){
-		try{
-		Rechthoek rechthoek = new Rechthoek(new Punt(100,100), 50, 10);}
-		catch(DomainException e){
-		}
-		Omhullende omhullende = new Omhullende();
+		assertTrue(omhullende.getMinX() == linkerBovenhoek.getX());
 	}
+	
+	@Test
+	public void getMinimumY_geeft_juiste_waarde_terug(){
+		assertTrue(omhullende.getMinY() == linkerBovenhoek.getY());
+	}
+	
+	@Test
+	public void getMaximumX_geeft_juiste_waarde_terug(){
+		assertTrue(omhullende.getMaxX() == linkerBovenhoek.getX() + breedte);
+	}
+	
+	@Test
+	public void getMaximumY_geeft_juiste_waarde_terug(){
+		assertTrue(omhullende.getMaxY() == linkerBovenhoek.getY() + hoogte);
+	}
+	
+	
 }
