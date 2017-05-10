@@ -22,10 +22,49 @@ public class CirkelTest {
 	public void cirkel_met_geldige_raidus_en_middelpunt()throws Exception{
 		cirkel = new Cirkel(punt,5);
 	}
-	@Test
+	@Test (expected = DomainException.class)
 	public void gooit_exception_met_middelpunt_null()throws Exception{
 		punt = null;
 		cirkel = new Cirkel(punt,5);
 	}
+	@Test (expected = DomainException.class)
+	public void gooit_exception_cirkel_negatieva_straal() throws Exception{
+		Punt p1 = new Punt(1, 1);
+		Cirkel c1 = new Cirkel(p1, -5);
+	}
+	@Test (expected = DomainException.class)
+	public void gooit_exception_cirkel_0_straal() throws Exception{
+		Punt p2 = new Punt(2,2);
+		Cirkel c1 = new Cirkel(p2,0);
+	}
+	@Test
+	public void equals_gelijke_cirkels() throws Exception{
+		Punt p3 = new Punt(1, 1);
+		Cirkel c2 = new Cirkel(p3, 5);
+		Cirkel c3 = new Cirkel(p3, 5);
+		assertTrue(c2.equals(c3));
+	}
+	@Test
+	public void equals_tweede_cirkel_null_false() throws Exception{
+		Punt p4 = new Punt(1, 1);
+		Cirkel c4 = new Cirkel(p4, 5);
+		assertFalse(c4.equals(null));
+	}
+	@Test
+	public void equals_ander_middelpunt_false() throws Exception{
+		Punt p5 = new Punt(5, 1);
+		Punt p6 = new Punt(1, 1);
+		Cirkel c5 = new Cirkel(p5, 5);
+		Cirkel c6 = new Cirkel(p6, 5);
+		assertFalse(c5.equals(c6));
+		
+	}
+	@Test
+	public void equals_ander_straal_false() throws Exception{
+		Punt p7 = new Punt(1, 1);
+		Cirkel c7 = new Cirkel(p7, 5);
+		Cirkel c8 = new Cirkel(p7, 8);
+	}
+	
 
 }
