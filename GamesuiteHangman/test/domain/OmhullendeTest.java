@@ -83,4 +83,13 @@ public class OmhullendeTest {
 	public void equals_moet_false_teruggeven_als_parameter_null(){
 		assertFalse(omhullende.equals(null));
 	}
+	
+	@Test
+	public void getMinimumX_geeft_juiste_waarde_terug(){
+		try{
+		Rechthoek rechthoek = new Rechthoek(new Punt(100,100), 50, 10);}
+		catch(DomainException e){
+		}
+		Omhullende omhullende = new Omhullende();
+	}
 }
