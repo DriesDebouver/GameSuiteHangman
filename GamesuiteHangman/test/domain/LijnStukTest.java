@@ -42,5 +42,11 @@ public class LijnStukTest {
 		LijnStuk lijnStuk = new LijnStuk(punt1, punt2);
 		assertFalse(lijnStuk.equals(null));
 	}
+	
+	@Test (expected = DomainException.class)
+	public void LijnStuk_Moet_exception_gooien_als_startpunt_gelijk_is_aan_eindpunt() throws DomainException {
+		punt1 = punt2;
+		new LijnStuk(punt1, punt2);
+	}
 }
 	
