@@ -18,11 +18,7 @@ public class TekeningTest {
 	private Vorm schouwNietInTekening;
 	
 	@Before
-<<<<<<< HEAD
-	public void setUp() throws DomainException {
-=======
 	public void setUp() throws Exception {
->>>>>>> 01a5c37ee46e6bff6c3410559cce323cc41d4d0e
 		gebouw = new Rechthoek(new Punt(100, 200), 200, 180);
 		dak = new Driehoek(new Punt(100, 200), new Punt(300, 200), new Punt(200, 100));
 		deur = new Rechthoek(new Punt(130, 280), 50,100);
