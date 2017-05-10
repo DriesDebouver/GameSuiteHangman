@@ -38,6 +38,12 @@ public class LijnStukTest {
 	}
 	
 	@Test
+	public void equals_moet_false_teruggeven_als_begin_en_eindpunt_niet_gelijk_zijn() throws DomainException{
+		LijnStuk lijnStuk = new LijnStuk(punt1, punt2);
+		assertFalse(lijnStuk.getStartPunt().equals(lijnStuk.getEindPunt()));
+	}
+	
+	@Test
 	public void getOmhullende_moet_juiste_omhullende_teruggeven() throws DomainException{
 		LijnStuk lijnstuk = new LijnStuk(punt1, punt2);
 		Omhullende doelOmhullende = new Omhullende(punt1, punt2.getX()-punt1.getX(), punt2.getY()-punt1.getY());

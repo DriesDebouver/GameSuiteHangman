@@ -46,4 +46,10 @@ public class Cirkel extends Vorm{
 		}
 		return false;
 	}
+
+	@Override
+	public Omhullende getOmhullende() throws DomainException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	}

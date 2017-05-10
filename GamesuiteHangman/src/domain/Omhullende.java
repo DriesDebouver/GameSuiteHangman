@@ -50,6 +50,7 @@ public class Omhullende extends Vorm{
 	public int getMaxY() {
 		return this.getPositieLinksBoven().getY() + this.getHoogte();
 	}
+	
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof Omhullende) {
@@ -62,9 +63,16 @@ public class Omhullende extends Vorm{
 		}
 		return false;
 	}
+	
 	@Override
 	public String toString() {
 		String omhullendeString = "Omhullende: " + this.getPositieLinksBoven() + " - " + this.getBreedte() + " - " + this.getHoogte();
 		return omhullendeString;
+	}
+	
+	@Override
+	public Omhullende getOmhullende() throws DomainException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

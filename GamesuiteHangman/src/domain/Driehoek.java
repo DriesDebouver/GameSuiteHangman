@@ -56,5 +56,10 @@ public class Driehoek extends Vorm {
 		System.out.println(stringDriehoek);
 		return stringDriehoek;
 	}
+	@Override
+	public Omhullende getOmhullende() throws DomainException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
