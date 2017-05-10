@@ -47,14 +47,16 @@ public class LijnStuk extends Vorm {
 					return true;
 				}
 				*/
-				if (this.getStartPunt().equals(this.getEindPunt()) &&
-						lijnstuk.getStartPunt().equals(lijnstuk.getEindPunt())) {
+				if (this.getStartPunt().equals(lijnstuk.getEindPunt()) &&
+						this.getStartPunt().equals(lijnstuk.getEindPunt())) {
 					return true;
 				}
-			return true;
-		} else {
-			return false;
-		}
+				if (this.getStartPunt().equals(lijnstuk.getStartPunt()) &&
+						this.getEindPunt().equals(lijnstuk.getEindPunt())) {
+					return true;
+				}
+		} 
+		return false;
 	}
 	
 	public String toString() {
