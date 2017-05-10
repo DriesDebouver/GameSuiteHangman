@@ -66,5 +66,12 @@ public class DriehoekTest {
 		Driehoek drieHoek = new Driehoek(punt1, punt2, punt3);
 		assertFalse(drieHoek.equals(null));
 	}
+	
+	@Test
+	public void getOmhullende_moet_juiste_omhullende_teruggeven() throws DomainException{
+		Driehoek drieHoek = new Driehoek(punt1, punt2, punt3);
+		Omhullende doelOmhullende = new Omhullende(punt1, 180, 20);
+		assertTrue(drieHoek.getOmhullende().equals(doelOmhullende));
+	}
 
 }
