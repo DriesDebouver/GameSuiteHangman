@@ -63,7 +63,7 @@ public class Tekening {
 	}
 	
 	public String toString(){
-		String s = "tekening met naam" + this.naam + "bestaat uit" + tekening.size() + "vormen:\n";
+		String s = "Tekening met naam " + this.naam + " bestaat uit " + tekening.size() + " vormen:\n";
 		String t = "";
 		for(Vorm v : tekening){
 			t = v.toString() + "\n";
@@ -72,11 +72,18 @@ public class Tekening {
 	}
 	
 	public boolean equals(Object object){
-		if(object == null){return false;}
+		if(object == null){
+			System.out.println("obj null");
+			return false;}
 		Tekening t1 = (Tekening)object;
-		if(tekening.size() != t1.getAantalVormen()){return false;}
-		for(int i=0 ; i< tekening.size(); i++){
-			if(!tekening.get(i).equals(t1)){return false;}
+		if(this.getAantalVormen() != t1.getAantalVormen()){
+			System.out.println("size tek: " + tekening.size() + ", t1 size: " + t1.getAantalVormen());
+			return false;}
+		for(Vorm vorm: t1.gettekening()){
+			if(!tekening.contains(vorm)){
+			System.out.println("false: " + vorm.toString());
+			return false;
+			}
 		}
 		
 		return true;

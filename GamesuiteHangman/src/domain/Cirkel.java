@@ -42,7 +42,8 @@ public class Cirkel extends Vorm{
 	}
 	@Override
 	public boolean equals(Object obj){
-		if(obj == null){return false;}
+		if(!(obj instanceof Cirkel)){return false;}
+		System.out.println("object:" + obj.toString());
 		Cirkel cirkel = (Cirkel)obj;
 		if(this.radius == cirkel.radius && this.middelPunt == cirkel.middelPunt){
 			return true;
