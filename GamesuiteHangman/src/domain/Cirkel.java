@@ -1,14 +1,17 @@
 package domain;
 import domain.*;
 
+<<<<<<< .merge_file_a10584
 public class Cirkel extends Vorm{
+=======
+public class Cirkel extends Vorm {
+>>>>>>> .merge_file_a14148
 	private int radius;
 	private Punt middelPunt;
 	
-	public Cirkel( Punt middelPunt,int radius) throws DomainException{
+	public Cirkel(Punt middelPunt, int radius) throws DomainException{
 		this.setRadius(radius);
 		this.setMiddelPunt(middelPunt);
-		
 	}
 
 	public int getRadius() {
