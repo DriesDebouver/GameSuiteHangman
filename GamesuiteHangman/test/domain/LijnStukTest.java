@@ -4,14 +4,22 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class LijnStukTest {
-	private Punt punt1 = new Punt(10, 20);
-	private Punt zelfdeAlsPunt1 = new Punt(10, 20);
-	private Punt punt2 = new Punt(190, 30);
-	private Punt zelfdeAlsPunt2 = new Punt(190, 30);
+	private Punt punt1;
+	private Punt zelfdeAlsPunt1;
+	private Punt punt2;
+	private Punt zelfdeAlsPunt2;
 
+	@Before
+	public void setUp() throws DomainException {
+		punt1 = new Punt(10, 20);
+		zelfdeAlsPunt1 = new Punt(10, 20);
+		punt2 = new Punt(190, 30);
+		zelfdeAlsPunt2 = new Punt(190, 30);
+	}
 	@Test
 	public void LijnStuk_moet_lijnstuk_aanmaken_met_gegeven_startPunt_en_eindPunt() throws DomainException {
 		LijnStuk lijnstuk = new LijnStuk(punt1, punt2);
@@ -54,6 +62,24 @@ public class LijnStukTest {
 	public void LijnStuk_Moet_exception_gooien_als_startpunt_gelijk_is_aan_eindpunt() throws DomainException {
 		punt1 = punt2;
 		new LijnStuk(punt1, punt2);
+	}
+	
+	@Test 
+	public void equals_testen_door_zelfde_lijnstuk_te_vergelijken() throws DomainException {
+		LijnStuk lijnstuk1 = new LijnStuk(punt1, punt2);
+		LijnStuk lijnstuk2 = new LijnStuk(punt1, punt2);
+		assertTrue(lijnstuk1.equals(lijnstuk2));
+	}
+	@Test 
+	public void equals_testen_door_zelfde_lijnstuk_met_punten_omgedraaid_te_vergelijken() throws DomainException {
+		LijnStuk lijnstuk1 = new LijnStuk(punt1, punt2);
+		LijnStuk lijnstuk2 = new LijnStuk(punt2, punt1);
+		assertTrue(lijnstuk1.equals(lijnstuk2));
+	}@Test 
+	public void equals_testen_door_verschillende_lijnstukken_te_vergelijken() throws DomainException {
+		LijnStuk lijnstuk1 = new LijnStuk(punt1, punt2);
+		LijnStuk lijnstuk2 = new LijnStuk(new Punt(5,6), new Punt(10, 10));
+		assertFalse(lijnstuk1.equals(lijnstuk2));
 	}
 }
 	

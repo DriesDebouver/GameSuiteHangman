@@ -47,14 +47,16 @@ public class LijnStuk extends Vorm {
 					return true;
 				}
 				*/
-				if (this.getStartPunt().equals(this.getEindPunt()) &&
-						lijnstuk.getStartPunt().equals(lijnstuk.getEindPunt())) {
+				if (this.getStartPunt().equals(lijnstuk.getEindPunt()) &&
+						this.getStartPunt().equals(lijnstuk.getEindPunt())) {
 					return true;
 				}
-			return true;
-		} else {
-			return false;
-		}
+				if (this.getStartPunt().equals(lijnstuk.getStartPunt()) &&
+						this.getEindPunt().equals(lijnstuk.getEindPunt())) {
+					return true;
+				}
+		} 
+		return false;
 	}
 	
 	public String toString() {
@@ -69,6 +71,7 @@ public class LijnStuk extends Vorm {
 		int omhulHoogte = Math.abs(this.getEindPunt().getY() - this.getStartPunt().getY());
 		int omhulX = Math.min(this.getEindPunt().getX(), this.getStartPunt().getX());
 		int omhulY = Math.min(this.getEindPunt().getY(), this.getStartPunt().getY());
+		omhullende = new Omhullende(new Punt(omhulX,omhulY), omhulBreedte, omhulHoogte);
 		return new Omhullende(new Punt(omhulX,omhulY), omhulBreedte, omhulHoogte);
 	}
 

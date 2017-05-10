@@ -65,6 +65,12 @@ public class CirkelTest {
 		Cirkel c7 = new Cirkel(p7, 5);
 		Cirkel c8 = new Cirkel(p7, 8);
 	}
-	
+	@Test
+	public void getOmhullende_moet_juiste_omhullende_teruggeven() throws DomainException{
+		cirkel = new Cirkel(punt,5);
+		cirkel.toString();
+		Omhullende doelOmhullende = new Omhullende(new Punt(0, 5), 10, 10);
+		assertTrue(cirkel.getOmhullende().equals(doelOmhullende));
+	}
 
 }
