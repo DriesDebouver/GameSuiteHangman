@@ -20,7 +20,12 @@ public class CirkelTest {
 	}
 	@Test
 	public void cirkel_met_geldige_raidus_en_middelpunt()throws Exception{
-		cirkel = new Cirkel(5,punt);
+		cirkel = new Cirkel(punt,5);
+	}
+	@Test
+	public void gooit_exception_met_middelpunt_null()throws Exception{
+		punt = null;
+		cirkel = new Cirkel(punt,5);
 	}
 
 }

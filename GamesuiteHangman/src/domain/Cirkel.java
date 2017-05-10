@@ -1,7 +1,7 @@
 package domain;
 import domain.*;
 
-public class Cirkel {
+public class Cirkel extends Vorm{
 	private int radius;
 	private Punt middelPunt;
 	
@@ -21,6 +21,7 @@ public class Cirkel {
 	}
 
 	public Punt getMiddelPunt() {
+		if(middelPunt == null){throw new D}
 		return middelPunt;
 	}
 
