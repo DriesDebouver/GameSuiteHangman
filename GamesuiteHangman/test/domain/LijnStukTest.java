@@ -4,14 +4,22 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class LijnStukTest {
-	private Punt punt1 = new Punt(10, 20);
-	private Punt zelfdeAlsPunt1 = new Punt(10, 20);
-	private Punt punt2 = new Punt(190, 30);
-	private Punt zelfdeAlsPunt2 = new Punt(190, 30);
+	private Punt punt1;
+	private Punt zelfdeAlsPunt1;
+	private Punt punt2;
+	private Punt zelfdeAlsPunt2;
 
+	@Before
+	public void setUp() throws DomainException {
+		punt1 = new Punt(10, 20);
+		zelfdeAlsPunt1 = new Punt(10, 20);
+		punt2 = new Punt(190, 30);
+		zelfdeAlsPunt2 = new Punt(190, 30);
+	}
 	@Test
 	public void LijnStuk_moet_lijnstuk_aanmaken_met_gegeven_startPunt_en_eindPunt() throws DomainException {
 		LijnStuk lijnstuk = new LijnStuk(punt1, punt2);

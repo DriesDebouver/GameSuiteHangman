@@ -2,19 +2,35 @@ package domain;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
-public class DriehoekTest {
-	private Punt punt1 = new Punt(10, 20);
-	private Punt zelfdeAlsPunt1 = new Punt(10, 20);
-	private Punt verschillendVanPunt1 = new Punt(15, 20);
-	private Punt punt2 = new Punt(20, 40);
-	private Punt zelfdeAlsPunt2 = new Punt(20, 40);
-	private Punt verschillendVanPunt2 = new Punt(40, 20);
-	private Punt punt3 = new Punt(190, 30);
-	private Punt zelfdeAlsPunt3 = new Punt(190, 30);
-	private Punt verschillendVanPunt3 = new Punt(120, 100);
+public class DriehoekTest{
+	
+	private Punt punt1;
+	private Punt zelfdeAlsPunt1;
+	private Punt verschillendVanPunt1;
+	private Punt punt2;
+	private Punt zelfdeAlsPunt2;
+	private Punt verschillendVanPunt2;
+	private Punt punt3;
+	private Punt zelfdeAlsPunt3;
+	private Punt verschillendVanPunt3;
+	
+	@Before
+	public void setUp() throws DomainException {
+		punt1 = new Punt(10, 20);
+		zelfdeAlsPunt1 = new Punt(10, 20);
+		verschillendVanPunt1 = new Punt(15, 20);
+		punt2 = new Punt(20, 40);
+		zelfdeAlsPunt2 = new Punt(20, 40);
+		verschillendVanPunt2 = new Punt(40, 20);
+		punt3 = new Punt(190, 30);
+		zelfdeAlsPunt3 = new Punt(190, 30);
+		verschillendVanPunt3 = new Punt(120, 100);
+	}
 
+	
 	@Test
 	public void Driehoek_moet_DrieHoek_aanmaken_met_gegeven_hoekpunten() throws DomainException {
 		Driehoek drieHoek = new Driehoek(punt1, punt2, punt3);
