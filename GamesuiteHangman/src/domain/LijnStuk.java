@@ -12,10 +12,12 @@ public class LijnStuk extends Vorm {
 		if (startPunt == null) {
 			throw new DomainException("Startpunt is null!");
 		}
-		this.startPunt = startPunt;
+		setStartEnEindPunt(startPunt, eindPunt);
 		if (eindPunt == null) {
 			throw new DomainException("Eindpunt is null!");
 		}
+		setStartEnEindPunt(startPunt, eindPunt);
+		
 		this.eindPunt = eindPunt;
 		omhullende = this.getOmhullende();
 	}
@@ -24,6 +26,8 @@ public class LijnStuk extends Vorm {
 		if (startPunt.equals(eindPunt)) {
 			throw new DomainException("Startpunt is gelijk aan Eindpunt!");
 		}
+		this.startPunt = startPunt;
+		this.eindPunt = eindPunt;
 	}
 
 	public Punt getStartPunt() {
@@ -38,7 +42,13 @@ public class LijnStuk extends Vorm {
 	public boolean equals(Object object) {
 		if (object instanceof LijnStuk) {
 			LijnStuk lijnstuk = (LijnStuk) object;
+				/*
 				if (lijnstuk.getStartPunt().equals(lijnstuk.getEindPunt())) {
+					return true;
+				}
+				*/
+				if (this.getStartPunt().equals(this.getEindPunt()) &&
+						lijnstuk.getStartPunt().equals(lijnstuk.getEindPunt())) {
 					return true;
 				}
 			return true;
@@ -61,4 +71,5 @@ public class LijnStuk extends Vorm {
 		int omhulY = Math.min(this.getEindPunt().getY(), this.getStartPunt().getY());
 		return new Omhullende(new Punt(omhulX,omhulY), omhulBreedte, omhulHoogte);
 	}
+
 }

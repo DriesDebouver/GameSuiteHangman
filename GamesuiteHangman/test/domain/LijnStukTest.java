@@ -43,5 +43,11 @@ public class LijnStukTest {
 		Omhullende doelOmhullende = new Omhullende(punt1, punt2.getX()-punt1.getX(), punt2.getY()-punt1.getY());
 		assertTrue(lijnstuk.getOmhullende().equals(doelOmhullende));
 	}
+	
+	@Test (expected = DomainException.class)
+	public void LijnStuk_Moet_exception_gooien_als_startpunt_gelijk_is_aan_eindpunt() throws DomainException {
+		punt1 = punt2;
+		new LijnStuk(punt1, punt2);
+	}
 }
 	
