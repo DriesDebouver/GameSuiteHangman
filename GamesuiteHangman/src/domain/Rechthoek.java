@@ -6,11 +6,14 @@ public class Rechthoek extends Vorm {
 	private int breedte;
 	private int hoogte;
 	
+	private Omhullende omhullende;
+	
 	public Rechthoek(Punt linkerBovenhoek, int breedte, int hoogte) throws DomainException {
 		super();
 		this.setLinkerBovenhoek(linkerBovenhoek);
 		this.setBreedte(breedte);
 		this.setHoogte(hoogte);
+		this.omhullende = this.getOmhullende();
 	}
 	public Punt getLinkerBovenhoek() {
 		return linkerBovenhoek;
@@ -39,6 +42,10 @@ public class Rechthoek extends Vorm {
 		}
 		this.hoogte = hoogte;
 	}
+	public Omhullende getOmhullende() throws DomainException {
+		omhullende = new Omhullende(this.getLinkerBovenhoek(), this.getBreedte(), this.getHoogte());
+		return new Omhullende(this.getLinkerBovenhoek(), this.getBreedte(), this.getHoogte());
+	}
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof Rechthoek) {
@@ -57,6 +64,7 @@ public class Rechthoek extends Vorm {
 	@Override
 	public String toString() {
 		String stringRechthoek = "Rechthoek: positie: " + this.getLinkerBovenhoek().toString() + " - breedte: " + this.getBreedte() + " - hoogte: " + this.getHoogte();
+		stringRechthoek = stringRechthoek + "\n" + omhullende.toString();
 		return stringRechthoek;
 	}
 
