@@ -38,9 +38,10 @@ public class LijnStukTest {
 	}
 	
 	@Test
-	public void equals_moet_false_teruggeven_als_parameter_null() throws DomainException{
-		LijnStuk lijnStuk = new LijnStuk(punt1, punt2);
-		assertFalse(lijnStuk.equals(null));
+	public void getOmhullende_moet_juiste_omhullende_teruggeven() throws DomainException{
+		LijnStuk lijnstuk = new LijnStuk(punt1, punt2);
+		Omhullende doelOmhullende = new Omhullende(punt1, punt2.getX()-punt1.getX(), punt2.getY()-punt1.getY());
+		assertTrue(lijnstuk.getOmhullende().equals(doelOmhullende));
 	}
 	
 	@Test (expected = DomainException.class)

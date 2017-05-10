@@ -1,11 +1,8 @@
 package domain;
 import domain.*;
 
-<<<<<<< .merge_file_a10584
 public class Cirkel extends Vorm{
-=======
-public class Cirkel extends Vorm {
->>>>>>> .merge_file_a14148
+
 	private int radius;
 	private Punt middelPunt;
 	
@@ -23,8 +20,8 @@ public class Cirkel extends Vorm {
 		this.radius = radius;
 	}
 
-	public Punt getMiddelPunt() {
-		if(middelPunt == null){throw new D}
+	public Punt getMiddelPunt()throws Exception {
+		if(middelPunt == null){throw new DomainException("geen deftig middelpunt");}
 		return middelPunt;
 	}
 
@@ -42,12 +39,7 @@ public class Cirkel extends Vorm {
 	@Override
 	public boolean equals(Object obj){
 		// TODO Auto-generated method stub
-		boolean probeer = false;
-		try{
-			Cirkel cirkel = (Cirkel)obj;
-		}catch(Exception e){
-			return false;
-		}
+		if(obj == null){return false;}
 		Cirkel cirkel = (Cirkel)obj;
 		if(this.radius == cirkel.radius && this.middelPunt == cirkel.middelPunt){
 			return true;
