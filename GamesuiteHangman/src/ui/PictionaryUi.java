@@ -1,5 +1,6 @@
 package ui;
 
+import domain.Cirkel;
 import domain.DomainException;
 import domain.Driehoek;
 import domain.LijnStuk;
@@ -31,7 +32,7 @@ public class PictionaryUi {
 			askForLijnstuk();
 		}
 		if (keuze.equals("Cirkel")) {
-			//TODO
+			askForCirkel();
 		}
 		if (keuze.equals("Rechthoek")) {
 			askForRechthoek();
@@ -43,7 +44,7 @@ public class PictionaryUi {
 	
 	private void askForPunt() throws DomainException {
 		try {
-			Punt punt = askForPuntCoord();
+			Punt punt = askForPuntCoord("punt");
 			JOptionPane.showMessageDialog(null, "U heeft een correct punt aangemaakt: " + punt.toString());
 			//TODO: add punt to game/speler?
 		} catch (DomainException e) {
@@ -54,10 +55,8 @@ public class PictionaryUi {
 	
 	private void askForLijnstuk() {
 		try {
-			JOptionPane.showMessageDialog(null, "Geef coordinaten van beginpunt in.");
-			Punt beginpunt = askForPuntCoord();
-			JOptionPane.showMessageDialog(null, "Geef coordinaten van eindpunt in.");
-			Punt eindpunt = askForPuntCoord();
+			Punt beginpunt = askForPuntCoord("beginpunt lijnstuk");
+			Punt eindpunt = askForPuntCoord("eindpunt lijnstuk");
 			LijnStuk lijnstuk = new LijnStuk(beginpunt,eindpunt);
 			JOptionPane.showMessageDialog(null, "U heeft een correct lijnstuk aangemaakt: " + lijnstuk.toString());
 			//TODO: add lijnstuk to game/speler?
@@ -67,15 +66,25 @@ public class PictionaryUi {
 		}
 	}
 	
+	private void askForCirkel() {
+		try {
+			Punt middelpunt = askForPuntCoord("middelpunt cirkel");
+			int straal = askForInt("straal cirkel");
+			Cirkel cirkel = new Cirkel(middelpunt, straal);
+			JOptionPane.showMessageDialog(null, "U heeft een correcte cirkel aangemaakt: " + cirkel.toString());
+			//TODO: add lijnstuk to game/speler?
+		} catch (DomainException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+			askForCirkel();
+		}
+	}
+	
 	private void askForRechthoek() throws DomainException {
 		try {
-			JOptionPane.showMessageDialog(null, "Geef coordinaten van linkerbovenhoek punt in.");
-			Punt linkerBovenHoek = askForPuntCoord();
-			String breedte = JOptionPane.showInputDialog("Breedte van de rechthoek:");
-			checkParamInt(breedte);
-			String hoogte = JOptionPane.showInputDialog("Hoogte van de rechthoek:");
-			checkParamInt(hoogte);
-			Rechthoek rechthoek = new Rechthoek(linkerBovenHoek, Integer.parseInt(breedte), Integer.parseInt(hoogte));
+			Punt linkerBovenHoek = askForPuntCoord("linkerbovenhoek");
+			int breedte = askForInt("breedte van de rechthoek");
+			int hoogte = askForInt("hoogte van de rechthoek");
+			Rechthoek rechthoek = new Rechthoek(linkerBovenHoek, breedte, hoogte);
 			JOptionPane.showMessageDialog(null, "U heeft een correct rechthoek aangemaakt: " + rechthoek.toString());
 			//TODO: add punt to game/speler?
 		} catch (DomainException e) {
@@ -86,12 +95,9 @@ public class PictionaryUi {
 	
 	private void askForDriehoek() throws DomainException {
 		try {
-			JOptionPane.showMessageDialog(null, "Geef coordinaten van eerste hoekpunt in.");
-			Punt hoekPunt1 = askForPuntCoord();
-			JOptionPane.showMessageDialog(null, "Geef coordinaten van tweede hoekpunt in.");
-			Punt hoekPunt2 = askForPuntCoord();
-			JOptionPane.showMessageDialog(null, "Geef coordinaten van derde hoekpunt in.");
-			Punt hoekPunt3 = askForPuntCoord();
+			Punt hoekPunt1 = askForPuntCoord("eerste hoekpunt driehoek");
+			Punt hoekPunt2 = askForPuntCoord("tweede hoekpunt driehoek");
+			Punt hoekPunt3 = askForPuntCoord("derde hoekpunt driehoek");
 			Driehoek driehoek = new Driehoek(hoekPunt1, hoekPunt2, hoekPunt3);
 			JOptionPane.showMessageDialog(null, "U heeft een correct driehoek aangemaakt: " + driehoek.toString());
 			//TODO: add driehoek to game/speler?
@@ -101,30 +107,35 @@ public class PictionaryUi {
 		}
 	}
 	
-	private void checkParamInt(String coord) throws DomainException {
-		if (coord == null || coord.trim().isEmpty()) {
-			throw new DomainException("Vul alles in.");
-		}
-		//Test if digit with regular expression:
-		// -?     --> negative sign, could have none or one
-		// \\d+   --> one or more digits
-		if (!coord.matches("^?\\d+$")) {
-			throw new DomainException("Geef positieve nummers.");
-		}
-	}
-	
-	private Punt askForPuntCoord() throws DomainException {
+	private Punt askForPuntCoord(String puntToAsk) throws DomainException {
 		try {
-			String xcoord = JOptionPane.showInputDialog("x coordinaat van een punt:");
-			checkParamInt(xcoord);
-			String ycoord = JOptionPane.showInputDialog("y coordinaat van een punt:");
-			checkParamInt(ycoord);
-			Punt punt = new Punt(Integer.parseInt(xcoord), Integer.parseInt(ycoord));
+			int xcoord = askForInt("x coordinaat van een " + puntToAsk);
+			int ycoord = askForInt("y coordinaat van een " + puntToAsk);
+			Punt punt = new Punt(xcoord, ycoord);
 			return punt;
 		} catch (DomainException e) {
 			JOptionPane.showMessageDialog(null,e.getMessage());
-			return askForPuntCoord();
+			return askForPuntCoord(puntToAsk);
 		}
+	}
+	
+	private int askForInt(String intToAsk) throws DomainException {
+		String number = JOptionPane.showInputDialog("Vul " + intToAsk + " in.");
+		try {
+			if (number == null || number.trim().isEmpty()) {
+				throw new DomainException("Vul in!");
+			}
+			//Test if digit with regular expression:
+			// -?     --> negative sign, could have none or one
+			// \\d+   --> one or more digits
+			if (!number.matches("^-?\\d+$")) {
+				throw new DomainException("Geef een nummer.");
+			}
+		} catch (DomainException e) {
+			JOptionPane.showMessageDialog(null,e.getMessage());
+			return askForInt(intToAsk);
+		}
+		return Integer.parseInt(number);
 	}
 
 }
