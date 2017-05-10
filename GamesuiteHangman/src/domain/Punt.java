@@ -5,21 +5,21 @@ public class Punt {
 	private int x;
 	private int y;
 	
-	public Punt(int x, int y) {
+	public Punt(int x, int y) throws DomainException {
 		super();
-		this.x = x;
-		this.y = y;
+		setX(x);
+		setY(y);
 	}
 	public int getX() {
 		return x;
 	}
-	public void setX(int x) {
+	public void setX(int x) throws DomainException {
 		this.x = x;
 	}
 	public int getY() {
 		return y;
 	}
-	public void setY(int y) {
+	public void setY(int y) throws DomainException {
 		this.y = y;
 	}
 	

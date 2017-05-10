@@ -35,14 +35,13 @@ public class Cirkel extends Vorm{
 	}
 	@Override
 	public String toString() {
-		String returnString = "middelpunt: " + this.middelPunt.toString() + " - straal:" + this.getRadius();
+		String returnString = "middelpunt: " + this.middelPunt.toString() + " - straal: " + this.getRadius();
 		returnString += "\n" + omhullende;
 		System.out.println(returnString);
 		return returnString;
 	}
 	@Override
 	public boolean equals(Object obj){
-		// TODO Auto-generated method stub
 		if(obj == null){return false;}
 		Cirkel cirkel = (Cirkel)obj;
 		if(this.radius == cirkel.radius && this.middelPunt == cirkel.middelPunt){

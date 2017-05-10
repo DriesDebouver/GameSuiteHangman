@@ -19,13 +19,13 @@ public class PuntTest {
 	}
 
 	@Test
-	public void Punt_moet_een_punt_maken_met_de_gegeven_coordinaten() {
+	public void Punt_moet_een_punt_maken_met_de_gegeven_coordinaten() throws DomainException {
 		punt = new Punt(xCoordinaat, yCoordinaat);
 		assertEquals(xCoordinaat, punt.getX());
 		assertEquals(yCoordinaat, punt.getY());
 	}
 	
-	public void equals_moet_true_teruggeven_als_x_en_y_coordinaat_gelijk_zijn(){
+	public void equals_moet_true_teruggeven_als_x_en_y_coordinaat_gelijk_zijn() throws DomainException{
 		Punt puntAnder = new Punt(xCoordinaat, yCoordinaat);
 		assertTrue(punt.equals(puntAnder));
 	}
@@ -36,13 +36,13 @@ public class PuntTest {
 	}
 	
 	@Test
-	public void equals_moet_false_teruggeven_als_punt_verschillende_x_coordinaat_heeft(){
+	public void equals_moet_false_teruggeven_als_punt_verschillende_x_coordinaat_heeft() throws DomainException{
 		Punt puntAnder = new Punt(xCoordinaat-1, yCoordinaat);
 		assertFalse(punt.equals(puntAnder));
 	}
 	
 	@Test
-	public void equals_moet_false_teruggeven_als_punt_verschillende_y_coordinaat_heeft(){
+	public void equals_moet_false_teruggeven_als_punt_verschillende_y_coordinaat_heeft() throws DomainException{
 		Punt puntAnder = new Punt(xCoordinaat, yCoordinaat-1);
 		assertFalse(punt.equals(puntAnder));
 	}
