@@ -27,6 +27,5 @@ private static PictionaryUi ui;
 			JOptionPane.showMessageDialog(null,e.getMessage());
 			return addSpeler();
 		}
-}
-
+	}
 }
