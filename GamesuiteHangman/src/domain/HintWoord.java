@@ -35,8 +35,7 @@ public class HintWoord {
 		this.woord = woord;
 	}
 
-	boolean isGeraden() {
-		// TODO Auto-generated method stub
+	public boolean isGeraden() {
 		return false;
 	}
 
