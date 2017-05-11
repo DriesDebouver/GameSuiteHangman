@@ -36,7 +36,8 @@ public class TekenVenster extends Canvas {
 	public void paint(Graphics graphics) {
 		Graphics2D graphics2D = (Graphics2D) graphics;
 		graphics2D.setStroke(new BasicStroke(5));
-
+		tekening.teken(graphics);
+		
 		/*
 		Cirkel boomkruin = new Cirkel(new Punt(70, 70), 60);
 		LijnStuk boomstam = new LijnStuk(new Punt(70, 130), new Punt(70, 380));

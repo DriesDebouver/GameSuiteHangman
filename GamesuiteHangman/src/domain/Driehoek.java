@@ -1,5 +1,7 @@
 package domain;
 
+import java.awt.Graphics;
+
 public class Driehoek extends Vorm {
 	
 	private Punt hoekpunten[] = new Punt[3];
@@ -70,6 +72,9 @@ public class Driehoek extends Vorm {
 		int omhulHoogte = Math.abs(maxY - minY);
 		omhullende = new Omhullende(omhulHoek, omhulBreedte, omhulHoogte);
 		return new Omhullende(omhulHoek, omhulBreedte, omhulHoogte);
+	}
+	@Override
+	public void teken(Graphics graphics) {		
 	}
 
 }

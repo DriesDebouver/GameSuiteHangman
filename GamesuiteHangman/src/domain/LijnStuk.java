@@ -1,5 +1,7 @@
 package domain;
 
+import java.awt.Graphics;
+
 public class LijnStuk extends Vorm {
 
 	private Punt startPunt;
@@ -73,6 +75,12 @@ public class LijnStuk extends Vorm {
 		int omhulY = Math.min(this.getEindPunt().getY(), this.getStartPunt().getY());
 		omhullende = new Omhullende(new Punt(omhulX,omhulY), omhulBreedte, omhulHoogte);
 		return new Omhullende(new Punt(omhulX,omhulY), omhulBreedte, omhulHoogte);
+	}
+
+	@Override
+	public void teken(Graphics graphics) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
