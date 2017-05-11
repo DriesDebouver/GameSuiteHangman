@@ -8,7 +8,6 @@ import domain.Punt;
 import domain.Rechthoek;
 import domain.Speler;
 import domain.Tekening;
-import domain.TekeningHangMan;
 import javax.swing.JOptionPane;
 
 public class PictionaryUi {
@@ -23,7 +22,6 @@ public class PictionaryUi {
 	}
 	
 	public void showMenu() throws DomainException, UiException {
-		TekeningHangMan hmt = null;
 		Object[] shapes = {"Lijnstuk","Cirkel","Rechthoek","Driehoek","HangMan"};
 		Object keuze = JOptionPane.showInputDialog(null,"Wat wilt u tekenen", "input", JOptionPane.INFORMATION_MESSAGE, null, shapes, null);
 		if (keuze != null) {
@@ -39,20 +37,10 @@ public class PictionaryUi {
 			if (keuze.equals("Driehoek")) {
 				askForDriehoek();
 			}
-			if (keuze.equals("HangMan")) {
-				try {
-					hmt = new TekeningHangMan();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
 		} else {
 			System.exit(0);
 		}
 		
-		if(hmt!=null) {
-			tekening = hmt.getLijst();
-		}
 		GameHoofdScherm vieuw = new GameHoofdScherm("© " +speler.getNaam() + " zijn/haar tekening", tekening);
 		vieuw.setVisible(true);
 		vieuw.teken();
