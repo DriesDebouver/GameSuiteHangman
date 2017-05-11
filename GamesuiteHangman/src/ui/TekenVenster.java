@@ -1,12 +1,11 @@
 package ui;
-
 import java.awt.BasicStroke;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-
 import domain.Cirkel;
+import domain.DomainException;
 import domain.Driehoek;
 import domain.LijnStuk;
 import domain.Punt;
@@ -18,12 +17,12 @@ public class TekenVenster extends Canvas {
 	private static final long serialVersionUID = 1L;
 	private Tekening tekening = null;
 
-	public TekenVenster(Tekening tekening) {
+	public TekenVenster(Tekening tekening) throws UiException {
 		this.setPreferredSize(new Dimension(400, 400));
 		setTekening(tekening);
 	}
 
-	private void setTekening(Tekening tekening) {
+	private void setTekening(Tekening tekening) throws UiException {
 		if (tekening == null)
 			throw new UiException("Tekening mag niet null zijn");
 		this.tekening = tekening;
@@ -38,6 +37,7 @@ public class TekenVenster extends Canvas {
 		Graphics2D graphics2D = (Graphics2D) graphics;
 		graphics2D.setStroke(new BasicStroke(5));
 
+		/*
 		Cirkel boomkruin = new Cirkel(new Punt(70, 70), 60);
 		LijnStuk boomstam = new LijnStuk(new Punt(70, 130), new Punt(70, 380));
 		Rechthoek gebouw = new Rechthoek(new Punt(100, 200), 200, 180);
@@ -61,5 +61,6 @@ public class TekenVenster extends Canvas {
 		int[] yPoints = { dak.getHoekPunt1().getY(), dak.getHoekPunt2().getY(),
 				dak.getHoekPunt3().getY() };
 		graphics.drawPolygon(xPoints, yPoints, 3);
+		*/
 	}
 }
