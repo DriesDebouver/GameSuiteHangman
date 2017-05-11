@@ -10,7 +10,7 @@ public class HintLetterTest {
 	@Test
 	public void HintLetter_moet_HintLetter_maken_die_niet_geraden_is() {
 		HintLetter letter = new HintLetter('a');
-
+		
 		assertFalse(letter.isGeraden());
 	}
 
@@ -82,7 +82,7 @@ public class HintLetterTest {
 	@Test
 	public void getLetter_moet_letter_teruggeven_als_niet_geraden() {
 		HintLetter letter = new HintLetter('x');
-
-		assertEquals('x', letter.getLetter());
+		System.out.println(letter.getHintLetter());
+		assertEquals('x', letter.getHintLetter());
 	}
 }
