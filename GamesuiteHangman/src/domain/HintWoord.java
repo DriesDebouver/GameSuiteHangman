@@ -40,14 +40,23 @@ class HintWoord {
 		return false;
 	}
 
-	boolean raad(char c) {
-		for (HintLetter letter: lettersWoord) {
-			letter.raad(c);
-			if (!letter.isGeraden()) {
+	public boolean raad(char c) {
+		boolean allesGeraden = true;
+		if (reedsGeradenLetters.contains(c)) {
+			return false;
+		} else {
+			for (HintLetter letter: lettersWoord) {
+				letter.raad(c);
+				if (!letter.isGeraden()) {
+					allesGeraden = false;
+				}
+			}
+			if (allesGeraden) {
 				this.isGeraden = false;
 			}
+			
 		}
-		return false;
+		return true;
 	}
 	
 	public String toString() {
