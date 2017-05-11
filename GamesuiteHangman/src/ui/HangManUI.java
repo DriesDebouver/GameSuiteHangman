@@ -19,6 +19,7 @@ public class HangManUI {
 		}
 		this.speler = speler;
 		WoordenLijst wl = new WoordenLijst();
+		wl.ini();
 		String s = wl.getRandomWoord();
 		System.out.println(s);
 		hintWoord = new HintWoord(s);
@@ -29,7 +30,6 @@ public class HangManUI {
 		
 		HangMan spel = new HangMan(speler, wl);
 		spel.getTekening().reset();
-		spel.getWoordenLijst().ini();
 		HangmanPaneel paneel = new HangmanPaneel(spel);
 		HangManHoofdScherm scherm = new HangManHoofdScherm(spel, paneel);
 		scherm.start();
