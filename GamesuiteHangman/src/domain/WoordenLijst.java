@@ -4,10 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import db.WoordenLezer;
+
 public class WoordenLijst {
 	private List<String> woordenLijst = new ArrayList<String>();
-	public WoordenLijst(){
-		
+	
+	public WoordenLijst() throws Exception{
+		ini();
+	}
+	private void ini() throws Exception{
+		WoordenLezer wl = new WoordenLezer();
+		wl.lees();
+		ArrayList<String> lijst = wl.getdb();
+		for(String s : lijst){
+			try{
+			voegToe(s);
+			}catch(Exception e){}
+		}
 	}
 	public void voegToe(String s) throws DomainException{
 		if(s == null || s.trim().isEmpty()){throw new DomainException("geen geldig woord");}

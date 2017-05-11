@@ -5,7 +5,7 @@ import domain.Speler;
 
 public class Launcher {
 
-	public static void main(String[] args) throws DomainException {
+	public static void main(String[] args) throws Exception {
 		
 		Speler speler = addSpeler();
 		
