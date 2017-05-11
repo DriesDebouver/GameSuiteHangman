@@ -38,6 +38,7 @@ public class TekenVenster extends Canvas {
 		graphics2D.setStroke(new BasicStroke(5));
 		tekening.teken(graphics);
 		
+		/*
 		Cirkel boomkruin = null;
 		LijnStuk boomstam = null;
 		Rechthoek gebouw = null;
@@ -72,5 +73,6 @@ public class TekenVenster extends Canvas {
 		} catch (DomainException e) {
 			e.printStackTrace();
 		}
+		*/
 	}
 }
