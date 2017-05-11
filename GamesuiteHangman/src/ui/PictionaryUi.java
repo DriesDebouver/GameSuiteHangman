@@ -26,24 +26,28 @@ public class PictionaryUi {
 		TekeningHangMan hmt = null;
 		Object[] shapes = {"Lijnstuk","Cirkel","Rechthoek","Driehoek","HangMan"};
 		Object keuze = JOptionPane.showInputDialog(null,"Wat wilt u tekenen", "input", JOptionPane.INFORMATION_MESSAGE, null, shapes, null);
-		if (keuze.equals("Lijnstuk")) {
-			askForLijnstuk();
-		}
-		if (keuze.equals("Cirkel")) {
-			askForCirkel();
-		}
-		if (keuze.equals("Rechthoek")) {
-			askForRechthoek();
-		}
-		if (keuze.equals("Driehoek")) {
-			askForDriehoek();
-		}
-		if (keuze.equals("HangMan")) {
-			try {
-				hmt = new TekeningHangMan();
-			} catch (Exception e) {
-				e.printStackTrace();
+		if (keuze != null) {
+			if (keuze.equals("Lijnstuk")) {
+				askForLijnstuk();
 			}
+			if (keuze.equals("Cirkel")) {
+				askForCirkel();
+			}
+			if (keuze.equals("Rechthoek")) {
+				askForRechthoek();
+			}
+			if (keuze.equals("Driehoek")) {
+				askForDriehoek();
+			}
+			if (keuze.equals("HangMan")) {
+				try {
+					hmt = new TekeningHangMan();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		} else {
+			System.exit(0);
 		}
 		
 		if(hmt!=null) {
@@ -52,6 +56,7 @@ public class PictionaryUi {
 		GameHoofdScherm vieuw = new GameHoofdScherm("© " +speler.getNaam() + " zijn/haar tekening", tekening);
 		vieuw.setVisible(true);
 		vieuw.teken();
+		showMenu();
 	} 
 	
 	private void askForLijnstuk() {

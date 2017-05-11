@@ -19,8 +19,8 @@ public class WoordenLijst {
 		ArrayList<String> lijst = wl.getdb();
 		for(String s : lijst){
 			try{
-			voegToe(s);
-			}catch(Exception e){}
+				voegToe(s);
+			} catch (Exception e) {}
 		}
 	}
 	
