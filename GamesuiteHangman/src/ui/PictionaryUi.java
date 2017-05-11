@@ -47,10 +47,13 @@ public class PictionaryUi {
 		showMenu();
 	} 
 	
-	private void askForLijnstuk() {
+	private void askForLijnstuk() throws UiException {
 		try {
 			Punt beginpunt = askForPuntCoord("beginpunt lijnstuk");
 			Punt eindpunt = askForPuntCoord("eindpunt lijnstuk");
+			if (beginpunt==null || eindpunt==null) {
+				showMenu();
+			}
 			LijnStuk lijnstuk = new LijnStuk(beginpunt,eindpunt);
 			JOptionPane.showMessageDialog(null, "U heeft een correct lijnstuk aangemaakt: " + lijnstuk.toString());
 			tekening.voegToe(lijnstuk);
@@ -61,10 +64,13 @@ public class PictionaryUi {
 		}
 	}
 	
-	private void askForCirkel() {
+	private void askForCirkel() throws UiException {
 		try {
 			Punt middelpunt = askForPuntCoord("middelpunt cirkel");
 			int straal = askForInt("straal cirkel");
+			if (middelpunt==null) {
+				showMenu();
+			}
 			Cirkel cirkel = new Cirkel(middelpunt, straal);
 			JOptionPane.showMessageDialog(null, "U heeft een correcte cirkel aangemaakt: " + cirkel.toString());
 			tekening.voegToe(cirkel);
@@ -74,9 +80,12 @@ public class PictionaryUi {
 		}
 	}
 	
-	private void askForRechthoek() throws DomainException {
+	private void askForRechthoek() throws DomainException, UiException {
 		try {
 			Punt linkerBovenHoek = askForPuntCoord("linkerbovenhoek");
+			if (linkerBovenHoek == null) {
+				showMenu();
+			}
 			int breedte = askForInt("breedte van de rechthoek");
 			int hoogte = askForInt("hoogte van de rechthoek");
 			Rechthoek rechthoek = new Rechthoek(linkerBovenHoek, breedte, hoogte);
@@ -88,7 +97,7 @@ public class PictionaryUi {
 		}
 	}
 	
-	private void askForDriehoek() throws DomainException {
+	private void askForDriehoek() throws DomainException, UiException {
 		try {
 			Punt hoekPunt1 = askForPuntCoord("eerste hoekpunt driehoek");
 			Punt hoekPunt2 = askForPuntCoord("tweede hoekpunt driehoek");
@@ -102,7 +111,7 @@ public class PictionaryUi {
 		}
 	}
 	
-	private Punt askForPuntCoord(String puntToAsk) throws DomainException {
+	private Punt askForPuntCoord(String puntToAsk) throws DomainException, UiException {
 		try {
 			int xcoord = askForInt("x coordinaat van een " + puntToAsk);
 			int ycoord = askForInt("y coordinaat van een " + puntToAsk);
@@ -114,10 +123,13 @@ public class PictionaryUi {
 		}
 	}
 	
-	private int askForInt(String intToAsk) throws DomainException {
+	private int askForInt(String intToAsk) throws DomainException, UiException {
 		String number = JOptionPane.showInputDialog("Vul " + intToAsk + " in.");
 		try {
-			if (number == null || number.trim().isEmpty()) {
+			if (number == null) {
+				showMenu();
+			}
+			if (number.trim().isEmpty()) {
 				throw new DomainException("Vul in!");
 			}
 			//Test if digit with regular expression:
