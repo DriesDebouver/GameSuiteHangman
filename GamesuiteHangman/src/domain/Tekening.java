@@ -77,7 +77,6 @@ public class Tekening implements Drawable {
 			return false;}
 		Tekening t1 = (Tekening)object;
 		if(this.getAantalVormen() != t1.getAantalVormen()){
-			System.out.println("size this tek: " + tekening.size() + ", obj size: " + t1.getAantalVormen());
 			return false;}
 		for(Vorm vorm: t1.gettekening()){
 			if(!tekening.contains(vorm)){

@@ -38,7 +38,6 @@ public class WoordenLijst {
 		if(getAantalWoorden() == 0){return null;}
 		Random rand = new Random();
 		int  n = rand.nextInt(getAantalWoorden()) + 0;
-		System.out.println(woordenLijst.get(n));
 		return woordenLijst.get(n);
 	}
 	

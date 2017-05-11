@@ -16,7 +16,6 @@ public class HangManUI {
 		WoordenLijst wl = new WoordenLijst();
 		wl.ini();
 		String s = wl.getRandomWoord();
-		System.out.println(s);
 		play(wl);
 	}
 	
