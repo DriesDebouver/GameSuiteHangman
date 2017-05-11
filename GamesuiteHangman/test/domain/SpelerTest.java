@@ -1,5 +1,6 @@
 package domain;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -88,5 +89,12 @@ public class SpelerTest {
 	@Test (expected = IllegalArgumentException.class)
 	public void setScore_moet_exception_gooien_als_je_score_negatief_probeert_te_zetten() throws DomainException{
 		speler.setScore(negativeScore);
+	}
+	@Test
+	public void toString_moet_naam_en_score_bevatten()throws Exception{
+		String spelerString = speler.toString();
+		
+		assertThat(spelerString, containsString(speler.getNaam()));
+		assertThat(spelerString, containsString(Integer.toString(speler.getScore())));
 	}
 }

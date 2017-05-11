@@ -49,7 +49,7 @@ public class Speler {
 	}
 	
 	public String toString() {
-		return "";
+		return "Naam: " + this.getNaam() + "\nScore: " + this.getScore();
 	}
 
 }
