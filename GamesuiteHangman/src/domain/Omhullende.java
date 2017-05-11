@@ -1,4 +1,5 @@
 package domain;
+import java.awt.Graphics;
 
 public class Omhullende extends Vorm {
 	private Punt positieLinksBoven;
@@ -72,5 +73,8 @@ public class Omhullende extends Vorm {
 	@Override
 	public Omhullende getOmhullende() throws DomainException {
 		return new Omhullende(this.getPositieLinksBoven(), this.getBreedte(), this.getHoogte());
+	}
+	@Override
+	public void teken(Graphics graphics) {
 	}
 }

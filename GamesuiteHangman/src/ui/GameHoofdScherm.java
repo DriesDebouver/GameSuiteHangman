@@ -15,7 +15,7 @@ public class GameHoofdScherm extends JFrame{
 	
 	private TekenVenster tekenvenster;
 
-	public GameHoofdScherm(String titel, Tekening tekening){
+	public GameHoofdScherm(String titel, Tekening tekening) throws UiException{
 		super(titel);
 		TekenVenster tekenvenster = new TekenVenster(tekening);
 		setTekenvenster(tekenvenster);
