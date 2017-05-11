@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>SpelerTest.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">AllTests (11-mei-2017 22:03:49)</a> &gt; <a href="../../index.html" class="el_group">HangmanProject</a> &gt; <a href="../index.html" class="el_bundle">test</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">SpelerTest.java</span></div><h1>SpelerTest.java</h1><pre class="source lang-java linenums">package domain;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+<span class="fc" id="L8">public class SpelerTest {</span>
+	
+	private String naam;
+	private String anderenaam;
+	private int positiveScore;
+	private int negativeScore;
+	private Speler speler;
+
+	@Before
+	public void setUp() throws Exception {
+<span class="fc" id="L18">		naam = &quot;Lars&quot;;</span>
+<span class="fc" id="L19">		anderenaam = &quot;Lies&quot;;</span>
+<span class="fc" id="L20">		positiveScore = 5;</span>
+<span class="fc" id="L21">		negativeScore = -5;</span>
+<span class="fc" id="L22">		speler = new Speler(naam);</span>
+<span class="fc" id="L23">	}</span>
+
+	@Test
+	public void Speler_moet_speler_aanmaken_met_gegeven_naam() throws DomainException {
+<span class="fc" id="L27">		speler = new Speler(naam);</span>
+<span class="fc" id="L28">		assertEquals(naam, speler.getNaam());</span>
+<span class="fc" id="L29">		assertEquals(0, speler.getScore());</span>
+<span class="fc" id="L30">	}</span>
+	
+	@Test (expected = DomainException.class)
+	public void Speler_moet_exception_gooien_als_naam_null() throws DomainException {
+<span class="nc" id="L34">		speler = new Speler(null);</span>
+<span class="nc" id="L35">	}</span>
+	
+	@Test (expected = DomainException.class)
+	public void Speler_moet_exception_gooien_als_naam_lege_string() throws DomainException {
+<span class="nc" id="L39">		speler = new Speler(&quot;&quot;);</span>
+<span class="nc" id="L40">	}</span>
+	
+	@Test
+	public void equals_moet_true_teruggeven_als_naam_en_score_gelijk_zijn() throws DomainException{
+<span class="fc" id="L44">		speler.addToScore(positiveScore);</span>
+<span class="fc" id="L45">		Speler andereSpeler = new Speler(naam);</span>
+<span class="fc" id="L46">		andereSpeler.addToScore(positiveScore);</span>
+		
+<span class="fc" id="L48">		assertTrue(speler.equals(andereSpeler));</span>
+<span class="fc" id="L49">	}</span>
+	
+	@Test
+	public void equals_moet_false_teruggeven_als_parameter_null(){
+<span class="fc" id="L53">		assertFalse(speler.equals(null));</span>
+<span class="fc" id="L54">	}</span>
+	
+	@Test
+	public void equals_moet_false_teruggeven_als_speler_een_andere_naam_heeft() throws DomainException{
+<span class="fc" id="L58">		Speler andereSpeler = new Speler(anderenaam);</span>
+<span class="fc" id="L59">		assertFalse(speler.equals(andereSpeler));</span>
+<span class="fc" id="L60">	}</span>
+	
+	@Test
+	public void equals_moet_false_teruggeven_als_speler_aan_andere_score_heeft() throws DomainException{
+<span class="fc" id="L64">		Speler andereSpeler = new Speler(naam);</span>
+<span class="fc" id="L65">		andereSpeler.addToScore(positiveScore);</span>
+<span class="fc" id="L66">		assertFalse(speler.equals(andereSpeler));</span>
+<span class="fc" id="L67">	}</span>
+	
+	@Test
+	public void addToScore_moet_gegeven_score_toevoegen_aan_bestaande_score() throws DomainException{
+<span class="fc" id="L71">		speler.addToScore(positiveScore);</span>
+<span class="fc" id="L72">		assertEquals(positiveScore, speler.getScore());</span>
+<span class="fc" id="L73">	}</span>
+	
+	@Test
+	public void addtoScore_mag_negatieve_score_toevoegen_als_de_resulterende_score_niet_negatief_wordt() throws DomainException{
+<span class="fc" id="L77">		speler.addToScore(positiveScore);</span>
+<span class="fc" id="L78">		speler.addToScore(positiveScore);</span>
+<span class="fc" id="L79">		speler.addToScore(negativeScore);</span>
+<span class="fc" id="L80">		assertEquals(positiveScore, speler.getScore());</span>
+<span class="fc" id="L81">	}</span>
+	
+	@Test (expected = DomainException.class)
+	public void addToScore_moet_exception_gooien_als_resulterende_score_negatief_wordt() throws DomainException{
+<span class="nc" id="L85">		speler.addToScore(negativeScore);</span>
+<span class="nc" id="L86">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span>AllTests (11-mei-2017 22:03:49)</div></body></html>

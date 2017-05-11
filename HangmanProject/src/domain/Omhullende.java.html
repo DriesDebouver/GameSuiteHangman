@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>Omhullende.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">AllTests (11-mei-2017 22:03:49)</a> &gt; <a href="../../index.html" class="el_group">HangmanProject</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">Omhullende.java</span></div><h1>Omhullende.java</h1><pre class="source lang-java linenums">package domain;
+
+import java.awt.Graphics;
+
+public class Omhullende extends Vorm {
+	private Punt positieLinksBoven;
+	private int breedte;
+	private int hoogte;
+	
+<span class="fc" id="L10">	public Omhullende(Punt positieLinksBoven, int breedte, int hoogte) throws DomainException {</span>
+<span class="fc" id="L11">		this.setPositieLinksBoven(positieLinksBoven);</span>
+<span class="fc" id="L12">		this.setBreedte(breedte);</span>
+<span class="fc" id="L13">		this.setHoogte(hoogte);</span>
+<span class="fc" id="L14">	}</span>
+	
+	public void setPositieLinksBoven(Punt positieLinksBoven) throws DomainException {
+<span class="fc bfc" id="L17" title="All 2 branches covered.">		if (positieLinksBoven == null) {</span>
+<span class="fc" id="L18">			throw new DomainException(&quot;linkerBovenhoek mag niet null zijn.&quot;);</span>
+		}
+<span class="fc" id="L20">		this.positieLinksBoven = positieLinksBoven;</span>
+<span class="fc" id="L21">	}</span>
+	
+	public void setBreedte(int breedte) throws DomainException {
+<span class="fc bfc" id="L24" title="All 2 branches covered.">		if (breedte &lt; 0) {</span>
+<span class="fc" id="L25">			throw new DomainException(&quot;Breedte moet groter dan 0 zijn!&quot;);</span>
+		}
+<span class="fc" id="L27">		this.breedte = breedte;</span>
+<span class="fc" id="L28">	}</span>
+	
+	public void setHoogte(int hoogte) throws DomainException {
+<span class="fc bfc" id="L31" title="All 2 branches covered.">		if (hoogte &lt; 0) {</span>
+<span class="fc" id="L32">			throw new DomainException(&quot;Hoogte moet groter dan 0 zijn!&quot;);</span>
+		}
+<span class="fc" id="L34">		this.hoogte = hoogte;</span>
+<span class="fc" id="L35">	}</span>
+	
+	public Punt getPositieLinksBoven() {
+<span class="fc" id="L38">		return positieLinksBoven;</span>
+	}
+	
+	public int getBreedte() {
+<span class="fc" id="L42">		return breedte;</span>
+	}
+	
+	public int getHoogte() {
+<span class="fc" id="L46">		return hoogte;</span>
+	}
+	
+	public int getMinX() {
+<span class="fc" id="L50">		return this.getPositieLinksBoven().getX();</span>
+	}
+	
+	public int getMinY() {
+<span class="fc" id="L54">		return this.getPositieLinksBoven().getY();</span>
+	}
+	
+	public int getMaxX() {
+<span class="fc" id="L58">		return this.getPositieLinksBoven().getX() + this.getBreedte();</span>
+	}
+	
+	public int getMaxY() {
+<span class="fc" id="L62">		return this.getPositieLinksBoven().getY() + this.getHoogte();</span>
+	}
+	
+	@Override
+	public boolean equals(Object object) {
+<span class="fc bfc" id="L67" title="All 2 branches covered.">		if (object instanceof Omhullende) {</span>
+<span class="fc" id="L68">			Omhullende omhullende = (Omhullende) object;</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">			if ((omhullende.getPositieLinksBoven().equals(this.getPositieLinksBoven())) &amp;&amp;</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">					(omhullende.getBreedte() == this.getBreedte()) &amp;&amp;</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">					(omhullende.getHoogte() == this.getHoogte()) ) {</span>
+<span class="fc" id="L72">				return true;</span>
+			}
+		}
+<span class="fc" id="L75">		return false;</span>
+	}
+	
+	@Override
+	public String toString() {
+<span class="fc" id="L80">		String omhullendeString = &quot;Omhullende: &quot; + this.getPositieLinksBoven() + &quot; - &quot; + this.getBreedte() + &quot; - &quot; + this.getHoogte();</span>
+<span class="fc" id="L81">		return omhullendeString;</span>
+	}
+	
+	@Override
+	public Omhullende getOmhullende() throws DomainException {
+<span class="nc" id="L86">		return new Omhullende(this.getPositieLinksBoven(), this.getBreedte(), this.getHoogte());</span>
+	}
+	
+	@Override
+	public void teken(Graphics graphics) {
+<span class="nc" id="L91">	}</span>
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span>AllTests (11-mei-2017 22:03:49)</div></body></html>

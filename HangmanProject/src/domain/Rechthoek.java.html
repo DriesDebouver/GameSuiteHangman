@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>Rechthoek.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">AllTests (11-mei-2017 22:03:49)</a> &gt; <a href="../../index.html" class="el_group">HangmanProject</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">Rechthoek.java</span></div><h1>Rechthoek.java</h1><pre class="source lang-java linenums">package domain;
+
+import java.awt.Graphics;
+
+public class Rechthoek extends Vorm {
+	
+	private Punt linkerBovenhoek;
+	private int breedte;
+	private int hoogte;
+	
+	private Omhullende omhullende;
+	
+<span class="fc" id="L13">	public Rechthoek(Punt linkerBovenhoek, int breedte, int hoogte) throws DomainException {</span>
+<span class="fc" id="L14">		this.setLinkerBovenhoek(linkerBovenhoek);</span>
+<span class="fc" id="L15">		this.setBreedte(breedte);</span>
+<span class="fc" id="L16">		this.setHoogte(hoogte);</span>
+<span class="fc" id="L17">		this.omhullende = this.getOmhullende();</span>
+<span class="fc" id="L18">	}</span>
+	
+	public Punt getLinkerBovenhoek() {
+<span class="fc" id="L21">		return linkerBovenhoek;</span>
+	}
+	
+	public void setLinkerBovenhoek(Punt linkerBovenhoek) throws DomainException {
+<span class="fc bfc" id="L25" title="All 2 branches covered.">		if (linkerBovenhoek == null) {</span>
+<span class="fc" id="L26">			throw new DomainException(&quot;linkerBovenhoek mag niet null zijn.&quot;);</span>
+		}
+<span class="fc" id="L28">		this.linkerBovenhoek = linkerBovenhoek;</span>
+<span class="fc" id="L29">	}</span>
+	
+	public int getBreedte() {
+<span class="fc" id="L32">		return breedte;</span>
+	}
+	
+	public void setBreedte(int breedte) throws DomainException {
+<span class="fc bfc" id="L36" title="All 2 branches covered.">		if (breedte&lt;=0) {</span>
+<span class="fc" id="L37">			throw new DomainException(&quot;Breedte moet groter dan 0 zijn.&quot;);</span>
+		}
+<span class="fc" id="L39">		this.breedte = breedte;</span>
+<span class="fc" id="L40">	}</span>
+	
+	public int getHoogte() {
+<span class="fc" id="L43">		return hoogte;</span>
+	}
+	
+	public void setHoogte(int hoogte) throws DomainException {
+<span class="fc bfc" id="L47" title="All 2 branches covered.">		if (hoogte&lt;=0) {</span>
+<span class="fc" id="L48">			throw new DomainException(&quot;Hoogte moet groter dan 0 zijn.&quot;);</span>
+		}
+<span class="fc" id="L50">		this.hoogte = hoogte;</span>
+<span class="fc" id="L51">	}</span>
+	
+	public Omhullende getOmhullende() throws DomainException {
+<span class="fc" id="L54">		omhullende = new Omhullende(this.getLinkerBovenhoek(), this.getBreedte(), this.getHoogte());</span>
+<span class="fc" id="L55">		return new Omhullende(this.getLinkerBovenhoek(), this.getBreedte(), this.getHoogte());</span>
+	}
+	
+	@Override
+	public boolean equals(Object object) {
+<span class="fc bfc" id="L60" title="All 2 branches covered.">		if (object instanceof Rechthoek) {</span>
+<span class="fc" id="L61">			Rechthoek rechthoek = (Rechthoek) object;</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">			if ((rechthoek.getBreedte() == this.getBreedte()) &amp;&amp;</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">					(rechthoek.getHoogte() ==  this.getHoogte()) &amp;&amp;</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">					(rechthoek.getLinkerBovenhoek().equals(this.getLinkerBovenhoek()))) {</span>
+<span class="fc" id="L65">				return true;</span>
+			} else {
+<span class="fc" id="L67">				return false;</span>
+			}
+		} else {
+<span class="fc" id="L70">			return false;</span>
+		}
+	}
+	
+	@Override
+	public String toString() {
+<span class="nc" id="L76">		String stringRechthoek = &quot;Rechthoek: positie: &quot; + this.getLinkerBovenhoek().toString() + &quot; - breedte: &quot; + this.getBreedte() + &quot; - hoogte: &quot; + this.getHoogte();</span>
+<span class="nc" id="L77">		stringRechthoek = stringRechthoek + &quot;\n&quot; + omhullende.toString();</span>
+<span class="nc" id="L78">		return stringRechthoek;</span>
+	}
+	
+	@Override
+	public void teken(Graphics graphics) {
+<span class="nc bnc" id="L83" title="All 2 branches missed.">		if (this.isVisible()) {</span>
+<span class="nc" id="L84">			graphics.drawRect(this.getLinkerBovenhoek().getX(), this.getLinkerBovenhoek().getY(), this.getBreedte(), this.getHoogte());</span>
+		}
+<span class="nc" id="L86">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span>AllTests (11-mei-2017 22:03:49)</div></body></html>

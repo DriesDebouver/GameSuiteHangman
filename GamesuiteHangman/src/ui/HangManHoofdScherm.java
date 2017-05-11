@@ -19,4 +19,8 @@ public class HangManHoofdScherm extends GameHoofdScherm {
 		this.pack();
 		this.setVisible(true);		
 	}
+	
+	public void end() {
+		this.setVisible(false);
+	}
 }

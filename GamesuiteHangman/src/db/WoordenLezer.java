@@ -10,12 +10,12 @@ public class WoordenLezer {
 		
 	}
 	public void lees() throws Exception{
+		Scanner s;
 		try{
-			Scanner s = new Scanner(new File("hangman.txt"));
+			s = new Scanner(new File("hangman.txt"));
 		}catch(Exception e){
 			throw new DbException(e.getMessage());
 		}
-		Scanner s = new Scanner(new File("hangman.txt"));
 		String s1 = "";
 		while(s.hasNext()){
 			s1 = s.next();

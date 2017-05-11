@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>HangManUI.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">AllTests (11-mei-2017 22:03:49)</a> &gt; <a href="../../index.html" class="el_group">HangmanProject</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">ui</a> &gt; <span class="el_source">HangManUI.java</span></div><h1>HangManUI.java</h1><pre class="source lang-java linenums">package ui;
+import domain.Speler;
+import domain.WoordenLijst;
+import domain.DomainException;
+import domain.HangMan;
+
+public class HangManUI {
+
+	private Speler speler;
+	
+<span class="nc" id="L11">	public HangManUI (Speler speler) throws Exception {</span>
+<span class="nc bnc" id="L12" title="All 2 branches missed.">		if( speler == null ) {</span>
+<span class="nc" id="L13">			throw new DomainException();</span>
+		}
+<span class="nc" id="L15">		this.speler = speler;</span>
+<span class="nc" id="L16">		WoordenLijst wl = new WoordenLijst();</span>
+<span class="nc" id="L17">		wl.ini();</span>
+<span class="nc" id="L18">		String s = wl.getRandomWoord();</span>
+<span class="nc" id="L19">		System.out.println(s);</span>
+<span class="nc" id="L20">		play(wl);</span>
+<span class="nc" id="L21">	}</span>
+	
+	public void play( WoordenLijst wl ) throws Exception {
+		
+<span class="nc" id="L25">		HangMan spel = new HangMan(speler, wl);</span>
+<span class="nc" id="L26">		spel.getTekening().reset();</span>
+<span class="nc" id="L27">		HangmanPaneel paneel = new HangmanPaneel(spel);</span>
+<span class="nc" id="L28">		HangManHoofdScherm scherm = new HangManHoofdScherm(spel, paneel);</span>
+<span class="nc" id="L29">		scherm.start();</span>
+		
+		//Old code
+		/** int poging = 0;
+		boolean pogingJuist = false;
+		
+		do {
+			String input = JOptionPane.showInputDialog(
+				null,
+				( poging &gt; 1 ? ( pogingJuist ? &quot;Super, doe zo voort!\n\n&quot; : &quot;Helaas, volgende keer beter!\n\n&quot; ) : &quot;&quot; ) +
+				&quot;Rarara, welk woord zoeken we\n\n&quot; + hintWoord.toString() + &quot;\n\nGeef een letter:&quot;,
+				&quot;Hangman - &quot; + speler.getNaam(),
+				JOptionPane.INFORMATION_MESSAGE
+			);
+			if( !input.trim().isEmpty() &amp;&amp; input.length() == 1 ) {
+				pogingJuist = hintWoord.raad( input.charAt( 0 ) );
+				poging++;
+			}
+		} while( !hintWoord.isGeraden() ); */
+<span class="nc" id="L48">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span>AllTests (11-mei-2017 22:03:49)</div></body></html>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>Driehoek.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">AllTests (11-mei-2017 22:03:49)</a> &gt; <a href="../../index.html" class="el_group">HangmanProject</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">Driehoek.java</span></div><h1>Driehoek.java</h1><pre class="source lang-java linenums">package domain;
+
+import java.awt.Graphics;
+
+public class Driehoek extends Vorm {
+	
+<span class="fc" id="L7">	private Punt hoekpunten[] = new Punt[3];</span>
+	private Omhullende omhullende;
+	
+<span class="fc" id="L10">	public Driehoek(Punt hoekPunt1, Punt hoekPunt2, Punt hoekPunt3) throws DomainException {</span>
+<span class="fc" id="L11">		setHoekPunten(hoekPunt1, hoekPunt2, hoekPunt3);</span>
+<span class="fc" id="L12">		omhullende = this.getOmhullende();</span>
+<span class="fc" id="L13">	}</span>
+	
+	public void setHoekPunten(Punt hoekPunt1, Punt hoekPunt2, Punt hoekPunt3) throws DomainException {
+<span class="fc bfc" id="L16" title="All 6 branches covered.">		if (hoekPunt1 == null || hoekPunt2 == null || hoekPunt3 == null) {</span>
+<span class="fc" id="L17">			throw new DomainException(&quot;hoekpunt mag niet null zijn!&quot;);</span>
+		}
+<span class="fc" id="L19">		hoekpunten[0] = hoekPunt1;</span>
+<span class="fc" id="L20">		hoekpunten[1] = hoekPunt2;</span>
+<span class="fc" id="L21">		hoekpunten[2] = hoekPunt3;</span>
+<span class="fc" id="L22">	}</span>
+	
+	public Punt[] getHoekpunten() {
+<span class="fc" id="L25">		return hoekpunten;</span>
+	}
+	
+	public Punt getHoekPunt1() {
+<span class="fc" id="L29">		return hoekpunten[0];</span>
+	}
+	
+	public Punt getHoekPunt2() {
+<span class="fc" id="L33">		return hoekpunten[1];</span>
+	}
+	
+	public Punt getHoekPunt3() {
+<span class="fc" id="L37">		return hoekpunten[2];</span>
+	}
+	
+	@Override
+	public boolean equals(Object object) {
+<span class="fc bfc" id="L42" title="All 2 branches covered.">		if (object instanceof Driehoek) {</span>
+<span class="fc" id="L43">			Driehoek driehoek = (Driehoek) object;</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">			for (Punt punt: driehoek.getHoekpunten()) {</span>
+<span class="fc" id="L45">				boolean thisfound = false;</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">				for (Punt punt2: this.getHoekpunten()) {</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">					if (punt.equals(punt2)) {</span>
+<span class="fc" id="L48">						thisfound = true;</span>
+					}
+				}
+<span class="fc bfc" id="L51" title="All 2 branches covered.">				if (!thisfound) {</span>
+<span class="fc" id="L52">					return false;</span>
+				}
+			}
+<span class="fc" id="L55">			return true;</span>
+		} else {
+<span class="fc" id="L57">			return false;</span>
+		}
+	}
+	
+	@Override
+	public String toString() {
+<span class="nc" id="L63">		String stringDriehoek = &quot;Driehoek: hoekpunt1: &quot; + hoekpunten[0].toString() + &quot; - hoekpunt2: &quot; + hoekpunten[1].toString() + &quot; - hoekpunt3: &quot; + hoekpunten[2].toString();</span>
+<span class="nc" id="L64">		stringDriehoek = stringDriehoek + &quot;\n&quot; + omhullende.toString();</span>
+<span class="nc" id="L65">		return stringDriehoek;</span>
+	}
+	
+	@Override
+	public Omhullende getOmhullende() throws DomainException {
+<span class="fc" id="L70">		int maxX = Math.max(Math.max(this.getHoekPunt1().getX(), this.getHoekPunt2().getX()), this.getHoekPunt3().getX());</span>
+<span class="fc" id="L71">		int maxY = Math.max(Math.max(this.getHoekPunt1().getY(), this.getHoekPunt2().getY()), this.getHoekPunt3().getY());</span>
+<span class="fc" id="L72">		int minX = Math.min(Math.min(this.getHoekPunt1().getX(), this.getHoekPunt2().getX()), this.getHoekPunt3().getX());</span>
+<span class="fc" id="L73">		int minY = Math.min(Math.min(this.getHoekPunt1().getY(), this.getHoekPunt2().getY()), this.getHoekPunt3().getY());</span>
+<span class="fc" id="L74">		Punt omhulHoek = new Punt(minX,minY);</span>
+<span class="fc" id="L75">		int omhulBreedte = Math.abs(maxX - minX);</span>
+<span class="fc" id="L76">		int omhulHoogte = Math.abs(maxY - minY);</span>
+<span class="fc" id="L77">		omhullende = new Omhullende(omhulHoek, omhulBreedte, omhulHoogte);</span>
+<span class="fc" id="L78">		return new Omhullende(omhulHoek, omhulBreedte, omhulHoogte);</span>
+	}
+	
+	@Override
+	public void teken(Graphics graphics) {	
+<span class="nc bnc" id="L83" title="All 2 branches missed.">		if (this.isVisible()) {</span>
+<span class="nc" id="L84">			int[]  xPunten = {this.hoekpunten[0].getX(), this.hoekpunten[1].getX(), this.hoekpunten[2].getX()};</span>
+<span class="nc" id="L85">			int[]  yPunten = {this.hoekpunten[0].getY(), this.hoekpunten[1].getY(), this.hoekpunten[2].getY()};</span>
+<span class="nc" id="L86">			graphics.drawPolygon(xPunten, yPunten, 3);</span>
+		}
+<span class="nc" id="L88">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span>AllTests (11-mei-2017 22:03:49)</div></body></html>

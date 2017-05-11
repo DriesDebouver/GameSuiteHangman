@@ -54,16 +54,6 @@ public class PictionaryUi {
 		vieuw.teken();
 	} 
 	
-	private void askForPunt() throws DomainException {
-		try {
-			Punt punt = askForPuntCoord("punt");
-			JOptionPane.showMessageDialog(null, "U heeft een correct punt aangemaakt: " + punt.toString());
-		} catch (DomainException e) {
-			JOptionPane.showMessageDialog(null,e.getMessage());
-			askForPunt();
-		}
-	}
-	
 	private void askForLijnstuk() {
 		try {
 			Punt beginpunt = askForPuntCoord("beginpunt lijnstuk");

@@ -55,14 +55,13 @@ public class HangmanPaneel extends JPanel {
 						if(input.length() > 0){
 							guess = input.charAt(0);
 						}
-						//TODO raad
+						// raad, if guess is string, it gets first char ^
 						spel.raad(guess);
-
+						
 						woord.setText(getSpel().getHint());
 						letter.setText("");
 						getTekenVenster().teken();
 						
-						//TODO
 						//toon boodschap als gewonnen of verloren en vraag of speler opnieuw wilt spelen
 						//als de speler opnieuw wilt spelen: herzet het spel en het paneel
 						//anders stop (System.exit(0))
@@ -84,13 +83,15 @@ public class HangmanPaneel extends JPanel {
 		private void gameEnd() {
 			Object[] keuzes = {"Opnieuw", "Exit"};
 			Object keuze = JOptionPane.showInputDialog(null,"Wat wilt u doen?", "input", JOptionPane.INFORMATION_MESSAGE, null, keuzes, null);
-			if (keuze.equals("Opnieuw")) {
-				try {
-					Launcher.main(null);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			if (keuze!=null) {
+				if (keuze.equals("Opnieuw")) {
+					try {
+						Launcher.main(null);
+					} catch (Exception e) {
+						JOptionPane.showMessageDialog(null, "Can't relaunch, seek help.");
+						e.printStackTrace();
+					}
+				} 
 			} else {
 				System.exit(0);
 			}

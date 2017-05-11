@@ -1,6 +1,6 @@
 package domain;
 
-class HintLetter {
+public class HintLetter {
 	
 	private char hintLetter;
 	private boolean isGeraden;
@@ -28,11 +28,11 @@ class HintLetter {
 		return this.hintLetter;
 	}
 
-	boolean isGeraden() {
+	public boolean isGeraden() {
 		return this.isGeraden;
 	}
 
-	boolean raad(char c) {
+	public boolean raad(char c) {
 		if (Character.toLowerCase(c) == Character.toLowerCase(this.hintLetter) && !isGeraden) {
 			this.setGeraden(true);
 			this.setHintLetter(c);

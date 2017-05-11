@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>PuntTest.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">AllTests (11-mei-2017 22:03:49)</a> &gt; <a href="../../index.html" class="el_group">HangmanProject</a> &gt; <a href="../index.html" class="el_bundle">test</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">PuntTest.java</span></div><h1>PuntTest.java</h1><pre class="source lang-java linenums">package domain;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+<span class="fc" id="L8">public class PuntTest {</span>
+	
+	private int xCoordinaat;
+	private int yCoordinaat;
+	private Punt punt;
+
+	@Before
+	public void setUp() throws Exception {
+<span class="fc" id="L16">		xCoordinaat = 5;</span>
+<span class="fc" id="L17">		yCoordinaat = 10;</span>
+<span class="fc" id="L18">		punt = new Punt(xCoordinaat, yCoordinaat);</span>
+<span class="fc" id="L19">	}</span>
+
+	@Test
+	public void Punt_moet_een_punt_maken_met_de_gegeven_coordinaten() throws DomainException {
+<span class="fc" id="L23">		punt = new Punt(xCoordinaat, yCoordinaat);</span>
+<span class="fc" id="L24">		assertEquals(xCoordinaat, punt.getX());</span>
+<span class="fc" id="L25">		assertEquals(yCoordinaat, punt.getY());</span>
+<span class="fc" id="L26">	}</span>
+	
+	public void equals_moet_true_teruggeven_als_x_en_y_coordinaat_gelijk_zijn() throws DomainException{
+<span class="nc" id="L29">		Punt puntAnder = new Punt(xCoordinaat, yCoordinaat);</span>
+<span class="nc" id="L30">		assertTrue(punt.equals(puntAnder));</span>
+<span class="nc" id="L31">	}</span>
+	
+	@Test
+	public void equals_moet_false_teruggeven_als_parameter_null(){
+<span class="fc" id="L35">		assertFalse(punt.equals(null));</span>
+<span class="fc" id="L36">	}</span>
+	
+	@Test
+	public void equals_moet_false_teruggeven_als_punt_verschillende_x_coordinaat_heeft() throws DomainException{
+<span class="fc" id="L40">		Punt puntAnder = new Punt(xCoordinaat-1, yCoordinaat);</span>
+<span class="fc" id="L41">		assertFalse(punt.equals(puntAnder));</span>
+<span class="fc" id="L42">	}</span>
+	
+	@Test
+	public void equals_moet_false_teruggeven_als_punt_verschillende_y_coordinaat_heeft() throws DomainException{
+<span class="fc" id="L46">		Punt puntAnder = new Punt(xCoordinaat, yCoordinaat-1);</span>
+<span class="fc" id="L47">		assertFalse(punt.equals(puntAnder));</span>
+<span class="fc" id="L48">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span>AllTests (11-mei-2017 22:03:49)</div></body></html>

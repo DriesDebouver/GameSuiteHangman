@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>HintWoordTest.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">AllTests (11-mei-2017 22:03:49)</a> &gt; <a href="../../index.html" class="el_group">HangmanProject</a> &gt; <a href="../index.html" class="el_bundle">test</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">HintWoordTest.java</span></div><h1>HintWoordTest.java</h1><pre class="source lang-java linenums">package domain;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
+
+<span class="fc" id="L10">public class HintWoordTest {</span>
+
+	@Test
+	public void HintWoord_moet_HintWoord_aanmaken_waarvan_alle_letters_verborgen_zijn() throws DomainException {
+<span class="fc" id="L14">		String woord = &quot;test&quot;;</span>
+		
+<span class="fc" id="L16">		HintWoord hint = new HintWoord(woord);</span>
+		
+<span class="fc" id="L18">		assertEquals(woord, hint.getWoord());</span>
+<span class="fc" id="L19">		assertEquals(&quot;_ _ _ _&quot;, hint.toString());</span>
+<span class="fc" id="L20">		assertFalse(hint.isGeraden());</span>
+<span class="fc" id="L21">	}</span>
+	
+	@Test (expected = DomainException.class)
+	public void HintWoord_moet_exception_gooien_als_woord_null() throws DomainException{
+<span class="nc" id="L25">		new HintWoord(null);</span>
+<span class="nc" id="L26">	}</span>
+	
+	@Test (expected = DomainException.class)
+	public void HintWoord_moet_exception_gooien_als_woord_lege_string() throws DomainException{
+<span class="nc" id="L30">		new HintWoord(&quot;&quot;);</span>
+<span class="nc" id="L31">	}</span>
+	
+	@Test
+	public void raad_moet_false_geven_als_letter_niet_in_woord() throws DomainException{
+<span class="fc" id="L35">		HintWoord hint = new HintWoord(&quot;test&quot;);</span>
+<span class="fc" id="L36">		assertFalse(hint.raad('a'));</span>
+<span class="fc" id="L37">		assertFalse(hint.isGeraden());</span>
+<span class="fc" id="L38">	}</span>
+	
+	@Test
+	public void raad_moet_false_geven_als_letter_in_woord_maar_reeds_geraden() throws DomainException{
+<span class="fc" id="L42">		HintWoord hint = new HintWoord(&quot;test&quot;);</span>
+<span class="fc" id="L43">		assertTrue(hint.raad('e'));</span>
+<span class="fc" id="L44">		assertFalse(hint.raad('e'));</span>
+<span class="fc" id="L45">		assertFalse(hint.isGeraden());</span>
+<span class="fc" id="L46">	}</span>
+	
+	@Test
+	public void raad_moet_true_geven_en_hint_aanpassen_als_letter_in_woord() throws DomainException{
+<span class="fc" id="L50">		HintWoord hint = new HintWoord(&quot;test&quot;);</span>
+<span class="fc" id="L51">		assertTrue(hint.raad('e'));</span>
+<span class="fc" id="L52">		assertEquals(&quot;_ e _ _&quot;, hint.toString());</span>
+<span class="fc" id="L53">		assertFalse(hint.isGeraden());</span>
+<span class="fc" id="L54">	}</span>
+	
+	@Test
+	public void raad_moet_true_geven_en_hint_aanpassen_als_letter_in_woord_maar_in_verkeerde_case() throws DomainException{
+<span class="fc" id="L58">		HintWoord hint = new HintWoord(&quot;test&quot;);</span>
+<span class="fc" id="L59">		assertTrue(hint.raad('E'));</span>
+<span class="fc" id="L60">		assertEquals(&quot;_ e _ _&quot;, hint.toString());</span>
+<span class="fc" id="L61">		assertFalse(hint.isGeraden());</span>
+<span class="fc" id="L62">	}</span>
+	
+	@Test
+	public void raad_moet_true_geven_en_hint__op_meerdere_plaatsen_aanpassen_als_letter_meermaals_in_woord() throws DomainException{
+<span class="fc" id="L66">		HintWoord hint = new HintWoord(&quot;test&quot;);</span>
+<span class="fc" id="L67">		assertTrue(hint.raad('t'));</span>
+<span class="fc" id="L68">		assertEquals(&quot;t _ _ t&quot;, hint.toString());</span>
+<span class="fc" id="L69">		assertFalse(hint.isGeraden());</span>
+<span class="fc" id="L70">	}</span>
+	
+	@Test 
+	public void isGeraden_geeft_true_als_alle_letters_geraden() throws DomainException{
+<span class="fc" id="L74">		HintWoord hint = new HintWoord(&quot;test&quot;);</span>
+<span class="fc" id="L75">		assertTrue(hint.raad('e'));</span>
+<span class="fc" id="L76">		assertTrue(hint.raad('t'));</span>
+<span class="fc" id="L77">		assertTrue(hint.raad('s'));</span>
+		
+<span class="fc" id="L79">		assertTrue(hint.isGeraden());</span>
+<span class="fc" id="L80">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span>AllTests (11-mei-2017 22:03:49)</div></body></html>

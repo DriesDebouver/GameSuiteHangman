@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>DriehoekTest.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">AllTests (11-mei-2017 22:03:49)</a> &gt; <a href="../../index.html" class="el_group">HangmanProject</a> &gt; <a href="../index.html" class="el_bundle">test</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">DriehoekTest.java</span></div><h1>DriehoekTest.java</h1><pre class="source lang-java linenums">package domain;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+<span class="fc" id="L8">public class DriehoekTest{</span>
+	
+	private Punt punt1;
+	private Punt zelfdeAlsPunt1;
+	private Punt verschillendVanPunt1;
+	private Punt punt2;
+	private Punt zelfdeAlsPunt2;
+	private Punt verschillendVanPunt2;
+	private Punt punt3;
+	private Punt zelfdeAlsPunt3;
+	private Punt verschillendVanPunt3;
+	
+	@Before
+	public void setUp() throws DomainException {
+<span class="fc" id="L22">		punt1 = new Punt(10, 20);</span>
+<span class="fc" id="L23">		zelfdeAlsPunt1 = new Punt(10, 20);</span>
+<span class="fc" id="L24">		verschillendVanPunt1 = new Punt(15, 20);</span>
+<span class="fc" id="L25">		punt2 = new Punt(20, 40);</span>
+<span class="fc" id="L26">		zelfdeAlsPunt2 = new Punt(20, 40);</span>
+<span class="fc" id="L27">		verschillendVanPunt2 = new Punt(40, 20);</span>
+<span class="fc" id="L28">		punt3 = new Punt(190, 30);</span>
+<span class="fc" id="L29">		zelfdeAlsPunt3 = new Punt(190, 30);</span>
+<span class="fc" id="L30">		verschillendVanPunt3 = new Punt(120, 100);</span>
+<span class="fc" id="L31">	}</span>
+
+	
+	@Test
+	public void Driehoek_moet_DrieHoek_aanmaken_met_gegeven_hoekpunten() throws DomainException {
+<span class="fc" id="L36">		Driehoek drieHoek = new Driehoek(punt1, punt2, punt3);</span>
+
+<span class="fc" id="L38">		assertEquals(punt1, drieHoek.getHoekPunt1());</span>
+<span class="fc" id="L39">		assertEquals(punt2, drieHoek.getHoekPunt2());</span>
+<span class="fc" id="L40">		assertEquals(punt3, drieHoek.getHoekPunt3());</span>
+<span class="fc" id="L41">	}</span>
+	
+	@Test (expected = DomainException.class)
+	public void Driehoek_Moet_exception_gooien_als_hoekpunt1_null() throws DomainException  {
+<span class="nc" id="L45">		new Driehoek(null, punt2, punt3);</span>
+<span class="nc" id="L46">	}</span>
+	
+	@Test (expected = DomainException.class)
+	public void Driehoek_Moet_exception_gooien_als_hoekpunt2_null() throws DomainException  {
+<span class="nc" id="L50">		new Driehoek(punt1, null, punt3);</span>
+<span class="nc" id="L51">	}</span>
+	
+	@Test (expected = DomainException.class)
+	public void DrieHoek_Moet_exception_gooien_als_hoekpunt3_null() throws DomainException  {
+<span class="nc" id="L55">		new Driehoek(punt1, punt2, null);</span>
+<span class="nc" id="L56">	}</span>
+	
+	@Test
+	public void equals_moet_false_teruggeven_als_hoekPunt1_verschillend() throws DomainException{
+<span class="fc" id="L60">		Driehoek drieHoek = new Driehoek(punt1, punt2, punt3);</span>
+<span class="fc" id="L61">		Driehoek andereDriehoek = new Driehoek(verschillendVanPunt1, zelfdeAlsPunt2, zelfdeAlsPunt3);</span>
+<span class="fc" id="L62">		assertFalse(drieHoek.equals(andereDriehoek));</span>
+<span class="fc" id="L63">	}</span>
+	
+	@Test
+	public void equals_moet_false_teruggeven_als_hoekPunt2_verschillend() throws DomainException{
+<span class="fc" id="L67">		Driehoek drieHoek = new Driehoek(punt1, punt2, punt3);</span>
+<span class="fc" id="L68">		Driehoek andereDriehoek = new Driehoek(zelfdeAlsPunt1, verschillendVanPunt2, zelfdeAlsPunt3);</span>
+<span class="fc" id="L69">		assertFalse(drieHoek.equals(andereDriehoek));</span>
+<span class="fc" id="L70">	}</span>
+	
+	@Test
+	public void equals_moet_false_teruggeven_als_hoekPunt3_verschillend() throws DomainException{
+<span class="fc" id="L74">		Driehoek drieHoek = new Driehoek(punt1, punt2, punt3);</span>
+<span class="fc" id="L75">		Driehoek andereDriehoek = new Driehoek(zelfdeAlsPunt1, zelfdeAlsPunt2, verschillendVanPunt3);</span>
+<span class="fc" id="L76">		assertFalse(drieHoek.equals(andereDriehoek));</span>
+<span class="fc" id="L77">	}</span>
+	
+	@Test
+	public void equals_moet_false_teruggeven_als_parameter_null() throws DomainException{
+<span class="fc" id="L81">		Driehoek drieHoek = new Driehoek(punt1, punt2, punt3);</span>
+<span class="fc" id="L82">		assertFalse(drieHoek.equals(null));</span>
+<span class="fc" id="L83">	}</span>
+	
+	@Test
+	public void getOmhullende_moet_juiste_omhullende_teruggeven() throws DomainException{
+<span class="fc" id="L87">		Driehoek drieHoek = new Driehoek(punt1, punt2, punt3);</span>
+<span class="fc" id="L88">		Omhullende doelOmhullende = new Omhullende(punt1, 180, 20);</span>
+<span class="fc" id="L89">		assertTrue(drieHoek.getOmhullende().equals(doelOmhullende));</span>
+<span class="fc" id="L90">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span>AllTests (11-mei-2017 22:03:49)</div></body></html>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>TekeningTest.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">AllTests (11-mei-2017 22:03:49)</a> &gt; <a href="../../index.html" class="el_group">HangmanProject</a> &gt; <a href="../index.html" class="el_bundle">test</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">TekeningTest.java</span></div><h1>TekeningTest.java</h1><pre class="source lang-java linenums">package domain;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Before;
+import org.junit.Test;
+
+<span class="fc" id="L10">public class TekeningTest {</span>
+	private Vorm gebouw;
+	private Vorm dak;
+	private Vorm deur;
+	private Vorm raam;
+	private Vorm deurknop;
+	private Vorm raambalk1;
+	private Vorm raambalk2;
+	private Vorm schouwNietInTekening;
+	
+	@Before
+	public void setUp() throws Exception {
+<span class="fc" id="L22">		gebouw = new Rechthoek(new Punt(100, 200), 200, 180);</span>
+<span class="fc" id="L23">		dak = new Driehoek(new Punt(100, 200), new Punt(300, 200), new Punt(200, 100));</span>
+<span class="fc" id="L24">		deur = new Rechthoek(new Punt(130, 280), 50,100);</span>
+<span class="fc" id="L25">		raam = new Rechthoek(new Punt(210, 220), 80, 60);</span>
+<span class="fc" id="L26">		deurknop = new Cirkel(new Punt(170, 320), 2);</span>
+<span class="fc" id="L27">		raambalk1 = new LijnStuk(new Punt(210, 250), new Punt(290, 250));</span>
+<span class="fc" id="L28">		raambalk2 = new LijnStuk(new Punt(250, 220), new Punt(250, 280));</span>
+<span class="fc" id="L29">		schouwNietInTekening = new Rechthoek(new Punt(150, 150), 20,40);</span>
+<span class="fc" id="L30">	}</span>
+
+	@Test
+	public void Tekening_moet_een_tekening_aanmaken_met_een_geldige_naam_en_0_vormen()throws Exception{
+<span class="fc" id="L34">		Tekening huis = new Tekening(&quot;huis&quot;);</span>
+<span class="fc" id="L35">		assertEquals(&quot;huis&quot;, huis.getNaam());</span>
+<span class="fc" id="L36">		assertEquals(0, huis.getAantalVormen());</span>
+<span class="fc" id="L37">	}</span>
+
+	@Test (expected = DomainException.class)
+	public void Tekening_moet_exception_gooien_als_naam_null()throws Exception {
+<span class="nc" id="L41">		new Tekening(null);</span>
+<span class="nc" id="L42">	}</span>
+
+	@Test (expected = DomainException.class)
+	public void Tekening_moet_exception_gooien_als_naam_leeg()throws Exception {
+<span class="nc" id="L46">		new Tekening(&quot;&quot;);</span>
+<span class="nc" id="L47">	}</span>
+
+	@Test 
+	public void getAantalVormen_moet_aantal_vormen_teruggeven()throws Exception {
+<span class="fc" id="L51">		Tekening huis = createHuisZonderShouw();</span>
+<span class="fc" id="L52">		assertEquals(7, huis.getAantalVormen());</span>
+<span class="fc" id="L53">	}</span>
+
+	@Test
+	public void bevat_geeft_true_als_gegeven_vorm_deel_uitmaakt_van_de_tekening()throws Exception{
+<span class="fc" id="L57">		Tekening huis = createHuisZonderShouw();</span>
+<span class="fc" id="L58">		assertTrue(huis.bevat(deur));</span>
+<span class="fc" id="L59">	}</span>
+
+	@Test
+	public void bevat_geeft_false__als_gegeven_vorm_geen_deel_uitmaakt_van_de_tekening()throws Exception{
+<span class="fc" id="L63">		Tekening huis = createHuisZonderShouw();</span>
+<span class="fc" id="L64">		assertFalse(huis.bevat(schouwNietInTekening));</span>
+<span class="fc" id="L65">	}</span>
+	
+	@Test
+	public void equals_moet_false_teruggeven_als_parameter_null()throws Exception{
+<span class="fc" id="L69">		Tekening huis = createHuisZonderShouw();</span>
+<span class="fc" id="L70">		assertFalse(huis.equals(null));</span>
+<span class="fc" id="L71">	}</span>
+	
+	@Test
+	public void equals_moet_false_teruggeven_als_parameter_tekening_is_met_verschillend_aantal_vormen()throws Exception{
+<span class="fc" id="L75">		Tekening huis = createHuisZonderShouw();</span>
+<span class="fc" id="L76">		Tekening huisMetSchouw = createHuisMetSchouw();</span>
+<span class="fc" id="L77">		assertFalse(huis.equals(huisMetSchouw));</span>
+<span class="fc" id="L78">	}</span>
+	
+	@Test
+	public void equals_moet_false_teruggeven_als_parameter_tekening_is_met_zelfde_aantal_vormen_ander_vorm()throws Exception{
+<span class="fc" id="L82">		Tekening huis = createHuisZonderShouw();</span>
+<span class="fc" id="L83">		Tekening huisMetSchouwZonderDeur = createHuisMetSchouwZonderDeur();</span>
+<span class="fc" id="L84">		assertFalse(huis.equals(huisMetSchouwZonderDeur));</span>
+<span class="fc" id="L85">	}</span>
+	
+	@Test
+	public void equals_moet_true_teruggeven_als_parameter_tekening_is_met_zelfde_aantal_vormen_andere_volgorde()throws Exception{
+<span class="fc" id="L89">		Tekening huis = createHuisZonderShouw();</span>
+<span class="fc" id="L90">		Tekening huisMetSchouwZonderDeur = createHuisMetSchouwZonderDeur();</span>
+<span class="fc" id="L91">		huisMetSchouwZonderDeur.verwijder(schouwNietInTekening);</span>
+<span class="fc" id="L92">		huisMetSchouwZonderDeur.voegToe(deur);</span>
+<span class="fc" id="L93">		assertTrue(huis.equals(huisMetSchouwZonderDeur));</span>
+<span class="fc" id="L94">	}</span>
+	
+	@Test
+	public void equals_moet_true_teruggeven_alsparameter_tekening_is_met_zelfde_aantal_vormen_zelfde_volgorde()throws Exception{
+<span class="fc" id="L98">		Tekening huis = createHuisZonderShouw();</span>
+<span class="fc" id="L99">		Tekening huisMetSchouw = createHuisMetSchouw();</span>
+<span class="fc" id="L100">		huisMetSchouw.verwijder(schouwNietInTekening);</span>
+<span class="fc" id="L101">		assertTrue(huis.equals(huisMetSchouw));</span>
+<span class="fc" id="L102">	}</span>
+
+
+	public Tekening createHuisMetSchouw()throws Exception {
+<span class="fc" id="L106">		Tekening huisMetSchouw = new Tekening(&quot;huisMetSchouw&quot;);</span>
+<span class="fc" id="L107">		huisMetSchouw.voegToe(gebouw);</span>
+<span class="fc" id="L108">		huisMetSchouw.voegToe(dak);</span>
+<span class="fc" id="L109">		huisMetSchouw.voegToe(deur);</span>
+<span class="fc" id="L110">		huisMetSchouw.voegToe(raam);</span>
+<span class="fc" id="L111">		huisMetSchouw.voegToe(deurknop);</span>
+<span class="fc" id="L112">		huisMetSchouw.voegToe(raambalk1);</span>
+<span class="fc" id="L113">		huisMetSchouw.voegToe(raambalk2);</span>
+<span class="fc" id="L114">		huisMetSchouw.voegToe(schouwNietInTekening);</span>
+<span class="fc" id="L115">		return huisMetSchouw;</span>
+	}
+
+	public Tekening createHuisZonderShouw()throws Exception {
+<span class="fc" id="L119">		Tekening huis = new Tekening(&quot;huis&quot;);</span>
+<span class="fc" id="L120">		huis.voegToe(gebouw);</span>
+<span class="fc" id="L121">		huis.voegToe(dak);</span>
+<span class="fc" id="L122">		huis.voegToe(deur);</span>
+<span class="fc" id="L123">		huis.voegToe(raam);</span>
+<span class="fc" id="L124">		huis.voegToe(deurknop);</span>
+<span class="fc" id="L125">		huis.voegToe(raambalk1);</span>
+<span class="fc" id="L126">		huis.voegToe(raambalk2);</span>
+<span class="fc" id="L127">		return huis;</span>
+	}
+
+	public Tekening createHuisMetSchouwZonderDeur()throws Exception {
+<span class="fc" id="L131">		Tekening huisMetSchouwZonderDeur = new Tekening(&quot;huisMetSchouwZonderDeur&quot;);</span>
+<span class="fc" id="L132">		huisMetSchouwZonderDeur.voegToe(gebouw);</span>
+<span class="fc" id="L133">		huisMetSchouwZonderDeur.voegToe(dak);</span>
+<span class="fc" id="L134">		huisMetSchouwZonderDeur.voegToe(raam);</span>
+<span class="fc" id="L135">		huisMetSchouwZonderDeur.voegToe(deurknop);</span>
+<span class="fc" id="L136">		huisMetSchouwZonderDeur.voegToe(raambalk1);</span>
+<span class="fc" id="L137">		huisMetSchouwZonderDeur.voegToe(raambalk2);</span>
+<span class="fc" id="L138">		huisMetSchouwZonderDeur.voegToe(schouwNietInTekening);</span>
+<span class="fc" id="L139">		return huisMetSchouwZonderDeur;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span>AllTests (11-mei-2017 22:03:49)</div></body></html>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>CirkelTest.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">AllTests (11-mei-2017 22:03:49)</a> &gt; <a href="../../index.html" class="el_group">HangmanProject</a> &gt; <a href="../index.html" class="el_bundle">test</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">CirkelTest.java</span></div><h1>CirkelTest.java</h1><pre class="source lang-java linenums">package domain;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+<span class="fc" id="L8">public class CirkelTest {</span>
+	
+	private int xCoordinaat;
+	private int yCoordinaat;
+	private Punt punt;
+	private Cirkel cirkel;
+	
+	@Before
+	public void setUp()throws Exception{
+<span class="fc" id="L17">		xCoordinaat = 5;</span>
+<span class="fc" id="L18">		yCoordinaat = 10;</span>
+<span class="fc" id="L19">		punt = new Punt(xCoordinaat, yCoordinaat);</span>
+<span class="fc" id="L20">	}</span>
+	@Test
+	public void cirkel_met_geldige_raidus_en_middelpunt()throws Exception{
+<span class="fc" id="L23">		cirkel = new Cirkel(punt,5);</span>
+<span class="fc" id="L24">	}</span>
+	@Test (expected = DomainException.class)
+	public void gooit_exception_met_middelpunt_null()throws Exception{
+<span class="fc" id="L27">		punt = null;</span>
+<span class="nc" id="L28">		cirkel = new Cirkel(punt,5);</span>
+<span class="nc" id="L29">	}</span>
+	@Test (expected = DomainException.class)
+	public void gooit_exception_cirkel_negatieva_straal() throws Exception{
+<span class="fc" id="L32">		Punt p1 = new Punt(1, 1);</span>
+<span class="nc" id="L33">		new Cirkel(p1, -5);</span>
+<span class="nc" id="L34">	}</span>
+	@Test (expected = DomainException.class)
+	public void gooit_exception_cirkel_0_straal() throws Exception{
+<span class="fc" id="L37">		Punt p2 = new Punt(2,2);</span>
+<span class="nc" id="L38">		new Cirkel(p2,0);</span>
+<span class="nc" id="L39">	}</span>
+	@Test
+	public void equals_gelijke_cirkels() throws Exception{
+<span class="fc" id="L42">		Punt p3 = new Punt(1, 1);</span>
+<span class="fc" id="L43">		Cirkel c2 = new Cirkel(p3, 5);</span>
+<span class="fc" id="L44">		Cirkel c3 = new Cirkel(p3, 5);</span>
+<span class="fc" id="L45">		assertTrue(c2.equals(c3));</span>
+<span class="fc" id="L46">	}</span>
+	@Test
+	public void equals_tweede_cirkel_null_false() throws Exception{
+<span class="fc" id="L49">		Punt p4 = new Punt(1, 1);</span>
+<span class="fc" id="L50">		Cirkel c4 = new Cirkel(p4, 5);</span>
+<span class="fc" id="L51">		assertFalse(c4.equals(null));</span>
+<span class="fc" id="L52">	}</span>
+	@Test
+	public void equals_ander_middelpunt_false() throws Exception{
+<span class="fc" id="L55">		Punt p5 = new Punt(5, 1);</span>
+<span class="fc" id="L56">		Punt p6 = new Punt(1, 1);</span>
+<span class="fc" id="L57">		Cirkel c5 = new Cirkel(p5, 5);</span>
+<span class="fc" id="L58">		Cirkel c6 = new Cirkel(p6, 5);</span>
+<span class="fc" id="L59">		assertFalse(c5.equals(c6));</span>
+		
+<span class="fc" id="L61">	}</span>
+	@Test
+	public void equals_ander_straal_false() throws Exception{
+<span class="fc" id="L64">		Punt p7 = new Punt(1, 1);</span>
+<span class="fc" id="L65">		Cirkel c7 = new Cirkel(p7, 5);</span>
+<span class="fc" id="L66">		Cirkel c8 = new Cirkel(p7, 8);</span>
+<span class="fc" id="L67">		assertFalse(c7.equals(c8));</span>
+<span class="fc" id="L68">	}</span>
+	@Test
+	public void getOmhullende_moet_juiste_omhullende_teruggeven() throws DomainException{
+<span class="fc" id="L71">		cirkel = new Cirkel(punt,5);</span>
+<span class="fc" id="L72">		cirkel.toString();</span>
+<span class="fc" id="L73">		Omhullende doelOmhullende = new Omhullende(new Punt(0, 5), 10, 10);</span>
+<span class="fc" id="L74">		assertTrue(cirkel.getOmhullende().equals(doelOmhullende));</span>
+<span class="fc" id="L75">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span>AllTests (11-mei-2017 22:03:49)</div></body></html>
