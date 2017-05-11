@@ -30,12 +30,12 @@ public class CirkelTest {
 	@Test (expected = DomainException.class)
 	public void gooit_exception_cirkel_negatieva_straal() throws Exception{
 		Punt p1 = new Punt(1, 1);
-		Cirkel c1 = new Cirkel(p1, -5);
+		new Cirkel(p1, -5);
 	}
 	@Test (expected = DomainException.class)
 	public void gooit_exception_cirkel_0_straal() throws Exception{
 		Punt p2 = new Punt(2,2);
-		Cirkel c1 = new Cirkel(p2,0);
+		new Cirkel(p2,0);
 	}
 	@Test
 	public void equals_gelijke_cirkels() throws Exception{
@@ -64,6 +64,7 @@ public class CirkelTest {
 		Punt p7 = new Punt(1, 1);
 		Cirkel c7 = new Cirkel(p7, 5);
 		Cirkel c8 = new Cirkel(p7, 8);
+		assertFalse(c7.equals(c8));
 	}
 	@Test
 	public void getOmhullende_moet_juiste_omhullende_teruggeven() throws DomainException{
