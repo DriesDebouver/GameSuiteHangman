@@ -5,9 +5,10 @@ import java.util.List;
 
 public class TekeningHangMan {
 	private String naam;
-	private ArrayList<Vorm> lijst = new ArrayList<Vorm>();
+	private Tekening lijst;
 	
-	public TekeningHangMan() throws DomainException{
+	public TekeningHangMan() throws Exception{
+		lijst = new Tekening("Hangman");
 		afbeeldingHangMan();
 	}
 	public void afbeeldingHangMan() throws DomainException{
@@ -30,23 +31,47 @@ public class TekeningHangMan {
 		Vorm handLinks = new Cirkel(new Punt(230, 170), 5);
 		Vorm handRechts = new Cirkel(new Punt(330, 170), 5);
 
-		voegToe(galgBodem);
-		voegToe(galgStaaf);
-		voegToe(hangbar);
-		voegToe(koord);
-		voegToe(hoofd);
-		voegToe(oogLinks);
-		voegToe(oogRechts);
-		voegToe(neus);
-		voegToe(mond);
-		voegToe(lijf);
-		voegToe(beenLinks);
-		voegToe(beenRechts);
-		voegToe(armLinks);
-		voegToe(armRechts);
-		voegToe(handLinks);
-		voegToe(handRechts);	
+		lijst.voegToe(galgBodem);
+		lijst.voegToe(galgStaaf);
+		lijst.voegToe(hangbar);
+		lijst.voegToe(koord);
+		lijst.voegToe(hoofd);
+		lijst.voegToe(oogLinks);
+		lijst.voegToe(oogRechts);
+		lijst.voegToe(neus);
+		lijst.voegToe(mond);
+		lijst.voegToe(lijf);
+		lijst.voegToe(beenLinks);
+		lijst.voegToe(beenRechts);
+		lijst.voegToe(voetLinks);
+		lijst.voegToe(voetRechts);
+		lijst.voegToe(armLinks);
+		lijst.voegToe(armRechts);
+		lijst.voegToe(handLinks);
+		lijst.voegToe(handRechts);	
 		
+		reset();
+	}
+	public void reset(){
+		for(int i = 4;i< lijst.getAantalVormen();i++){
+			lijst.gettekening().get(i).setVisible(false);
+		}
+	}
+	public int getAantalOnzichtbaar(){
+		int i = 0;
+		for(Vorm v : this.getLijst().gettekening()){
+			if(!v.isVisible()){i++;}
+		}
+		return i;
+	}
+	public void zetVolgendeOnzichtbaar() throws DomainException{
+		for(Vorm v : this.getLijst().gettekening()){
+			if(!v.isVisible()){
+				v.setVisible(true);
+				return;
+			}
+		}
+		throw new DomainException("Alles is al zichtbaar");
 	}
 	public String getNaam() {
 		return naam;
@@ -57,23 +82,18 @@ public class TekeningHangMan {
 		this.naam = naam;
 	}
 
-	public List<Vorm> getLijst() {
+	public Tekening getLijst() {
 		return lijst;
 	}
 
 	public void voegToe(Vorm vorm) throws DomainException{
 		if(vorm == null){throw new DomainException("Geen geldige vorm");}
-		lijst.add(vorm);
+		lijst.voegToe(vorm);
 	}
 	public void verwijder(Vorm vorm)throws DomainException{
+		if(!lijst.gettekening().contains(vorm)){throw new DomainException("vorm zit er niet in ");}
 		if(vorm == null){throw new DomainException("Geen geldige vorm");}
-		for(Vorm vormThis: lijst){
-			if(vormThis.equals(vorm)){
-				lijst.remove(vormThis);
-				break;
-				
-			}
-		}
+		lijst.verwijder(vorm);
 	}
 	
 }
