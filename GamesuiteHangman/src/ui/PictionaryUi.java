@@ -44,7 +44,7 @@ public class PictionaryUi {
 			askForDriehoek();
 		}
 		
-		GameHoofdScherm vieuw = new GameHoofdScherm(speler.getNaam() + " zijn tekening", tekening);
+		GameHoofdScherm vieuw = new GameHoofdScherm("© " + speler.getNaam() + " zijn tekening", tekening);
 		vieuw.setVisible(true);
 		vieuw.teken();
 	} 
