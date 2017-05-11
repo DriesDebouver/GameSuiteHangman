@@ -53,7 +53,7 @@ public class PictionaryUi {
 		if(hmt!=null) {
 			tekening = hmt.getLijst();
 		}
-		GameHoofdScherm vieuw = new GameHoofdScherm(speler.getNaam() + " zijn/haar tekening", tekening);
+		GameHoofdScherm vieuw = new GameHoofdScherm("© " +speler.getNaam() + " zijn/haar tekening", tekening);
 		vieuw.setVisible(true);
 		vieuw.teken();
 	} 
