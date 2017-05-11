@@ -1,7 +1,9 @@
 package domain;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
@@ -75,11 +77,20 @@ public class LijnStukTest {
 		LijnStuk lijnstuk1 = new LijnStuk(punt1, punt2);
 		LijnStuk lijnstuk2 = new LijnStuk(punt2, punt1);
 		assertTrue(lijnstuk1.equals(lijnstuk2));
-	}@Test 
+	}
+	@Test 
 	public void equals_testen_door_verschillende_lijnstukken_te_vergelijken() throws DomainException {
 		LijnStuk lijnstuk1 = new LijnStuk(punt1, punt2);
 		LijnStuk lijnstuk2 = new LijnStuk(new Punt(5,6), new Punt(10, 10));
 		assertFalse(lijnstuk1.equals(lijnstuk2));
+	}
+	@Test
+	public void getString_moet_twee_eindpunten_string_bevatten() throws DomainException {
+		LijnStuk lijnstuk = new LijnStuk(punt1, punt2);
+		String lijnstukString = lijnstuk.toString();
+		
+		assertThat(lijnstukString, containsString(punt1.toString()));
+		assertThat(lijnstukString, containsString(punt2.toString()));
 	}
 }
 	

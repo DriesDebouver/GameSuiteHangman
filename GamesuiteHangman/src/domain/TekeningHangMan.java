@@ -2,7 +2,6 @@ package domain;
 
 public class TekeningHangMan {
 	
-	private String naam;
 	private Tekening lijst;
 	
 	public TekeningHangMan() throws Exception{
@@ -74,15 +73,6 @@ public class TekeningHangMan {
 			}
 		}
 		throw new DomainException("Alles is al zichtbaar!");
-	}
-	
-	public String getNaam() {
-		return naam;
-	}
-
-	public void setNaam(String naam) throws DomainException {
-		if(naam == null || naam.trim().isEmpty()){throw new DomainException("Geen geldige naam!");}
-		this.naam = naam;
 	}
 
 	public Tekening getLijst() {

@@ -51,6 +51,13 @@ public class HangManTest {
 		hangman = new HangMan(geldigeSpeler, legeWoordenlijst);
 	}
 	
+	@Test
+	public void getWoordenLijst_geeft_geldige_woordenlijst_terug() throws Exception {
+		hangman = new HangMan(geldigeSpeler, geldigeWoordenlijst);
+		
+		assertEquals(hangman.getWoordenLijst(), geldigeWoordenlijst);
+	}
+	
 	// De testen voor wat er gebeurt als je een foutieve letter (null, leeg, meer dan 1 karakter) 
 	// meegeeft, worden hier niet herhaald, die zitten al in de HintWoordTest	
 	@Test

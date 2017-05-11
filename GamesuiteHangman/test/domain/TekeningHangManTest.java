@@ -12,6 +12,7 @@ public class TekeningHangManTest {
 		thm = new TekeningHangMan();
 		thm.reset();
 	}
+
 	@Test
 	public void maak_afbeelding_hangman() throws Exception{
 		assertTrue(thm.getLijst().getAantalVormen() == 18);
@@ -49,6 +50,21 @@ public class TekeningHangManTest {
 		thm.reset();
 		int o = thm.getAantalOnzichtbaar();
 		assertEquals(i, o);
+	}
+	@Test
+	public void voegToe_voegt_succesvol_een_geldige_vorm_toe() throws DomainException{
+		Vorm v = new Cirkel(new Punt(5,5), 846465);
+		thm.voegToe(v);
+		
+		assertTrue(thm.getLijst().bevat(v));
+	}
+	@Test
+	public void verwijder_verwijdert_succesvol_een_toegevoegde_vorm_toe() throws DomainException{
+		Vorm v = new Cirkel(new Punt(5,5), 846465);
+		thm.voegToe(v);
+		thm.verwijder(v);
+		assertFalse(thm.getLijst().bevat(v));
+		
 	}
 	@Test (expected = DomainException.class)
 	public void gooit_exception_voeg_toe() throws DomainException{

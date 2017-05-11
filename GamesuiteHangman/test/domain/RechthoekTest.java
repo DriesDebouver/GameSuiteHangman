@@ -1,5 +1,6 @@
 package domain;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -87,5 +88,15 @@ public class RechthoekTest {
 	public void getOmhullende_moet_juiste_omhullende_teruggeven() throws DomainException{
 		Omhullende doelOmhullende = new Omhullende(linkerBovenhoek, breedte, hoogte);
 		assertTrue(rechthoek.getOmhullende().equals(doelOmhullende));
+	}
+	
+	@Test
+	public void toString_moet_strings_van_linkerbovenhoek_breedte_en_hoogte_bevatten()throws Exception{
+		String rechthoekString = rechthoek.toString();
+		
+		assertThat(rechthoekString, containsString(rechthoek.getLinkerBovenhoek().toString()));
+		assertThat(rechthoekString, containsString(Integer.toString(rechthoek.getBreedte())));
+		assertThat(rechthoekString, containsString(Integer.toString(rechthoek.getHoogte())));
+		assertThat(rechthoekString, containsString(rechthoek.getOmhullende().toString()));
 	}
 }

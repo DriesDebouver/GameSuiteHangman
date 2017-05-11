@@ -1,5 +1,6 @@
 package domain;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -69,9 +70,17 @@ public class CirkelTest {
 	@Test
 	public void getOmhullende_moet_juiste_omhullende_teruggeven() throws DomainException{
 		cirkel = new Cirkel(punt,5);
-		cirkel.toString();
 		Omhullende doelOmhullende = new Omhullende(new Punt(0, 5), 10, 10);
 		assertTrue(cirkel.getOmhullende().equals(doelOmhullende));
+	}
+	@Test
+	public void toString_moet_strings_van_middelpunt_radius_en_omhullende_bevatten()throws Exception{
+		cirkel = new Cirkel(punt,5);
+		String cirkelString = cirkel.toString();
+		
+		assertThat(cirkelString, containsString(cirkel.getMiddelPunt().toString()));
+		assertThat(cirkelString, containsString(Integer.toString(cirkel.getRadius())));
+		assertThat(cirkelString, containsString(cirkel.getOmhullende().toString()));
 	}
 
 }

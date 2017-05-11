@@ -1,7 +1,9 @@
 package domain;
 
 import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
@@ -44,6 +46,21 @@ public class TekeningTest {
 	@Test (expected = DomainException.class)
 	public void Tekening_moet_exception_gooien_als_naam_leeg()throws Exception {
 		new Tekening("");
+	}
+	
+	@Test (expected = DomainException.class)
+	public void voegToe_moet_exception_gooien_als_vorm_null()throws Exception {
+		Tekening huis = createHuisZonderShouw();
+		huis.voegToe(null);
+	}
+	
+	@Test
+	public void getVorm_moet_vorm_op_een_index_locatie_terugggeven()throws Exception{
+		Tekening huis = new Tekening("huis");
+		huis.voegToe(dak);
+
+		assertEquals(huis.getAantalVormen(), 1);
+		assertEquals(dak,huis.getVorm(0));
 	}
 
 	@Test 
@@ -99,6 +116,19 @@ public class TekeningTest {
 		Tekening huisMetSchouw = createHuisMetSchouw();
 		huisMetSchouw.verwijder(schouwNietInTekening);
 		assertTrue(huis.equals(huisMetSchouw));
+	}
+	
+	@Test
+	public void toString_moet_strings_van_alle_vormen_in_tekening_aantalvormen_en_naam_bevatten()throws Exception{
+		Tekening huis = createHuisZonderShouw();
+		String huisString = huis.toString();
+		
+		for(Vorm vorm:  huis.gettekening()) {
+			assertThat(huisString, containsString(vorm.toString()));
+		}
+
+		assertThat(huisString, containsString(Integer.toString(huis.getAantalVormen())));
+		assertThat(huisString, containsString(huis.getNaam()));
 	}
 
 

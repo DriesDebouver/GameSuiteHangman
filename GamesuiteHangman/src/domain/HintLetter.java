@@ -5,11 +5,6 @@ public class HintLetter {
 	private char hintLetter;
 	private boolean isGeraden;
 
-	public HintLetter(String hintLetter) {
-		setHintLetter(hintLetter.charAt(0));
-		setGeraden(false);
-	}
-	
 	public HintLetter(char hintLetter) {
 		super();
 		setHintLetter(hintLetter);

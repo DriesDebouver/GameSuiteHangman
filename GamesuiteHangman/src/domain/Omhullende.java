@@ -88,6 +88,16 @@ public class Omhullende extends Vorm {
 	
 	@Override
 	public void teken(Graphics graphics) {
+		try {
+			Rechthoek omhullendeRechthoek = new Rechthoek(this.getPositieLinksBoven(), this.getBreedte(), this.getHoogte());
+			if (this.isVisible()) {
+				omhullendeRechthoek.teken(graphics);
+			}
+		} catch (DomainException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 }

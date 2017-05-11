@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>TekeningHangManTest.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">AllTests (11-mei-2017 22:03:49)</a> &gt; <a href="../../index.html" class="el_group">HangmanProject</a> &gt; <a href="../index.html" class="el_bundle">test</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">TekeningHangManTest.java</span></div><h1>TekeningHangManTest.java</h1><pre class="source lang-java linenums">package domain;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>TekeningHangManTest.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">AllTests (11-mei-2017 23:39:18)</a> &gt; <a href="../../index.html" class="el_group">HangmanProject</a> &gt; <a href="../index.html" class="el_bundle">test</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">TekeningHangManTest.java</span></div><h1>TekeningHangManTest.java</h1><pre class="source lang-java linenums">package domain;
 
 import static org.junit.Assert.*;
 
@@ -12,56 +12,72 @@ import org.junit.Test;
 <span class="fc" id="L12">		thm = new TekeningHangMan();</span>
 <span class="fc" id="L13">		thm.reset();</span>
 <span class="fc" id="L14">	}</span>
+
 	@Test
 	public void maak_afbeelding_hangman() throws Exception{
-<span class="pc bpc" id="L17" title="1 of 2 branches missed.">		assertTrue(thm.getLijst().getAantalVormen() == 18);</span>
-<span class="fc" id="L18">		thm.reset();</span>
-<span class="fc" id="L19">	}</span>
+<span class="pc bpc" id="L18" title="1 of 2 branches missed.">		assertTrue(thm.getLijst().getAantalVormen() == 18);</span>
+<span class="fc" id="L19">		thm.reset();</span>
+<span class="fc" id="L20">	}</span>
 	@Test
 	public void maak_afbeelding_test_onzichtbaar(){
-<span class="fc" id="L22">		int i = thm.getAantalOnzichtbaar();</span>
-<span class="fc" id="L23">		assertEquals(i, 14);</span>
-<span class="fc" id="L24">		thm.reset();</span>
-<span class="fc" id="L25">	}</span>
+<span class="fc" id="L23">		int i = thm.getAantalOnzichtbaar();</span>
+<span class="fc" id="L24">		assertEquals(i, 14);</span>
+<span class="fc" id="L25">		thm.reset();</span>
+<span class="fc" id="L26">	}</span>
 	@Test
 	public void test_zet_volgende_onzichtbaar() throws DomainException{
-<span class="fc" id="L28">		int i =  18-thm.getAantalOnzichtbaar();</span>
-<span class="fc" id="L29">		thm.zetVolgendeOnzichtbaar();</span>
-<span class="fc" id="L30">		int i2 = 18-thm.getAantalOnzichtbaar();</span>
-<span class="fc" id="L31">		i++;</span>
-<span class="fc" id="L32">		assertEquals(i,i2);</span>
-<span class="fc" id="L33">		thm.reset();</span>
-<span class="fc" id="L34">	}</span>
+<span class="fc" id="L29">		int i =  18-thm.getAantalOnzichtbaar();</span>
+<span class="fc" id="L30">		thm.zetVolgendeOnzichtbaar();</span>
+<span class="fc" id="L31">		int i2 = 18-thm.getAantalOnzichtbaar();</span>
+<span class="fc" id="L32">		i++;</span>
+<span class="fc" id="L33">		assertEquals(i,i2);</span>
+<span class="fc" id="L34">		thm.reset();</span>
+<span class="fc" id="L35">	}</span>
 	@Test (expected = DomainException.class)
 	public void gooit_exception_zet_volgende_onzichtbaar() throws DomainException{
-<span class="fc" id="L37">		int a = thm.getAantalOnzichtbaar() + 1;</span>
-<span class="pc bpc" id="L38" title="1 of 2 branches missed.">		for(int i=0; i&lt; a;i++){</span>
-<span class="fc" id="L39">			thm.zetVolgendeOnzichtbaar();</span>
+<span class="fc" id="L38">		int a = thm.getAantalOnzichtbaar() + 1;</span>
+<span class="pc bpc" id="L39" title="1 of 2 branches missed.">		for(int i=0; i&lt; a;i++){</span>
+<span class="fc" id="L40">			thm.zetVolgendeOnzichtbaar();</span>
 		}
-<span class="nc" id="L41">		thm.reset();</span>
+<span class="nc" id="L42">		thm.reset();</span>
 		
-<span class="nc" id="L43">	}</span>
+<span class="nc" id="L44">	}</span>
 	@Test
 	public void test_reset() throws DomainException{
-<span class="fc" id="L46">		int i = thm.getAantalOnzichtbaar(); </span>
-<span class="fc" id="L47">		thm.zetVolgendeOnzichtbaar(); </span>
-<span class="fc" id="L48">		thm.zetVolgendeOnzichtbaar();</span>
-<span class="fc" id="L49">		thm.reset();</span>
-<span class="fc" id="L50">		int o = thm.getAantalOnzichtbaar();</span>
-<span class="fc" id="L51">		assertEquals(i, o);</span>
-<span class="fc" id="L52">	}</span>
+<span class="fc" id="L47">		int i = thm.getAantalOnzichtbaar(); </span>
+<span class="fc" id="L48">		thm.zetVolgendeOnzichtbaar(); </span>
+<span class="fc" id="L49">		thm.zetVolgendeOnzichtbaar();</span>
+<span class="fc" id="L50">		thm.reset();</span>
+<span class="fc" id="L51">		int o = thm.getAantalOnzichtbaar();</span>
+<span class="fc" id="L52">		assertEquals(i, o);</span>
+<span class="fc" id="L53">	}</span>
+	@Test
+	public void voegToe_voegt_succesvol_een_geldige_vorm_toe() throws DomainException{
+<span class="fc" id="L56">		Vorm v = new Cirkel(new Punt(5,5), 846465);</span>
+<span class="fc" id="L57">		thm.voegToe(v);</span>
+		
+<span class="fc" id="L59">		assertTrue(thm.getLijst().bevat(v));</span>
+<span class="fc" id="L60">	}</span>
+	@Test
+	public void verwijder_verwijdert_succesvol_een_toegevoegde_vorm_toe() throws DomainException{
+<span class="fc" id="L63">		Vorm v = new Cirkel(new Punt(5,5), 846465);</span>
+<span class="fc" id="L64">		thm.voegToe(v);</span>
+<span class="fc" id="L65">		thm.verwijder(v);</span>
+<span class="fc" id="L66">		assertFalse(thm.getLijst().bevat(v));</span>
+		
+<span class="fc" id="L68">	}</span>
 	@Test (expected = DomainException.class)
 	public void gooit_exception_voeg_toe() throws DomainException{
-<span class="nc" id="L55">		thm.voegToe(null);</span>
-<span class="nc" id="L56">	}</span>
+<span class="nc" id="L71">		thm.voegToe(null);</span>
+<span class="nc" id="L72">	}</span>
 	@Test (expected = DomainException.class)
 	public void gooit_exception_verwijder() throws DomainException{
-<span class="nc" id="L59">		thm.verwijder(null);</span>
-<span class="nc" id="L60">	}</span>
+<span class="nc" id="L75">		thm.verwijder(null);</span>
+<span class="nc" id="L76">	}</span>
 	@Test (expected = DomainException.class)
 	public void gooit_exception_vorm_niet_aanwezig() throws DomainException{
-<span class="fc" id="L63">		Vorm v = new Cirkel(new Punt(5,5), 846465);</span>
-<span class="nc" id="L64">		thm.verwijder(v);</span>
-<span class="nc" id="L65">	}</span>
+<span class="fc" id="L79">		Vorm v = new Cirkel(new Punt(5,5), 846465);</span>
+<span class="nc" id="L80">		thm.verwijder(v);</span>
+<span class="nc" id="L81">	}</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span>AllTests (11-mei-2017 22:03:49)</div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span>AllTests (11-mei-2017 23:39:18)</div></body></html>

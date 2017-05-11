@@ -23,7 +23,6 @@ public class Cirkel extends Vorm{
 	}
 
 	public Punt getMiddelPunt()throws Exception {
-		if(middelPunt == null){throw new DomainException("Geen goed middelpunt!");}
 		return middelPunt;
 	}
 

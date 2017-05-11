@@ -104,5 +104,11 @@ public class OmhullendeTest {
 		assertTrue(omhullende.getMaxY() == linkerBovenhoek.getY() + hoogte);
 	}
 	
+	@Test
+	public void getOmhullende_geeft_clone_omhullende_terug() throws DomainException{
+		Omhullende omhulClone = omhullende.getOmhullende();
+		assertTrue(omhullende != omhulClone);
+	}
+	
 	
 }

@@ -1,13 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>LijnStukTest.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">AllTests (11-mei-2017 22:03:49)</a> &gt; <a href="../../index.html" class="el_group">HangmanProject</a> &gt; <a href="../index.html" class="el_bundle">test</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">LijnStukTest.java</span></div><h1>LijnStukTest.java</h1><pre class="source lang-java linenums">package domain;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>LijnStukTest.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">AllTests (11-mei-2017 23:39:18)</a> &gt; <a href="../../index.html" class="el_group">HangmanProject</a> &gt; <a href="../index.html" class="el_bundle">test</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">LijnStukTest.java</span></div><h1>LijnStukTest.java</h1><pre class="source lang-java linenums">package domain;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 
-<span class="fc" id="L10">public class LijnStukTest {</span>
+<span class="fc" id="L12">public class LijnStukTest {</span>
 	private Punt punt1;
 	private Punt zelfdeAlsPunt1;
 	private Punt punt2;
@@ -15,72 +17,81 @@ import org.junit.Test;
 
 	@Before
 	public void setUp() throws DomainException {
-<span class="fc" id="L18">		punt1 = new Punt(10, 20);</span>
-<span class="fc" id="L19">		zelfdeAlsPunt1 = new Punt(10, 20);</span>
-<span class="fc" id="L20">		punt2 = new Punt(190, 30);</span>
-<span class="fc" id="L21">		zelfdeAlsPunt2 = new Punt(190, 30);</span>
-<span class="fc" id="L22">	}</span>
+<span class="fc" id="L20">		punt1 = new Punt(10, 20);</span>
+<span class="fc" id="L21">		zelfdeAlsPunt1 = new Punt(10, 20);</span>
+<span class="fc" id="L22">		punt2 = new Punt(190, 30);</span>
+<span class="fc" id="L23">		zelfdeAlsPunt2 = new Punt(190, 30);</span>
+<span class="fc" id="L24">	}</span>
 	@Test
 	public void LijnStuk_moet_lijnstuk_aanmaken_met_gegeven_startPunt_en_eindPunt() throws DomainException {
-<span class="fc" id="L25">		LijnStuk lijnstuk = new LijnStuk(punt1, punt2);</span>
+<span class="fc" id="L27">		LijnStuk lijnstuk = new LijnStuk(punt1, punt2);</span>
 
-<span class="fc" id="L27">		assertEquals(punt1, lijnstuk.getStartPunt());</span>
-<span class="fc" id="L28">		assertEquals(punt2, lijnstuk.getEindPunt());</span>
-<span class="fc" id="L29">	}</span>
+<span class="fc" id="L29">		assertEquals(punt1, lijnstuk.getStartPunt());</span>
+<span class="fc" id="L30">		assertEquals(punt2, lijnstuk.getEindPunt());</span>
+<span class="fc" id="L31">	}</span>
 	
 	@Test (expected = DomainException.class)
 	public void LijnStuk_Moet_exception_gooien_als_startpunt_null() throws DomainException  {
-<span class="nc" id="L33">		new LijnStuk(null, punt2);</span>
-<span class="nc" id="L34">	}</span>
+<span class="nc" id="L35">		new LijnStuk(null, punt2);</span>
+<span class="nc" id="L36">	}</span>
 	
 	@Test (expected = DomainException.class)
 	public void LijnStuk_Moet_exception_gooien_als_eindpunt_null() throws DomainException  {
-<span class="nc" id="L38">		new LijnStuk(punt1, null);</span>
-<span class="nc" id="L39">	}</span>
+<span class="nc" id="L40">		new LijnStuk(punt1, null);</span>
+<span class="nc" id="L41">	}</span>
 	
 	@Test
 	public void equals_moet_true_teruggeven_als_begin_en_eindpunt_gelijk_zijn() throws DomainException{
-<span class="fc" id="L43">		LijnStuk lijnStuk = new LijnStuk(punt1, punt2);</span>
-<span class="fc" id="L44">		LijnStuk zelfdeLijnStuk = new LijnStuk(zelfdeAlsPunt1, zelfdeAlsPunt2);</span>
-<span class="fc" id="L45">		assertTrue(lijnStuk.equals(zelfdeLijnStuk));</span>
-<span class="fc" id="L46">	}</span>
+<span class="fc" id="L45">		LijnStuk lijnStuk = new LijnStuk(punt1, punt2);</span>
+<span class="fc" id="L46">		LijnStuk zelfdeLijnStuk = new LijnStuk(zelfdeAlsPunt1, zelfdeAlsPunt2);</span>
+<span class="fc" id="L47">		assertTrue(lijnStuk.equals(zelfdeLijnStuk));</span>
+<span class="fc" id="L48">	}</span>
 	
 	@Test
 	public void equals_moet_false_teruggeven_als_begin_en_eindpunt_niet_gelijk_zijn() throws DomainException{
-<span class="fc" id="L50">		LijnStuk lijnStuk = new LijnStuk(punt1, punt2);</span>
-<span class="fc" id="L51">		assertFalse(lijnStuk.getStartPunt().equals(lijnStuk.getEindPunt()));</span>
-<span class="fc" id="L52">	}</span>
+<span class="fc" id="L52">		LijnStuk lijnStuk = new LijnStuk(punt1, punt2);</span>
+<span class="fc" id="L53">		assertFalse(lijnStuk.getStartPunt().equals(lijnStuk.getEindPunt()));</span>
+<span class="fc" id="L54">	}</span>
 	
 	@Test
 	public void getOmhullende_moet_juiste_omhullende_teruggeven() throws DomainException{
-<span class="fc" id="L56">		LijnStuk lijnstuk = new LijnStuk(punt1, punt2);</span>
-<span class="fc" id="L57">		Omhullende doelOmhullende = new Omhullende(punt1, punt2.getX()-punt1.getX(), punt2.getY()-punt1.getY());</span>
-<span class="fc" id="L58">		assertTrue(lijnstuk.getOmhullende().equals(doelOmhullende));</span>
-<span class="fc" id="L59">	}</span>
+<span class="fc" id="L58">		LijnStuk lijnstuk = new LijnStuk(punt1, punt2);</span>
+<span class="fc" id="L59">		Omhullende doelOmhullende = new Omhullende(punt1, punt2.getX()-punt1.getX(), punt2.getY()-punt1.getY());</span>
+<span class="fc" id="L60">		assertTrue(lijnstuk.getOmhullende().equals(doelOmhullende));</span>
+<span class="fc" id="L61">	}</span>
 	
 	@Test (expected = DomainException.class)
 	public void LijnStuk_Moet_exception_gooien_als_startpunt_gelijk_is_aan_eindpunt() throws DomainException {
-<span class="fc" id="L63">		punt1 = punt2;</span>
-<span class="nc" id="L64">		new LijnStuk(punt1, punt2);</span>
-<span class="nc" id="L65">	}</span>
+<span class="fc" id="L65">		punt1 = punt2;</span>
+<span class="nc" id="L66">		new LijnStuk(punt1, punt2);</span>
+<span class="nc" id="L67">	}</span>
 	
 	@Test 
 	public void equals_testen_door_zelfde_lijnstuk_te_vergelijken() throws DomainException {
-<span class="fc" id="L69">		LijnStuk lijnstuk1 = new LijnStuk(punt1, punt2);</span>
-<span class="fc" id="L70">		LijnStuk lijnstuk2 = new LijnStuk(punt1, punt2);</span>
-<span class="fc" id="L71">		assertTrue(lijnstuk1.equals(lijnstuk2));</span>
-<span class="fc" id="L72">	}</span>
+<span class="fc" id="L71">		LijnStuk lijnstuk1 = new LijnStuk(punt1, punt2);</span>
+<span class="fc" id="L72">		LijnStuk lijnstuk2 = new LijnStuk(punt1, punt2);</span>
+<span class="fc" id="L73">		assertTrue(lijnstuk1.equals(lijnstuk2));</span>
+<span class="fc" id="L74">	}</span>
 	@Test 
 	public void equals_testen_door_zelfde_lijnstuk_met_punten_omgedraaid_te_vergelijken() throws DomainException {
-<span class="fc" id="L75">		LijnStuk lijnstuk1 = new LijnStuk(punt1, punt2);</span>
-<span class="fc" id="L76">		LijnStuk lijnstuk2 = new LijnStuk(punt2, punt1);</span>
-<span class="fc" id="L77">		assertTrue(lijnstuk1.equals(lijnstuk2));</span>
-<span class="fc" id="L78">	}@Test </span>
+<span class="fc" id="L77">		LijnStuk lijnstuk1 = new LijnStuk(punt1, punt2);</span>
+<span class="fc" id="L78">		LijnStuk lijnstuk2 = new LijnStuk(punt2, punt1);</span>
+<span class="fc" id="L79">		assertTrue(lijnstuk1.equals(lijnstuk2));</span>
+<span class="fc" id="L80">	}</span>
+	@Test 
 	public void equals_testen_door_verschillende_lijnstukken_te_vergelijken() throws DomainException {
-<span class="fc" id="L80">		LijnStuk lijnstuk1 = new LijnStuk(punt1, punt2);</span>
-<span class="fc" id="L81">		LijnStuk lijnstuk2 = new LijnStuk(new Punt(5,6), new Punt(10, 10));</span>
-<span class="fc" id="L82">		assertFalse(lijnstuk1.equals(lijnstuk2));</span>
-<span class="fc" id="L83">	}</span>
+<span class="fc" id="L83">		LijnStuk lijnstuk1 = new LijnStuk(punt1, punt2);</span>
+<span class="fc" id="L84">		LijnStuk lijnstuk2 = new LijnStuk(new Punt(5,6), new Punt(10, 10));</span>
+<span class="fc" id="L85">		assertFalse(lijnstuk1.equals(lijnstuk2));</span>
+<span class="fc" id="L86">	}</span>
+	@Test
+	public void getString_moet_twee_eindpunten_string_bevatten() throws DomainException {
+<span class="fc" id="L89">		LijnStuk lijnstuk = new LijnStuk(punt1, punt2);</span>
+<span class="fc" id="L90">		String lijnstukString = lijnstuk.toString();</span>
+		
+<span class="fc" id="L92">		assertThat(lijnstukString, containsString(punt1.toString()));</span>
+<span class="fc" id="L93">		assertThat(lijnstukString, containsString(punt2.toString()));</span>
+<span class="fc" id="L94">	}</span>
 }
 	
-</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span>AllTests (11-mei-2017 22:03:49)</div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span>AllTests (11-mei-2017 23:39:18)</div></body></html>

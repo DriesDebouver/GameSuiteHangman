@@ -22,9 +22,9 @@ public class Speler {
 		return score;
 	}
 
-	public void setScore(int score) {
-		if (score == 0) {
-			throw new IllegalArgumentException("Score is nul!");
+	void setScore(int score) {
+		if (score < 0 || score==0) {
+			throw new IllegalArgumentException("Score moet positief zijn!");
 		}
 		this.score = score;
 	}
@@ -34,7 +34,7 @@ public class Speler {
 			throw new DomainException("Score is negatief!");
 		}
 		
-		this.score = this.getScore() + score;
+		setScore(this.getScore() + score);
 	}
 	
 	public boolean equals(Object object) {

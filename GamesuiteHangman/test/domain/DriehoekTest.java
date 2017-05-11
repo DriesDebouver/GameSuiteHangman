@@ -91,7 +91,7 @@ public class DriehoekTest{
 	}
 	
 	@Test
-	public void getString_moet_juiste_string_teruggeven() throws DomainException {
+	public void getString_moet_hoekpunten_string_en_omhullende_string_bevatten() throws DomainException {
 		Driehoek drieHoek = new Driehoek(punt1, punt2, punt3);
 		String drieHoekString = drieHoek.toString();
 		

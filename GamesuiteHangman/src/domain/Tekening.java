@@ -29,13 +29,13 @@ public class Tekening implements Drawable {
 	}
 	
 	public void voegToe(Vorm vorm) throws DomainException {
-		if(! (vorm instanceof Vorm) || vorm==null){
-			throw new DomainException("Geen geldige vorm!");
+		if( vorm==null){
+			throw new DomainException("Vorm is null!");
 		}
 		this.tekening.add(vorm);
 	}
 	
-	public Vorm getVorm(int index){
+	Vorm getVorm(int index){
 		return tekening.get(index);
 	}
 	
