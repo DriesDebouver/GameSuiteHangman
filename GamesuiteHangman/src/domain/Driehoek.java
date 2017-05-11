@@ -1,6 +1,7 @@
 package domain;
 
 import java.awt.Graphics;
+import java.lang.reflect.Array;
 
 public class Driehoek extends Vorm {
 	
@@ -74,7 +75,10 @@ public class Driehoek extends Vorm {
 		return new Omhullende(omhulHoek, omhulBreedte, omhulHoogte);
 	}
 	@Override
-	public void teken(Graphics graphics) {		
+	public void teken(Graphics graphics) {	
+		int[]  xPunten = {this.hoekpunten[0].getX(), this.hoekpunten[1].getX(), this.hoekpunten[2].getX()};
+		int[]  yPunten = {this.hoekpunten[0].getY(), this.hoekpunten[1].getY(), this.hoekpunten[2].getY()};
+		graphics.drawPolygon(xPunten, yPunten, 3);
 	}
 
 }

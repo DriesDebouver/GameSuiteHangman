@@ -7,6 +7,7 @@ import domain.LijnStuk;
 import domain.Punt;
 import domain.Rechthoek;
 import domain.Speler;
+import domain.Tekening;
 
 import java.awt.HeadlessException;
 
@@ -15,13 +16,15 @@ import javax.swing.JOptionPane;
 public class PictionaryUi {
 	
 	private Speler speler;
+	private Tekening tekening;
 
-	public PictionaryUi(Speler speler) {
+	public PictionaryUi(Speler speler) throws DomainException {
 		super();
 		this.speler = speler;
+		tekening = new Tekening("tekening1");
 	}
 	
-	public void showMenu() throws DomainException {
+	public void showMenu() throws DomainException, UiException {
 		//TODO Ipv domain exceptions laten gooien, deze opvangen en als error message ingeven en terug opnieuw methode oproepen voor nieuwe poging!!!
 		Object[] shapes = {"Punt","Lijnstuk","Cirkel","Rechthoek","Driehoek"};
 		Object keuze = JOptionPane.showInputDialog(null,"Wat wilt u tekenen", "input", JOptionPane.INFORMATION_MESSAGE, null, shapes, null);
@@ -40,13 +43,16 @@ public class PictionaryUi {
 		if (keuze.equals("Driehoek")) {
 			askForDriehoek();
 		}
+		
+		GameHoofdScherm vieuw = new GameHoofdScherm(speler.getNaam() + " zijn tekening", tekening);
+		vieuw.setVisible(true);
+		vieuw.teken();
 	} 
 	
 	private void askForPunt() throws DomainException {
 		try {
 			Punt punt = askForPuntCoord("punt");
 			JOptionPane.showMessageDialog(null, "U heeft een correct punt aangemaakt: " + punt.toString());
-			//TODO: add punt to game/speler?
 		} catch (DomainException e) {
 			JOptionPane.showMessageDialog(null,e.getMessage());
 			askForPunt();
@@ -59,6 +65,8 @@ public class PictionaryUi {
 			Punt eindpunt = askForPuntCoord("eindpunt lijnstuk");
 			LijnStuk lijnstuk = new LijnStuk(beginpunt,eindpunt);
 			JOptionPane.showMessageDialog(null, "U heeft een correct lijnstuk aangemaakt: " + lijnstuk.toString());
+			tekening.voegToe(lijnstuk);
+			return;
 			//TODO: add lijnstuk to game/speler?
 		} catch (DomainException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
@@ -72,6 +80,7 @@ public class PictionaryUi {
 			int straal = askForInt("straal cirkel");
 			Cirkel cirkel = new Cirkel(middelpunt, straal);
 			JOptionPane.showMessageDialog(null, "U heeft een correcte cirkel aangemaakt: " + cirkel.toString());
+			tekening.voegToe(cirkel);
 			//TODO: add lijnstuk to game/speler?
 		} catch (DomainException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
@@ -86,6 +95,7 @@ public class PictionaryUi {
 			int hoogte = askForInt("hoogte van de rechthoek");
 			Rechthoek rechthoek = new Rechthoek(linkerBovenHoek, breedte, hoogte);
 			JOptionPane.showMessageDialog(null, "U heeft een correct rechthoek aangemaakt: " + rechthoek.toString());
+			tekening.voegToe(rechthoek);
 			//TODO: add punt to game/speler?
 		} catch (DomainException e) {
 			JOptionPane.showMessageDialog(null,e.getMessage());
@@ -100,6 +110,7 @@ public class PictionaryUi {
 			Punt hoekPunt3 = askForPuntCoord("derde hoekpunt driehoek");
 			Driehoek driehoek = new Driehoek(hoekPunt1, hoekPunt2, hoekPunt3);
 			JOptionPane.showMessageDialog(null, "U heeft een correct driehoek aangemaakt: " + driehoek.toString());
+			tekening.voegToe(driehoek);
 			//TODO: add driehoek to game/speler?
 		} catch (DomainException e) {
 			JOptionPane.showMessageDialog(null,e.getMessage());

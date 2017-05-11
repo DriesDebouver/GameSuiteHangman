@@ -3,7 +3,7 @@ package domain;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-public class Tekening implements Drawable{
+public class Tekening implements Drawable {
 
 	private String naam;
 	private static final int MIN_X = 0;
@@ -12,12 +12,12 @@ public class Tekening implements Drawable{
 	private static final int MAX_Y = 399;
 	private ArrayList<Vorm> tekening = new ArrayList<Vorm>();
 	
-	public Tekening(String naam)throws Exception{ 
+	public Tekening (String naam) throws DomainException { 
 		super();
 		this.setNaam(naam);
 	}
 	
-	public ArrayList<Vorm> gettekening(){
+	public ArrayList<Vorm> gettekening() {
 		return tekening;
 	}
 	
@@ -25,7 +25,7 @@ public class Tekening implements Drawable{
 		return naam;
 	}
 	
-	public void setNaam(String naam) throws Exception {
+	public void setNaam(String naam) throws DomainException {
 		if ( naam == null || naam.trim().isEmpty() ) 
 		{
 			throw new DomainException("Naam tekening mag niet leeg zijn!");

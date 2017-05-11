@@ -61,7 +61,10 @@ public class Cirkel extends Vorm{
 
 	@Override
 	public void teken(Graphics graphics) {
-		// TODO Auto-generated method stub
-		
+		try {
+			graphics.drawOval(this.getOmhullende().getPositieLinksBoven().getX(), this.getOmhullende().getPositieLinksBoven().getY(), radius*2, radius*2);
+		} catch (DomainException e) {
+			e.printStackTrace();
+		}
 	}
-	}
+}
