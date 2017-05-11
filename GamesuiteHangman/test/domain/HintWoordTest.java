@@ -10,7 +10,7 @@ import org.junit.Test;
 public class HintWoordTest {
 
 	@Test
-	public void HintWoord_moet_HintWoord_aanmaken_waarvan_alle_letters_verborgen_zijn() {
+	public void HintWoord_moet_HintWoord_aanmaken_waarvan_alle_letters_verborgen_zijn() throws DomainException {
 		String woord = "test";
 		
 		HintWoord hint = new HintWoord(woord);
@@ -21,24 +21,24 @@ public class HintWoordTest {
 	}
 	
 	@Test (expected = DomainException.class)
-	public void HintWoord_moet_exception_gooien_als_woord_null(){
+	public void HintWoord_moet_exception_gooien_als_woord_null() throws DomainException{
 		new HintWoord(null);
 	}
 	
 	@Test (expected = DomainException.class)
-	public void HintWoord_moet_exception_gooien_als_woord_lege_string(){
+	public void HintWoord_moet_exception_gooien_als_woord_lege_string() throws DomainException{
 		new HintWoord("");
 	}
 	
 	@Test
-	public void raad_moet_false_geven_als_letter_niet_in_woord(){
+	public void raad_moet_false_geven_als_letter_niet_in_woord() throws DomainException{
 		HintWoord hint = new HintWoord("test");
 		assertFalse(hint.raad('a'));
 		assertFalse(hint.isGeraden());
 	}
 	
 	@Test
-	public void raad_moet_false_geven_als_letter_in_woord_maar_reeds_geraden(){
+	public void raad_moet_false_geven_als_letter_in_woord_maar_reeds_geraden() throws DomainException{
 		HintWoord hint = new HintWoord("test");
 		assertTrue(hint.raad('e'));
 		assertFalse(hint.raad('e'));
@@ -46,7 +46,7 @@ public class HintWoordTest {
 	}
 	
 	@Test
-	public void raad_moet_true_geven_en_hint_aanpassen_als_letter_in_woord(){
+	public void raad_moet_true_geven_en_hint_aanpassen_als_letter_in_woord() throws DomainException{
 		HintWoord hint = new HintWoord("test");
 		assertTrue(hint.raad('e'));
 		assertEquals("_ e _ _", hint.toString());
@@ -54,7 +54,7 @@ public class HintWoordTest {
 	}
 	
 	@Test
-	public void raad_moet_true_geven_en_hint_aanpassen_als_letter_in_woord_maar_in_verkeerde_case(){
+	public void raad_moet_true_geven_en_hint_aanpassen_als_letter_in_woord_maar_in_verkeerde_case() throws DomainException{
 		HintWoord hint = new HintWoord("test");
 		assertTrue(hint.raad('E'));
 		assertEquals("_ e _ _", hint.toString());
@@ -62,7 +62,7 @@ public class HintWoordTest {
 	}
 	
 	@Test
-	public void raad_moet_true_geven_en_hint__op_meerdere_plaatsen_aanpassen_als_letter_meermaals_in_woord(){
+	public void raad_moet_true_geven_en_hint__op_meerdere_plaatsen_aanpassen_als_letter_meermaals_in_woord() throws DomainException{
 		HintWoord hint = new HintWoord("test");
 		assertTrue(hint.raad('t'));
 		assertEquals("t _ _ t", hint.toString());
@@ -70,7 +70,7 @@ public class HintWoordTest {
 	}
 	
 	@Test 
-	public void isGeraden_geeft_true_als_alle_letters_geraden(){
+	public void isGeraden_geeft_true_als_alle_letters_geraden() throws DomainException{
 		HintWoord hint = new HintWoord("test");
 		assertTrue(hint.raad('e'));
 		assertTrue(hint.raad('t'));
@@ -78,3 +78,4 @@ public class HintWoordTest {
 		
 		assertTrue(hint.isGeraden());
 	}
+}

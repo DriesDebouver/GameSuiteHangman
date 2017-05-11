@@ -5,17 +5,23 @@ import domain.Speler;
 
 public class Launcher {
 
-private static PictionaryUi ui;
-	
 	public static void main(String[] args) throws DomainException {
 		
 		Speler speler = addSpeler();
 		
-		JOptionPane.showMessageDialog(null, speler.getNaam() + " zal binnekort spelen", speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);
-		JOptionPane.showMessageDialog(null, speler.getNaam() + " heeft als score: " + speler.getScore(), speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);
-
-		ui = new PictionaryUi(speler);
-		ui.showMenu();
+		Object[] spellen = {"HangMan", "Pictionary"};
+		Object keuze = JOptionPane.showInputDialog(null,"Dag " + speler.getNaam() + ", welk spel wil je spelen?", "input", JOptionPane.INFORMATION_MESSAGE, null, spellen, null);
+		
+		if (keuze.equals("HangMan")) {
+			HangManUI ui = new HangManUI(speler);
+			ui.play();
+		}
+		if (keuze.equals("Pictionary")) {
+			PictionaryUi ui = new PictionaryUi(speler);
+			ui.showMenu();
+		}
+		
+		JOptionPane.showMessageDialog(null, speler.getNaam() + " heeft als score: " + speler.getScore(), speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);		
 	}
 	
 	public static Speler addSpeler() {
