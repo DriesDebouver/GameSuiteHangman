@@ -56,7 +56,6 @@ public class Driehoek extends Vorm {
 	public String toString() {
 		String stringDriehoek = "Driehoek: hoekpunt1: " + hoekpunten[0].toString() + " - hoekpunt2: " + hoekpunten[1].toString() + " - hoekpunt3: " + hoekpunten[2].toString();
 		stringDriehoek = stringDriehoek + "\n" + omhullende.toString();
-		System.out.println(stringDriehoek);
 		return stringDriehoek;
 	}
 	@Override

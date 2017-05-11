@@ -17,7 +17,6 @@ public class Tekening {
 	}
 	
 	public ArrayList<Vorm> gettekening(){
-		
 		return tekening;
 	}
 	
@@ -28,13 +27,13 @@ public class Tekening {
 	public void setNaam(String naam) throws Exception {
 		if ( naam == null || naam.trim().isEmpty() ) 
 		{
-			throw new DomainException("Naam mag niet leeg zijn!");
+			throw new DomainException("Naam tekening mag niet leeg zijn!");
 		}
 		this.naam = naam;
 	}
 	
 	public void voegToe(Vorm vorm) throws Exception{
-		if(vorm==null){
+		if(! (vorm instanceof Vorm) || vorm==null){
 			throw new DomainException("Geen geldige vorm");
 		}
 		this.tekening.add(vorm);
@@ -49,12 +48,13 @@ public class Tekening {
 	}
 	
 	public void verwijder(Vorm vorm){
-		for(int i = 0;i<tekening.size();i++){
-			if(tekening.get(i).equals(vorm)){
-				tekening.remove(i);
+		for(Vorm vormThis: this.gettekening()){
+			if(vormThis.equals(vorm)){
+				System.out.println(vorm + " verwijdert.");
+				tekening.remove(vormThis);
+				break;
 				
 			}
-			break;
 		}
 	}
 	
@@ -66,23 +66,21 @@ public class Tekening {
 		String s = "Tekening met naam " + this.naam + " bestaat uit " + tekening.size() + " vormen:\n";
 		String t = "";
 		for(Vorm v : tekening){
-			t = v.toString() + "\n";
+			t = t + v.toString() + "\n";
 		}
 		return s + t;
 	}
 	
 	public boolean equals(Object object){
 		if(object == null){
-			System.out.println("obj null");
 			return false;}
 		Tekening t1 = (Tekening)object;
 		if(this.getAantalVormen() != t1.getAantalVormen()){
-			System.out.println("size tek: " + tekening.size() + ", t1 size: " + t1.getAantalVormen());
+			System.out.println("size this tek: " + tekening.size() + ", obj size: " + t1.getAantalVormen());
 			return false;}
 		for(Vorm vorm: t1.gettekening()){
 			if(!tekening.contains(vorm)){
-			System.out.println("false: " + vorm.toString());
-			return false;
+				return false;
 			}
 		}
 		

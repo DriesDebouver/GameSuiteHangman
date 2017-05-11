@@ -98,8 +98,6 @@ public class TekeningTest {
 		Tekening huis = createHuisZonderShouw();
 		Tekening huisMetSchouw = createHuisMetSchouw();
 		huisMetSchouw.verwijder(schouwNietInTekening);
-		System.out.println("huis: " + huis.toString());
-		System.out.println("huis2: " +huis.toString());
 		assertTrue(huis.equals(huisMetSchouw));
 	}
 

@@ -72,7 +72,6 @@ public class DriehoekTest{
 	@Test
 	public void equals_moet_false_teruggeven_als_hoekPunt3_verschillend() throws DomainException{
 		Driehoek drieHoek = new Driehoek(punt1, punt2, punt3);
-		drieHoek.toString();
 		Driehoek andereDriehoek = new Driehoek(zelfdeAlsPunt1, zelfdeAlsPunt2, verschillendVanPunt3);
 		assertFalse(drieHoek.equals(andereDriehoek));
 	}
