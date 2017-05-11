@@ -9,18 +9,7 @@ public class Launcher {
 		
 		Speler speler = addSpeler();
 		
-		Object[] spellen = {"HangMan", "Pictionary"};
-		Object keuze = JOptionPane.showInputDialog(null,"Dag " + speler.getNaam() + ", welk spel wil je spelen?", "input", JOptionPane.INFORMATION_MESSAGE, null, spellen, null);
-		
-		if (keuze != null) {
-			if (keuze.equals("HangMan")) {
-				new HangManUI(speler);
-			}
-			if (keuze.equals("Pictionary")) {
-				PictionaryUi ui = new PictionaryUi(speler);
-				ui.showMenu();
-			}
-		}
+		startPlaying(speler);
 	}
 	
 	public static Speler addSpeler() {
@@ -36,6 +25,21 @@ public class Launcher {
 		} else {
 			System.exit(0);
 			return null;
+		}
+	}
+	
+	public static void startPlaying(Speler speler) throws Exception {
+		Object[] spellen = {"HangMan", "Pictionary"};
+		Object keuze = JOptionPane.showInputDialog(null,"Dag " + speler.getNaam() + ", welk spel wil je spelen?", "input", JOptionPane.INFORMATION_MESSAGE, null, spellen, null);
+		
+		if (keuze != null) {
+			if (keuze.equals("HangMan")) {
+				new HangManUI(speler);
+			}
+			if (keuze.equals("Pictionary")) {
+				PictionaryUi ui = new PictionaryUi(speler);
+				ui.showMenu();
+			}
 		}
 	}
 }

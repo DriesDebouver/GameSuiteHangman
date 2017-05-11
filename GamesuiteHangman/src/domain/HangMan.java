@@ -59,6 +59,7 @@ public class HangMan {
 		return tekening;
 	}
 
+	//if game wins score++, gameover score-- until score 0
 	public void raad(char letter) throws DomainException {
 		if (aantalPogingen<=AANTAL_KANSEN) {
 			if (!hintWoord.raad(letter)) {
@@ -70,6 +71,14 @@ public class HangMan {
 		}
 		if(hintWoord.isGeraden()) {
 			gewonnen = true;
+			speler.addToScore(1);
+		}
+		if(gameOver) {
+			try {
+				speler.addToScore(-1);
+			} catch (Exception e) {
+				speler.setScore(0);
+			}
 		}
 	}
 	

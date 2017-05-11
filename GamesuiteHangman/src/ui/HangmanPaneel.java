@@ -66,11 +66,11 @@ public class HangmanPaneel extends JPanel {
 						//als de speler opnieuw wilt spelen: herzet het spel en het paneel
 						//anders stop (System.exit(0))
 						if (spel.isGameOver()) {
-							JOptionPane.showMessageDialog(null, "U heeft verloren.");
+							JOptionPane.showMessageDialog(null, "U heeft verloren. \nUw score is " + spel.getSpeler().getScore());
 							gameEnd();
 						}
 						if (spel.isGewonnen()) {
-							JOptionPane.showMessageDialog(null, "U heeft gewonnen!");
+							JOptionPane.showMessageDialog(null, "U heeft gewonnen! \nUw score is " + spel.getSpeler().getScore());
 							gameEnd();
 						}
 
@@ -86,7 +86,7 @@ public class HangmanPaneel extends JPanel {
 			if (keuze!=null) {
 				if (keuze.equals("Opnieuw")) {
 					try {
-						Launcher.main(null);
+						Launcher.startPlaying(spel.getSpeler());;
 					} catch (Exception e) {
 						JOptionPane.showMessageDialog(null, "Can't relaunch, seek help.");
 						e.printStackTrace();

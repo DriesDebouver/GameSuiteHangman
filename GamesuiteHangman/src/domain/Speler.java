@@ -23,14 +23,14 @@ public class Speler {
 	}
 
 	void setScore(int score) {
-		if (score < 0 || score==0) {
+		if (score < 0) {
 			throw new IllegalArgumentException("Score moet positief zijn!");
 		}
 		this.score = score;
 	}
 	
 	public void addToScore(int score) throws DomainException {
-		if ((this.score + score) < 0) {
+		if ((this.score + score) <= 0) {
 			throw new DomainException("Score is negatief!");
 		}
 		

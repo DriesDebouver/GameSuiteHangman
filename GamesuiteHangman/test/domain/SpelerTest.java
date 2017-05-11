@@ -89,9 +89,4 @@ public class SpelerTest {
 	public void setScore_moet_exception_gooien_als_je_score_negatief_probeert_te_zetten() throws DomainException{
 		speler.setScore(negativeScore);
 	}
-	
-	@Test (expected = IllegalArgumentException.class)
-	public void setScore_moet_exception_gooien_als_je_score_nul_probeert_te_zetten() throws DomainException{
-		speler.setScore(0);
-	}
 }
