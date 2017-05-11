@@ -2,14 +2,14 @@ package domain;
 
 import java.util.ArrayList;
 
-class HintWoord {
+public class HintWoord {
 	
 	private String woord;
 	private ArrayList<HintLetter> lettersWoord = new ArrayList<HintLetter>();
 	private ArrayList<Character> reedsGeradenLetters = new ArrayList<Character>();
 	private boolean isGeraden;
 
-	HintWoord(String woord) throws DomainException {
+	public HintWoord(String woord) throws DomainException {
 		super();
 		setWoord(woord);
 		makeLettersWoord(woord);
