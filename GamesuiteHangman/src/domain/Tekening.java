@@ -1,8 +1,9 @@
 package domain;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 
-public class Tekening {
+public class Tekening implements Drawable{
 
 	private String naam;
 	private static final int MIN_X = 0;
@@ -32,7 +33,7 @@ public class Tekening {
 		this.naam = naam;
 	}
 	
-	public void voegToe(Vorm vorm) throws Exception{
+	public void voegToe(Vorm vorm) throws DomainException {
 		if(! (vorm instanceof Vorm) || vorm==null){
 			throw new DomainException("Geen geldige vorm");
 		}
@@ -61,6 +62,12 @@ public class Tekening {
 		return tekening.contains(vorm);
 	}
 	
+	public void teken(Graphics graphics){
+		for(Vorm tekening: tekening){
+			tekening.teken(graphics);
+		}
+	}
+	
 	public String toString(){
 		String s = "Tekening met naam " + this.naam + " bestaat uit " + tekening.size() + " vormen:\n";
 		String t = "";
@@ -82,7 +89,6 @@ public class Tekening {
 				return false;
 			}
 		}
-		
 		return true;
 	}
 	

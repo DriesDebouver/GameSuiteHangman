@@ -12,6 +12,7 @@ public class Launcher {
 		Object[] spellen = {"HangMan", "Pictionary"};
 		Object keuze = JOptionPane.showInputDialog(null,"Dag " + speler.getNaam() + ", welk spel wil je spelen?", "input", JOptionPane.INFORMATION_MESSAGE, null, spellen, null);
 		
+		if (keuze != null){
 		if (keuze.equals("HangMan")) {
 			HangManUI ui = new HangManUI(speler);
 			ui.play();
@@ -21,7 +22,8 @@ public class Launcher {
 			ui.showMenu();
 		}
 		
-		JOptionPane.showMessageDialog(null, speler.getNaam() + " heeft als score: " + speler.getScore(), speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);		
+		JOptionPane.showMessageDialog(null, speler.getNaam() + " heeft als score: " + speler.getScore(), speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);	
+		}
 	}
 	
 	public static Speler addSpeler() {

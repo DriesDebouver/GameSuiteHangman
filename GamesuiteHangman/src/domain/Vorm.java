@@ -1,8 +1,7 @@
 package domain;
-
 import java.awt.Graphics;
 
-public abstract class Vorm {
+public abstract class Vorm implements Drawable  {
 	
 	private boolean visible;
 	
