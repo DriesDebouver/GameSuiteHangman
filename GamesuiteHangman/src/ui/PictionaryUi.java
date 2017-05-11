@@ -9,9 +9,6 @@ import domain.Rechthoek;
 import domain.Speler;
 import domain.Tekening;
 import domain.TekeningHangMan;
-
-import java.awt.HeadlessException;
-
 import javax.swing.JOptionPane;
 
 public class PictionaryUi {
@@ -45,7 +42,6 @@ public class PictionaryUi {
 			try {
 				hmt = new TekeningHangMan();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -76,7 +72,6 @@ public class PictionaryUi {
 			JOptionPane.showMessageDialog(null, "U heeft een correct lijnstuk aangemaakt: " + lijnstuk.toString());
 			tekening.voegToe(lijnstuk);
 			return;
-			//TODO: add lijnstuk to game/speler?
 		} catch (DomainException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 			askForLijnstuk();
@@ -90,7 +85,6 @@ public class PictionaryUi {
 			Cirkel cirkel = new Cirkel(middelpunt, straal);
 			JOptionPane.showMessageDialog(null, "U heeft een correcte cirkel aangemaakt: " + cirkel.toString());
 			tekening.voegToe(cirkel);
-			//TODO: add lijnstuk to game/speler?
 		} catch (DomainException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 			askForCirkel();
@@ -105,7 +99,6 @@ public class PictionaryUi {
 			Rechthoek rechthoek = new Rechthoek(linkerBovenHoek, breedte, hoogte);
 			JOptionPane.showMessageDialog(null, "U heeft een correct rechthoek aangemaakt: " + rechthoek.toString());
 			tekening.voegToe(rechthoek);
-			//TODO: add punt to game/speler?
 		} catch (DomainException e) {
 			JOptionPane.showMessageDialog(null,e.getMessage());
 			askForRechthoek();
@@ -120,7 +113,6 @@ public class PictionaryUi {
 			Driehoek driehoek = new Driehoek(hoekPunt1, hoekPunt2, hoekPunt3);
 			JOptionPane.showMessageDialog(null, "U heeft een correct driehoek aangemaakt: " + driehoek.toString());
 			tekening.voegToe(driehoek);
-			//TODO: add driehoek to game/speler?
 		} catch (DomainException e) {
 			JOptionPane.showMessageDialog(null,e.getMessage());
 			askForDriehoek();

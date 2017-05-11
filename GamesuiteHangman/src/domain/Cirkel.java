@@ -1,8 +1,6 @@
 package domain;
 import java.awt.Graphics;
 
-import domain.*;
-
 public class Cirkel extends Vorm{
 
 	private int radius;

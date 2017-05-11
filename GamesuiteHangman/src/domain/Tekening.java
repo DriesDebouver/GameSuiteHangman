@@ -6,10 +6,6 @@ import java.util.ArrayList;
 public class Tekening implements Drawable {
 
 	private String naam;
-	private static final int MIN_X = 0;
-	private static final int MIN_Y = 0;
-	private static final int MAX_X = 399;
-	private static final int MAX_Y = 399;
 	private ArrayList<Vorm> tekening = new ArrayList<Vorm>();
 	
 	public Tekening (String naam) throws DomainException { 

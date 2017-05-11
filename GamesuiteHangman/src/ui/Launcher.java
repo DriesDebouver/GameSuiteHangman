@@ -14,7 +14,7 @@ public class Launcher {
 		
 		if (keuze != null){
 		if (keuze.equals("HangMan")) {
-			HangManUI ui = new HangManUI(speler);
+			new HangManUI(speler);
 		}
 		if (keuze.equals("Pictionary")) {
 			PictionaryUi ui = new PictionaryUi(speler);

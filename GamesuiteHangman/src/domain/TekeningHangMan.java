@@ -1,8 +1,5 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class TekeningHangMan {
 	private String naam;
 	private Tekening lijst;

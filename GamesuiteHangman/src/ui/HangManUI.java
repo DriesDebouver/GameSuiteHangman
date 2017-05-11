@@ -1,17 +1,12 @@
 package ui;
 import domain.Speler;
 import domain.WoordenLijst;
-
-import javax.swing.JOptionPane;
-
 import domain.DomainException;
 import domain.HangMan;
-import domain.HintWoord;
 
 public class HangManUI {
 
 	private Speler speler;
-	private HintWoord hintWoord;
 	
 	public HangManUI (Speler speler) throws Exception {
 		if( speler == null ) {
@@ -22,7 +17,6 @@ public class HangManUI {
 		wl.ini();
 		String s = wl.getRandomWoord();
 		System.out.println(s);
-		hintWoord = new HintWoord(s);
 		play(wl);
 	}
 	

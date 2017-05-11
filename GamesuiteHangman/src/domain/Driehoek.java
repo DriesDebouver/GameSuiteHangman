@@ -1,7 +1,6 @@
 package domain;
 
 import java.awt.Graphics;
-import java.lang.reflect.Array;
 
 public class Driehoek extends Vorm {
 	
@@ -38,7 +37,6 @@ public class Driehoek extends Vorm {
 	public boolean equals(Object object) {
 		if (object instanceof Driehoek) {
 			Driehoek driehoek = (Driehoek) object;
-			boolean allFound = false;
 			for (Punt punt: driehoek.getHoekpunten()) {
 				boolean thisfound = false;
 				for (Punt punt2: this.getHoekpunten()) {
