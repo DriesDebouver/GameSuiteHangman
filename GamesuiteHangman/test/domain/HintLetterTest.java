@@ -82,7 +82,6 @@ public class HintLetterTest {
 	@Test
 	public void getLetter_moet_letter_teruggeven_als_niet_geraden() {
 		HintLetter letter = new HintLetter('x');
-		System.out.println(letter.getHintLetter());
 		assertEquals('x', letter.getHintLetter());
 	}
 }

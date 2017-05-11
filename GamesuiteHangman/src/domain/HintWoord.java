@@ -47,7 +47,6 @@ public class HintWoord {
 	public boolean raad(char c) {
 		c = Character.toLowerCase(c);
 		if (reedsGeradenLetters.contains(c) || this.isGeraden) {
-			System.out.println("hier");
 			return false;
 		}
 		else {
@@ -57,9 +56,7 @@ public class HintWoord {
 				if (letter.raad(c)) {
 					zitInWoord = true;
 				}
-				System.out.println(letter.toChar() + ": " + zitInWoord);
 			}
-			System.out.println("hier2: " + zitInWoord);
 			return zitInWoord;
 		}
 	}

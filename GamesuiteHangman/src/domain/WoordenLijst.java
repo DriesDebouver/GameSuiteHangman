@@ -10,9 +10,12 @@ public class WoordenLijst {
 	private List<String> woordenLijst = new ArrayList<String>();
 	
 	public WoordenLijst() throws Exception{
-		ini();
+		//ini(); 
+		//geeft problemen, fix it
+		//Doet alle testen falen met error 'Woord staat er al in'
+		//Vermoedelijk een probleem met WoordenLezer
 	}
-	private void ini() throws Exception{
+	public void ini() throws Exception{
 		WoordenLezer wl = new WoordenLezer();
 		wl.lees();
 		ArrayList<String> lijst = wl.getdb();

@@ -8,6 +8,7 @@ import domain.Punt;
 import domain.Rechthoek;
 import domain.Speler;
 import domain.Tekening;
+import domain.TekeningHangMan;
 
 import java.awt.HeadlessException;
 
@@ -25,12 +26,9 @@ public class PictionaryUi {
 	}
 	
 	public void showMenu() throws DomainException, UiException {
-		//TODO Ipv domain exceptions laten gooien, deze opvangen en als error message ingeven en terug opnieuw methode oproepen voor nieuwe poging!!!
-		Object[] shapes = {"Punt","Lijnstuk","Cirkel","Rechthoek","Driehoek"};
+		TekeningHangMan hmt = null;
+		Object[] shapes = {"Lijnstuk","Cirkel","Rechthoek","Driehoek","HangMan"};
 		Object keuze = JOptionPane.showInputDialog(null,"Wat wilt u tekenen", "input", JOptionPane.INFORMATION_MESSAGE, null, shapes, null);
-		if (keuze.equals("Punt")) {
-			askForPunt();
-		}
 		if (keuze.equals("Lijnstuk")) {
 			askForLijnstuk();
 		}
@@ -43,8 +41,19 @@ public class PictionaryUi {
 		if (keuze.equals("Driehoek")) {
 			askForDriehoek();
 		}
+		if (keuze.equals("HangMan")) {
+			try {
+				hmt = new TekeningHangMan();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		
-		GameHoofdScherm vieuw = new GameHoofdScherm(speler.getNaam() + " zijn tekening", tekening);
+		if(hmt!=null) {
+			tekening = hmt.getLijst();
+		}
+		GameHoofdScherm vieuw = new GameHoofdScherm(speler.getNaam() + " zijn/haar tekening", tekening);
 		vieuw.setVisible(true);
 		vieuw.teken();
 	} 

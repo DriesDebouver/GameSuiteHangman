@@ -15,14 +15,12 @@ public class Launcher {
 		if (keuze != null){
 		if (keuze.equals("HangMan")) {
 			HangManUI ui = new HangManUI(speler);
-			ui.play();
 		}
 		if (keuze.equals("Pictionary")) {
 			PictionaryUi ui = new PictionaryUi(speler);
 			ui.showMenu();
 		}
 		
-		JOptionPane.showMessageDialog(null, speler.getNaam() + " heeft als score: " + speler.getScore(), speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);	
 		}
 	}
 	

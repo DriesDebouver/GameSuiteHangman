@@ -5,6 +5,7 @@ import domain.WoordenLijst;
 import javax.swing.JOptionPane;
 
 import domain.DomainException;
+import domain.HangMan;
 import domain.HintWoord;
 
 public class HangManUI {
@@ -21,10 +22,20 @@ public class HangManUI {
 		String s = wl.getRandomWoord();
 		System.out.println(s);
 		hintWoord = new HintWoord(s);
+		play(wl);
 	}
 	
-	public void play() {
-		int poging = 1;
+	public void play( WoordenLijst wl ) throws Exception {
+		
+		HangMan spel = new HangMan(speler, wl);
+		spel.getTekening().reset();
+		spel.getWoordenLijst().ini();
+		HangmanPaneel paneel = new HangmanPaneel(spel);
+		HangManHoofdScherm scherm = new HangManHoofdScherm(spel, paneel);
+		scherm.start();
+		
+		//Old code
+		/** int poging = 0;
 		boolean pogingJuist = false;
 		
 		do {
@@ -39,6 +50,6 @@ public class HangManUI {
 				pogingJuist = hintWoord.raad( input.charAt( 0 ) );
 				poging++;
 			}
-		} while( !hintWoord.isGeraden() );
+		} while( !hintWoord.isGeraden() ); */
 	}
 }

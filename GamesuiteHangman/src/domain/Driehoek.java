@@ -76,9 +76,11 @@ public class Driehoek extends Vorm {
 	}
 	@Override
 	public void teken(Graphics graphics) {	
-		int[]  xPunten = {this.hoekpunten[0].getX(), this.hoekpunten[1].getX(), this.hoekpunten[2].getX()};
-		int[]  yPunten = {this.hoekpunten[0].getY(), this.hoekpunten[1].getY(), this.hoekpunten[2].getY()};
-		graphics.drawPolygon(xPunten, yPunten, 3);
+		if (this.isVisible()) {
+			int[]  xPunten = {this.hoekpunten[0].getX(), this.hoekpunten[1].getX(), this.hoekpunten[2].getX()};
+			int[]  yPunten = {this.hoekpunten[0].getY(), this.hoekpunten[1].getY(), this.hoekpunten[2].getY()};
+			graphics.drawPolygon(xPunten, yPunten, 3);
+		}
 	}
 
 }

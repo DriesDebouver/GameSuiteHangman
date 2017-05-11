@@ -79,8 +79,9 @@ public class LijnStuk extends Vorm {
 
 	@Override
 	public void teken(Graphics graphics) {
-		graphics.drawLine(this.getStartPunt().getX(), this.getStartPunt().getY(), this.eindPunt.getX(), this.eindPunt.getY());
-		
+		if (this.isVisible()) {
+			graphics.drawLine(this.getStartPunt().getX(), this.getStartPunt().getY(), this.eindPunt.getX(), this.eindPunt.getY());
+		}
 	}
 
 }

@@ -1,0 +1,82 @@
+package domain;
+
+public class HangMan {
+	
+	private Speler speler;
+	private WoordenLijst woordenlijst;
+	private TekeningHangMan tekening;
+	private boolean gameOver;
+	private boolean gewonnen;
+	private HintWoord hintWoord;
+	private int aantalPogingen;
+	private static final int AANTAL_KANSEN = 13; 
+	
+	public HangMan(Speler speler, WoordenLijst woordenlijst) throws Exception {
+		super();
+		this.setSpeler(speler);
+		this.setWoordenlijst(woordenlijst);
+		tekening = new TekeningHangMan();
+		gameOver = false;
+		gewonnen = false;
+		hintWoord = new HintWoord(woordenlijst.getRandomWoord());
+		aantalPogingen = 0;
+	}
+	
+	private void setSpeler(Speler speler) throws DomainException {
+		if (speler == null) {
+			throw new DomainException("Speler mag niet null zijn.");
+		}
+		this.speler = speler;
+	}
+	
+	private void setWoordenlijst(WoordenLijst wl) throws DomainException {
+		if( wl == null ) {
+			throw new DomainException("Woordenlijst mag niet null zijn.");
+		}
+		this.woordenlijst = wl;
+	}
+
+	public Speler getSpeler() {
+		return speler;
+	}
+	
+	public WoordenLijst getWoordenLijst() {
+		return woordenlijst;
+	}
+
+	public boolean isGameOver() {
+		return gameOver;
+	}
+
+	public boolean isGewonnen() {
+		return gewonnen;
+	}
+
+	public String getHint() {
+		return hintWoord.toString();
+	}
+
+	public TekeningHangMan getTekening() {
+		return tekening;
+	}
+
+	public void raad(char letter) throws DomainException {
+		if (aantalPogingen<=AANTAL_KANSEN) {
+			aantalPogingen++;
+			if (!hintWoord.raad(letter)) {
+				System.out.println("Ik raad: " + letter);
+				tekening.zetVolgendeOnzichtbaar();
+			}
+		} else {
+			System.out.println("aantal pogingen op");
+			gameOver = true;
+		}
+		if(hintWoord.isGeraden()) {
+			gewonnen = true;
+		}
+		
+	}
+
+	
+	
+}
