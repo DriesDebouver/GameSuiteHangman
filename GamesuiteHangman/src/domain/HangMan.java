@@ -62,13 +62,11 @@ public class HangMan {
 
 	public void raad(char letter) throws DomainException {
 		if (aantalPogingen<=AANTAL_KANSEN) {
-			aantalPogingen++;
 			if (!hintWoord.raad(letter)) {
-				System.out.println("Ik raad: " + letter);
+				aantalPogingen++;
 				tekening.zetVolgendeOnzichtbaar();
 			}
 		} else {
-			System.out.println("aantal pogingen op");
 			gameOver = true;
 		}
 		if(hintWoord.isGeraden()) {
