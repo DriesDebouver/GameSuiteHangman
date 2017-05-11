@@ -18,7 +18,6 @@ class HintWoord {
 
 	private void makeLettersWoord(String woord) {
 		char[] charletters = woord.toCharArray();
-		System.out.println(charletters);
 		for (char letter: charletters) {
 			lettersWoord.add(new HintLetter(letter));
 		}
@@ -29,34 +28,40 @@ class HintWoord {
 	}
 
 	private void setWoord(String woord) throws DomainException {
-		if (woord ==  null) {
-			throw new DomainException("Woord mag niet null zijn");
+		if (woord ==  null || woord.trim().isEmpty()) {
+			throw new DomainException("Woord mag niet null of leeg zijn");
 		}
 		this.woord = woord;
 	}
 
-	boolean isGeraden() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isGeraden() {
+		boolean allesGeraden = true;
+		for (HintLetter letter: lettersWoord) {
+			if(!letter.isGeraden()) {
+				allesGeraden = false;
+			}
+		}
+		return allesGeraden;
 	}
 
 	public boolean raad(char c) {
-		boolean allesGeraden = true;
-		if (reedsGeradenLetters.contains(c)) {
+		c = Character.toLowerCase(c);
+		if (reedsGeradenLetters.contains(c) || this.isGeraden) {
+			System.out.println("hier");
 			return false;
-		} else {
-			for (HintLetter letter: lettersWoord) {
-				letter.raad(c);
-				if (!letter.isGeraden()) {
-					allesGeraden = false;
-				}
-			}
-			if (allesGeraden) {
-				this.isGeraden = false;
-			}
-			
 		}
-		return true;
+		else {
+			reedsGeradenLetters.add(c);
+			boolean zitInWoord = false;
+			for (HintLetter letter: lettersWoord) {
+				if (letter.raad(c)) {
+					zitInWoord = true;
+				}
+				System.out.println(letter.toChar() + ": " + zitInWoord);
+			}
+			System.out.println("hier2: " + zitInWoord);
+			return zitInWoord;
+		}
 	}
 	
 	public String toString() {
