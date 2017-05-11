@@ -1,6 +1,7 @@
 package domain;
 
 import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.containsString;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -87,6 +88,18 @@ public class DriehoekTest{
 		Driehoek drieHoek = new Driehoek(punt1, punt2, punt3);
 		Omhullende doelOmhullende = new Omhullende(punt1, 180, 20);
 		assertTrue(drieHoek.getOmhullende().equals(doelOmhullende));
+	}
+	
+	@Test
+	public void getString_moet_juiste_string_teruggeven() throws DomainException {
+		Driehoek drieHoek = new Driehoek(punt1, punt2, punt3);
+		String drieHoekString = drieHoek.toString();
+		
+		assertThat(drieHoekString, containsString(punt1.toString()));
+		assertThat(drieHoekString, containsString(punt2.toString()));
+		assertThat(drieHoekString, containsString(punt3.toString()));
+	
+		assertThat(drieHoekString, containsString(drieHoek.getOmhullende().toString()));
 	}
 
 }

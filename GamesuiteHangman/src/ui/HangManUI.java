@@ -10,7 +10,7 @@ public class HangManUI {
 	
 	public HangManUI (Speler speler) throws Exception {
 		if( speler == null ) {
-			throw new DomainException();
+			throw new DomainException("Speler mag niet null zijn.");
 		}
 		this.speler = speler;
 		WoordenLijst wl = new WoordenLijst();
