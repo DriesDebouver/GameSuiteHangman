@@ -12,7 +12,6 @@ public class HangMan {
 	private static final int AANTAL_KANSEN = 13; 
 	
 	public HangMan(Speler speler, WoordenLijst woordenlijst) throws Exception {
-		super();
 		this.setSpeler(speler);
 		this.setWoordenlijst(woordenlijst);
 		tekening = new TekeningHangMan();
@@ -24,14 +23,14 @@ public class HangMan {
 	
 	private void setSpeler(Speler speler) throws DomainException {
 		if (speler == null) {
-			throw new DomainException("Speler mag niet null zijn.");
+			throw new DomainException("Speler mag niet null zijn!");
 		}
 		this.speler = speler;
 	}
 	
 	private void setWoordenlijst(WoordenLijst wl) throws DomainException {
-		if( wl == null ) {
-			throw new DomainException("Woordenlijst mag niet null zijn.");
+		if(wl == null) {
+			throw new DomainException("Woordenlijst mag niet null zijn!");
 		}
 		this.woordenlijst = wl;
 	}
@@ -72,9 +71,6 @@ public class HangMan {
 		if(hintWoord.isGeraden()) {
 			gewonnen = true;
 		}
-		
 	}
-
-	
 	
 }

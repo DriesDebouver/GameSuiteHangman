@@ -10,7 +10,6 @@ public class HintWoord {
 	private boolean isGeraden;
 
 	public HintWoord(String woord) throws DomainException {
-		super();
 		setWoord(woord);
 		makeLettersWoord(woord);
 		isGeraden = false;
@@ -23,13 +22,13 @@ public class HintWoord {
 		}
 	}
 
-	String getWoord() {
+	public String getWoord() {
 		return woord;
 	}
 
 	private void setWoord(String woord) throws DomainException {
 		if (woord ==  null || woord.trim().isEmpty()) {
-			throw new DomainException("Woord mag niet null of leeg zijn");
+			throw new DomainException("Woord mag niet null of leeg zijn!");
 		}
 		this.woord = woord;
 	}

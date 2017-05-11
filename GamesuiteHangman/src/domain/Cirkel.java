@@ -18,27 +18,29 @@ public class Cirkel extends Vorm{
 	}
 
 	public void setRadius(int radius) throws DomainException {
-		if(radius <= 0){throw new DomainException("Radius moet positief zijn");}
+		if(radius <= 0){throw new DomainException("Radius moet positief zijn!");}
 		this.radius = radius;
 	}
 
 	public Punt getMiddelPunt()throws Exception {
-		if(middelPunt == null){throw new DomainException("geen deftig middelpunt");}
+		if(middelPunt == null){throw new DomainException("Geen goed middelpunt!");}
 		return middelPunt;
 	}
 
 	public void setMiddelPunt(Punt middelPunt) throws DomainException {
 		if(middelPunt == null){
-			throw new DomainException("Geen geldig middelpunt voor een cirkel");
+			throw new DomainException("Geen geldig middelpunt voor een cirkel!");
 		}
 		this.middelPunt = middelPunt;
 	}
+	
 	@Override
 	public String toString() {
 		String returnString = "Cirkel: middelpunt: " + this.middelPunt.toString() + " - straal: " + this.getRadius();
 		returnString += "\n" + omhullende;
 		return returnString;
 	}
+	
 	@Override
 	public boolean equals(Object obj){
 		if(!(obj instanceof Cirkel)){return false;}

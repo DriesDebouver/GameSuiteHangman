@@ -1,6 +1,7 @@
 package domain;
 
 public class TekeningHangMan {
+	
 	private String naam;
 	private Tekening lijst;
 	
@@ -8,14 +9,15 @@ public class TekeningHangMan {
 		lijst = new Tekening("Hangman");
 		afbeeldingHangMan();
 	}
+	
 	public void afbeeldingHangMan() throws DomainException{
-		Vorm galgBodem = new Rechthoek(new Punt(10, 350), 300, 40);// altijd zichtbaar
-		Vorm galgStaaf = new LijnStuk(new Punt(160, 350), new Punt(160, 50));// altijd zichtbaar
-		Vorm hangbar = new LijnStuk(new Punt(160, 50), new Punt(280, 50));// altijd zichtbaar
-		Vorm koord = new LijnStuk(new Punt(280, 50), new Punt(280, 100));// altijd zichtbaar
-		Vorm hoofd = new Cirkel(new Punt(280, 125), 25);// zichtbaar na 1 fout
-		Vorm oogLinks = new Cirkel(new Punt(270, 118), 2);// zichtbaar na 2 fouten
-		Vorm oogRechts = new Cirkel(new Punt(290, 118), 2);//…
+		Vorm galgBodem = new Rechthoek(new Punt(10, 350), 300, 40);
+		Vorm galgStaaf = new LijnStuk(new Punt(160, 350), new Punt(160, 50));
+		Vorm hangbar = new LijnStuk(new Punt(160, 50), new Punt(280, 50));
+		Vorm koord = new LijnStuk(new Punt(280, 50), new Punt(280, 100));
+		Vorm hoofd = new Cirkel(new Punt(280, 125), 25);
+		Vorm oogLinks = new Cirkel(new Punt(270, 118), 2);
+		Vorm oogRechts = new Cirkel(new Punt(290, 118), 2);
 		Vorm neus = new Cirkel(new Punt(280,128), 2);
 		Vorm mond = new LijnStuk(new Punt(270,138),new Punt(290,138));
 		Vorm lijf = new LijnStuk(new Punt(280,150),new Punt(280,250));
@@ -49,11 +51,13 @@ public class TekeningHangMan {
 		
 		reset();
 	}
+	
 	public void reset(){
 		for(int i = 4;i< lijst.getAantalVormen();i++){
 			lijst.gettekening().get(i).setVisible(false);
 		}
 	}
+	
 	public int getAantalOnzichtbaar(){
 		int i = 0;
 		for(Vorm v : this.getLijst().gettekening()){
@@ -61,6 +65,7 @@ public class TekeningHangMan {
 		}
 		return i;
 	}
+	
 	public void zetVolgendeOnzichtbaar() throws DomainException{
 		for(Vorm v : this.getLijst().gettekening()){
 			if(!v.isVisible()){
@@ -68,14 +73,15 @@ public class TekeningHangMan {
 				return;
 			}
 		}
-		throw new DomainException("Alles is al zichtbaar");
+		throw new DomainException("Alles is al zichtbaar!");
 	}
+	
 	public String getNaam() {
 		return naam;
 	}
 
 	public void setNaam(String naam) throws DomainException {
-		if(naam == null || naam.trim().isEmpty()){throw new DomainException("Geen geldige naam");}
+		if(naam == null || naam.trim().isEmpty()){throw new DomainException("Geen geldige naam!");}
 		this.naam = naam;
 	}
 
@@ -84,12 +90,13 @@ public class TekeningHangMan {
 	}
 
 	public void voegToe(Vorm vorm) throws DomainException{
-		if(vorm == null){throw new DomainException("Geen geldige vorm");}
+		if(vorm == null){throw new DomainException("Geen geldige vorm!");}
 		lijst.voegToe(vorm);
 	}
+	
 	public void verwijder(Vorm vorm)throws DomainException{
-		if(!lijst.gettekening().contains(vorm)){throw new DomainException("vorm zit er niet in ");}
-		if(vorm == null){throw new DomainException("Geen geldige vorm");}
+		if(!lijst.gettekening().contains(vorm)){throw new DomainException("Vorm zit er niet in!");}
+		if(vorm == null){throw new DomainException("Geen geldige vorm!");}
 		lijst.verwijder(vorm);
 	}
 	

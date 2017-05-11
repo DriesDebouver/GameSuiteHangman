@@ -48,7 +48,6 @@ public class Speler {
 		return false;
 	}
 	
-	
 	public String toString() {
 		return "";
 	}

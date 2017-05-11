@@ -9,7 +9,6 @@ public class Tekening implements Drawable {
 	private ArrayList<Vorm> tekening = new ArrayList<Vorm>();
 	
 	public Tekening (String naam) throws DomainException { 
-		super();
 		this.setNaam(naam);
 	}
 	
@@ -31,7 +30,7 @@ public class Tekening implements Drawable {
 	
 	public void voegToe(Vorm vorm) throws DomainException {
 		if(! (vorm instanceof Vorm) || vorm==null){
-			throw new DomainException("Geen geldige vorm");
+			throw new DomainException("Geen geldige vorm!");
 		}
 		this.tekening.add(vorm);
 	}
@@ -41,7 +40,7 @@ public class Tekening implements Drawable {
 	}
 	
 	public int getAantalVormen(){
-	return tekening.size();
+		return tekening.size();
 	}
 	
 	public void verwijder(Vorm vorm){

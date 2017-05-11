@@ -6,26 +6,28 @@ public class Punt {
 	private int y;
 	
 	public Punt(int x, int y) throws DomainException {
-		super();
 		setX(x);
 		setY(y);
 	}
+	
 	public int getX() {
 		return x;
 	}
+	
 	public void setX(int x) throws DomainException {
 		this.x = x;
 	}
+	
 	public int getY() {
 		return y;
 	}
+	
 	public void setY(int y) throws DomainException {
 		this.y = y;
 	}
 	
 	@Override
 	public boolean equals(Object object) {
-		//gegeven UML wilt object object, so casting
 		Punt punt;
 		Boolean returnBoolean = false;
 		if (object instanceof Punt) {

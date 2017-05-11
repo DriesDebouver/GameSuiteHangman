@@ -7,14 +7,12 @@ import java.util.Random;
 import db.WoordenLezer;
 
 public class WoordenLijst {
+	
 	private List<String> woordenLijst = new ArrayList<String>();
 	
 	public WoordenLijst() throws Exception{
-		//ini(); 
-		//geeft problemen, fix it
-		//Doet alle testen falen met error 'Woord staat er al in'
-		//Vermoedelijk een probleem met WoordenLezer
 	}
+	
 	public void ini() throws Exception{
 		WoordenLezer wl = new WoordenLezer();
 		wl.lees();
@@ -25,14 +23,17 @@ public class WoordenLijst {
 			}catch(Exception e){}
 		}
 	}
+	
 	public void voegToe(String s) throws DomainException{
-		if(s == null || s.trim().isEmpty()){throw new DomainException("geen geldig woord");}
-		if(woordenLijst.contains(s)){throw new DomainException("Woord staat er al in");}
+		if(s == null || s.trim().isEmpty()){throw new DomainException("Geen geldig woord!");}
+		if(woordenLijst.contains(s)){throw new DomainException("Woord staat er al in!");}
 		woordenLijst.add(s);
 	}
+	
 	public int getAantalWoorden(){
 		return woordenLijst.size();
 	}
+	
 	public String getRandomWoord(){
 		if(getAantalWoorden() == 0){return null;}
 		Random rand = new Random();
@@ -40,4 +41,5 @@ public class WoordenLijst {
 		System.out.println(woordenLijst.get(n));
 		return woordenLijst.get(n);
 	}
+	
 }

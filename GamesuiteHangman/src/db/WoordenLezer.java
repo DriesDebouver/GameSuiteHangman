@@ -11,7 +11,7 @@ public class WoordenLezer {
 	}
 	public void lees() throws Exception{
 		try{
-		Scanner s = new Scanner(new File("hangman.txt"));
+			Scanner s = new Scanner(new File("hangman.txt"));
 		}catch(Exception e){
 			throw new DbException(e.getMessage());
 		}

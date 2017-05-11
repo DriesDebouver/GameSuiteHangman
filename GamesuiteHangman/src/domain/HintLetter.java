@@ -5,13 +5,12 @@ class HintLetter {
 	private char hintLetter;
 	private boolean isGeraden;
 
-	HintLetter(String hintLetter) {
-		super();
+	public HintLetter(String hintLetter) {
 		setHintLetter(hintLetter.charAt(0));
 		setGeraden(false);
 	}
 	
-	HintLetter(char hintLetter) {
+	public HintLetter(char hintLetter) {
 		super();
 		setHintLetter(hintLetter);
 		setGeraden(false);
@@ -25,7 +24,7 @@ class HintLetter {
 		this.hintLetter = hintLetter;
 	}
 
-	char getHintLetter() {
+	public char getHintLetter() {
 		return this.hintLetter;
 	}
 
@@ -42,7 +41,7 @@ class HintLetter {
 		return false;
 	}
 
-	Object toChar() {
+	public Object toChar() {
 		if (isGeraden) {
 			return this.hintLetter;
 		} else {
@@ -50,6 +49,4 @@ class HintLetter {
 		}
 	}
 	
-	
-
 }
