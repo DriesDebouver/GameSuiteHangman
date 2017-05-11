@@ -51,7 +51,6 @@ public class Tekening implements Drawable{
 	public void verwijder(Vorm vorm){
 		for(Vorm vormThis: this.gettekening()){
 			if(vormThis.equals(vorm)){
-				System.out.println(vorm + " verwijdert.");
 				tekening.remove(vormThis);
 				break;
 				

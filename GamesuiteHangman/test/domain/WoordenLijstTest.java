@@ -36,7 +36,7 @@ public class WoordenLijstTest {
 	}
 
 	@Test
-	public void WoordenLijst_moet_een_Woordenlijst_maken_zonder_woorden() {
+	public void WoordenLijst_moet_een_Woordenlijst_maken_zonder_woorden() throws Exception {
 		WoordenLijst woordenlijstLeeg = new WoordenLijst();
 		assertEquals(0,woordenlijstLeeg.getAantalWoorden());
 	}
@@ -65,13 +65,13 @@ public class WoordenLijstTest {
 		woordenlijstMetGeldigeWoorden.voegToe(woordAlInLijst);
 	}
 	@Test
-	public void random_woord_krijgen() throws DomainException{
+	public void random_woord_krijgen() throws Exception{
 		WoordenLijst wl1 = new WoordenLijst();
 		wl1.voegToe("muis");
 		assertTrue("muis" == wl1.getRandomWoord());
 	}
 	@Test
-	public void moet_null_terugkrijgen() throws DomainException{
+	public void moet_null_terugkrijgen() throws Exception{
 		WoordenLijst wl1 = new WoordenLijst();
 		assertTrue(null == wl1.getRandomWoord());
 	}

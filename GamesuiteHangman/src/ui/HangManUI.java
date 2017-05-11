@@ -1,5 +1,7 @@
 package ui;
 import domain.Speler;
+import domain.WoordenLijst;
+
 import javax.swing.JOptionPane;
 
 import domain.DomainException;
@@ -10,12 +12,15 @@ public class HangManUI {
 	private Speler speler;
 	private HintWoord hintWoord;
 	
-	public HangManUI (Speler speler) throws DomainException {
+	public HangManUI (Speler speler) throws Exception {
 		if( speler == null ) {
 			throw new IllegalArgumentException();
 		}
 		this.speler = speler;
-		hintWoord = new HintWoord( "hangman" );
+		WoordenLijst wl = new WoordenLijst();
+		String s = wl.getRandomWoord();
+		System.out.println(s);
+		hintWoord = new HintWoord(s);
 	}
 	
 	public void play() {
