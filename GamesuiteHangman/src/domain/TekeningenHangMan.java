@@ -1,5 +1,4 @@
-package domain;
-
+package domain
 import com.sun.prism.Graphics;
 
 public class TekeningenHangMan {
@@ -14,7 +13,6 @@ public class TekeningenHangMan {
 	}
 	
 	public int getAantalOnzichtbaar(){
-		
 		return 0;
 	}
 	
