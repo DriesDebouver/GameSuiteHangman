@@ -15,7 +15,7 @@ public class HangManUI {
 	
 	public HangManUI (Speler speler) throws Exception {
 		if( speler == null ) {
-			throw new IllegalArgumentException();
+			throw new DomainException();
 		}
 		this.speler = speler;
 		WoordenLijst wl = new WoordenLijst();
