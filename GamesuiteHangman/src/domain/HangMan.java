@@ -18,6 +18,7 @@ public class HangMan {
 		gameOver = false;
 		gewonnen = false;
 		hintWoord = new HintWoord(woordenlijst.getRandomWoord());
+		System.out.println(hintWoord.getWoord());
 		aantalPogingen = 0;
 	}
 	

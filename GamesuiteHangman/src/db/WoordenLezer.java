@@ -17,8 +17,9 @@ public class WoordenLezer {
 			throw new DbException(e.getMessage());
 		}
 		String s1 = "";
-		while(s.hasNext()){
-			s1 = s.next();
+		while(s.hasNextLine()){
+			s1 = s.nextLine();
+			
 			if(!lijst.contains(s1)){
 			lijst.add(s1);
 			}

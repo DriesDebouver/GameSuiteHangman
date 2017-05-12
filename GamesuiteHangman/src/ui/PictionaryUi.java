@@ -18,6 +18,7 @@ public class PictionaryUi {
 		PictionaryPaneel paneel = new PictionaryPaneel(spel);
 		PictionaryHoofdScherm scherm = new PictionaryHoofdScherm(spel, paneel);
 		scherm.start();
+		scherm.end();
 	}
 
 }
