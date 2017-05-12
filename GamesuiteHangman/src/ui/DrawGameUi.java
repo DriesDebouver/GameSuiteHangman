@@ -132,9 +132,6 @@ public class DrawGameUi {
 			if (number.trim().isEmpty()) {
 				throw new DomainException("Vul in!");
 			}
-			//Test if digit with regular expression:
-			// -?     --> negative sign, could have none or one
-			// \\d+   --> one or more digits
 			if (!number.matches("^-?\\d+$")) {
 				throw new DomainException("Geef een nummer.");
 			}

@@ -55,16 +55,12 @@ public class HangmanPaneel extends JPanel {
 						if(input.length() > 0){
 							guess = input.charAt(0);
 						}
-						// raad, if guess is string, it gets first char ^
 						spel.raad(guess);
 						
 						woord.setText(getSpel().getHint());
 						letter.setText("");
 						getTekenVenster().teken();
 						
-						//toon boodschap als gewonnen of verloren en vraag of speler opnieuw wilt spelen
-						//als de speler opnieuw wilt spelen: herzet het spel en het paneel
-						//anders stop (System.exit(0))
 						if (spel.isGameOver()) {
 							JOptionPane.showMessageDialog(null, "U heeft verloren. \nHet woord was " + spel.getWoord() + ".\nUw score is " + spel.getSpeler().getScore());
 							gameEnd();
@@ -81,28 +77,28 @@ public class HangmanPaneel extends JPanel {
 		}
 
 		@Override
-		public void keyReleased(KeyEvent arg0) {/* Niet nodig*/}
+		public void keyReleased(KeyEvent arg0) {}
 		@Override
-		public void keyTyped(KeyEvent arg0) {/* Niet nodig*/}
+		public void keyTyped(KeyEvent arg0) {}
 	}
-
-private void gameEnd() {
-	Object[] keuzes = {"Opnieuw", "Exit"};
-	Object keuze = JOptionPane.showInputDialog(null,"Wat wilt u doen?", "input", JOptionPane.INFORMATION_MESSAGE, null, keuzes, null);
-	if (keuze!=null) {
-		if (keuze.equals("Opnieuw")) {
-			try {
-				Launcher.startPlaying(spel.getSpeler());;
-			} catch (Exception e) {
-				JOptionPane.showMessageDialog(null, "Can't relaunch, seek help.");
-				e.printStackTrace();
-			}
-		} 
-	} else {
-		this.setVisible(false);
-		System.exit(0);
+	
+	private void gameEnd() {
+		Object[] keuzes = {"Opnieuw", "Exit"};
+		Object keuze = JOptionPane.showInputDialog(null,"Wat wilt u doen?", "input", JOptionPane.INFORMATION_MESSAGE, null, keuzes, null);
+		if (keuze!=null) {
+			if (keuze.equals("Opnieuw")) {
+				try {
+					Launcher.startPlaying(spel.getSpeler());;
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(null, "Can't relaunch, seek help.");
+					e.printStackTrace();
+				}
+			} 
+		} else {
+			this.setVisible(false);
+			System.exit(0);
+		}
 	}
-}
 	
 	private void setSpel(HangMan spel){
 		this.spel = spel;
