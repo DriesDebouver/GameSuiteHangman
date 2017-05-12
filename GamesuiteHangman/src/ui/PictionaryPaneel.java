@@ -52,8 +52,8 @@ private static final long serialVersionUID = 1L;
 				try {
 						String input = letter.getText();
 						// bij pictionary raad je heel woord
-						spel.raad(input.trim());
 						JOptionPane.showMessageDialog(null, "U heeft nog " + Integer.toString(spel.AANTAL_KANSEN - spel.getAantalPogingen()) + " kansen over.");
+						spel.raad(input.trim());
 						
 						
 						//toon boodschap als gewonnen of verloren en vraag of speler opnieuw wilt spelen
