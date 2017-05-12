@@ -1,23 +1,29 @@
 package domain;
 
-public class HangMan {
+import db.PictionaryTekeningenDB;
+
+public class Pictionary {
 	
 	private Speler speler;
-	private WoordenLijst woordenlijst;
-	private TekeningHangMan tekening;
 	private boolean gameOver;
 	private boolean gewonnen;
+	private Tekening tekening;
 	private HintWoord hintWoord;
 	private int aantalPogingen;
-	private static final int AANTAL_KANSEN = 13; 
+	public static final int AANTAL_KANSEN = 10; 
 	
-	public HangMan(Speler speler, WoordenLijst woordenlijst) throws Exception {
+	public int getAantalPogingen() {
+		return aantalPogingen;
+	}
+
+	public Pictionary(Speler speler) throws Exception {
 		this.setSpeler(speler);
-		this.setWoordenlijst(woordenlijst);
-		tekening = new TekeningHangMan();
+		
+		PictionaryTekeningenDB tekDB = PictionaryTekeningenDB.getDB();
+		tekening = tekDB.getRandomTekening();
 		gameOver = false;
 		gewonnen = false;
-		hintWoord = new HintWoord(woordenlijst.getRandomWoord());
+		hintWoord = new HintWoord(tekening.getNaam());
 		aantalPogingen = 0;
 	}
 	
@@ -27,20 +33,9 @@ public class HangMan {
 		}
 		this.speler = speler;
 	}
-	
-	private void setWoordenlijst(WoordenLijst wl) throws DomainException {
-		if(wl == null) {
-			throw new DomainException("Woordenlijst mag niet null zijn!");
-		}
-		this.woordenlijst = wl;
-	}
 
 	public Speler getSpeler() {
 		return speler;
-	}
-	
-	public WoordenLijst getWoordenLijst() {
-		return woordenlijst;
 	}
 
 	public boolean isGameOver() {
@@ -55,27 +50,24 @@ public class HangMan {
 		return hintWoord.toString();
 	}
 
-	public TekeningHangMan getTekening() {
-		return tekening;
-	}
-
 	public String getWoord() {
 		return hintWoord.getWoord();
 	}
 
+	public Tekening getTekening() {
+		return tekening;
+	}
+
 	//if game wins score++, gameover score-- until score 0
-	public void raad(char letter) throws DomainException {
+	public void raad(String woord) throws DomainException {
 		if (aantalPogingen<=AANTAL_KANSEN) {
-			if (!hintWoord.raad(letter)) {
-				aantalPogingen++;
-				tekening.zetVolgendeOnzichtbaar();
+			if (hintWoord.getWoord().toLowerCase().equals(woord.toLowerCase())) {
+				gewonnen = true;
+				speler.addToScore(1);
 			}
+			aantalPogingen++;
 		} else {
 			gameOver = true;
-		}
-		if(hintWoord.isGeraden()) {
-			gewonnen = true;
-			speler.addToScore(1);
 		}
 		if(gameOver) {
 			try {
@@ -85,5 +77,5 @@ public class HangMan {
 			}
 		}
 	}
-	
+
 }

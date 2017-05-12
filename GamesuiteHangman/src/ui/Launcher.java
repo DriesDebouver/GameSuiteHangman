@@ -29,7 +29,7 @@ public class Launcher {
 	}
 	
 	public static void startPlaying(Speler speler) throws Exception {
-		Object[] spellen = {"HangMan", "Pictionary"};
+		Object[] spellen = {"HangMan", "Pictionary", "DrawShapes"};
 		Object keuze = JOptionPane.showInputDialog(null,"Dag " + speler.getNaam() + ", welk spel wil je spelen?", "input", JOptionPane.INFORMATION_MESSAGE, null, spellen, null);
 		
 		if (keuze != null) {
@@ -38,8 +38,14 @@ public class Launcher {
 			}
 			if (keuze.equals("Pictionary")) {
 				PictionaryUi ui = new PictionaryUi(speler);
+				ui.play();
+			}
+			if (keuze.equals("DrawShapes")) {
+				DrawGameUi ui = new DrawGameUi(speler);
 				ui.showMenu();
 			}
+		} else {
+			System.exit(0);
 		}
 	}
 }

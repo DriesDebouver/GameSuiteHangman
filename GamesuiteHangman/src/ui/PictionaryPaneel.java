@@ -10,19 +10,19 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import domain.DomainException;
-import domain.HangMan;
+import domain.Pictionary;
 
-public class HangmanPaneel extends JPanel {
-
-	private static final long serialVersionUID = 1L;	
+public class PictionaryPaneel extends JPanel {
+	
+private static final long serialVersionUID = 1L;	
 	
 	private JTextField letter;	
 	private JLabel woord;
 	
 	private TekenVenster tekenVenster;
-	private HangMan spel;
+	private Pictionary spel;
 	
-	public HangmanPaneel(HangMan spel){
+	public PictionaryPaneel(Pictionary spel){
 		super();
 		setSpel(spel);
 		init();
@@ -51,16 +51,10 @@ public class HangmanPaneel extends JPanel {
 			if(arg0.getKeyCode()== KeyEvent.VK_ENTER)
 				try {
 						String input = letter.getText();
-						char guess = '\u0000';
-						if(input.length() > 0){
-							guess = input.charAt(0);
-						}
-						// raad, if guess is string, it gets first char ^
-						spel.raad(guess);
+						// bij pictionary raad je heel woord
+						spel.raad(input.trim());
+						JOptionPane.showMessageDialog(null, "U heeft nog " + Integer.toString(spel.AANTAL_KANSEN - spel.getAantalPogingen()) + " kansen over.");
 						
-						woord.setText(getSpel().getHint());
-						letter.setText("");
-						getTekenVenster().teken();
 						
 						//toon boodschap als gewonnen of verloren en vraag of speler opnieuw wilt spelen
 						//als de speler opnieuw wilt spelen: herzet het spel en het paneel
@@ -103,11 +97,11 @@ public class HangmanPaneel extends JPanel {
 		public void keyTyped(KeyEvent arg0) {/* Niet nodig*/}
 	}
 	
-	private void setSpel(HangMan spel){
+	private void setSpel(Pictionary spel){
 		this.spel = spel;
 	}
 
-	private HangMan getSpel() {
+	private Pictionary getSpel() {
 		return spel;
 	}
 	
@@ -121,4 +115,5 @@ public class HangmanPaneel extends JPanel {
 
 		reset();
 	}
+
 }
