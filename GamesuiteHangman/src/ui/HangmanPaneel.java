@@ -99,8 +99,8 @@ private void gameEnd() {
 			}
 		} 
 	} else {
-		System.exit(0);
 		this.setVisible(false);
+		System.exit(0);
 	}
 }
 	
