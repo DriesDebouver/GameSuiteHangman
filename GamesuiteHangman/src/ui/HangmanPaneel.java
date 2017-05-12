@@ -79,29 +79,30 @@ public class HangmanPaneel extends JPanel {
 					e.printStackTrace();
 				}	
 		}
-		
-		private void gameEnd() {
-			Object[] keuzes = {"Opnieuw", "Exit"};
-			Object keuze = JOptionPane.showInputDialog(null,"Wat wilt u doen?", "input", JOptionPane.INFORMATION_MESSAGE, null, keuzes, null);
-			if (keuze!=null) {
-				if (keuze.equals("Opnieuw")) {
-					try {
-						Launcher.startPlaying(spel.getSpeler());;
-					} catch (Exception e) {
-						JOptionPane.showMessageDialog(null, "Can't relaunch, seek help.");
-						e.printStackTrace();
-					}
-				} 
-			} else {
-				System.exit(0);
-			}
-		}
 
 		@Override
 		public void keyReleased(KeyEvent arg0) {/* Niet nodig*/}
 		@Override
 		public void keyTyped(KeyEvent arg0) {/* Niet nodig*/}
 	}
+
+private void gameEnd() {
+	Object[] keuzes = {"Opnieuw", "Exit"};
+	Object keuze = JOptionPane.showInputDialog(null,"Wat wilt u doen?", "input", JOptionPane.INFORMATION_MESSAGE, null, keuzes, null);
+	if (keuze!=null) {
+		if (keuze.equals("Opnieuw")) {
+			try {
+				Launcher.startPlaying(spel.getSpeler());;
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Can't relaunch, seek help.");
+				e.printStackTrace();
+			}
+		} 
+	} else {
+		this.setVisible(false);
+		System.exit(0);
+	}
+}
 	
 	private void setSpel(HangMan spel){
 		this.spel = spel;
