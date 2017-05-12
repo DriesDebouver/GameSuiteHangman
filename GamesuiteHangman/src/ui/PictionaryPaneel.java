@@ -51,14 +51,9 @@ private static final long serialVersionUID = 1L;
 			if(arg0.getKeyCode()== KeyEvent.VK_ENTER)
 				try {
 						String input = letter.getText();
-						// bij pictionary raad je heel woord
-						JOptionPane.showMessageDialog(null, "U heeft nog " + Integer.toString(spel.AANTAL_KANSEN - spel.getAantalPogingen()) + " kansen over.");
+						JOptionPane.showMessageDialog(null, "U heeft nog " + Integer.toString(Pictionary.AANTAL_KANSEN - spel.getAantalPogingen()) + " kansen over.");
 						spel.raad(input.trim());
-						
-						
-						//toon boodschap als gewonnen of verloren en vraag of speler opnieuw wilt spelen
-						//als de speler opnieuw wilt spelen: herzet het spel en het paneel
-						//anders stop (System.exit(0))
+
 						if (spel.isGameOver()) {
 							JOptionPane.showMessageDialog(null, "U heeft verloren. \nHet woord was " + spel.getWoord() + ".\nUw score is " + spel.getSpeler().getScore());
 							gameEnd();
@@ -92,9 +87,9 @@ private static final long serialVersionUID = 1L;
 		}
 
 		@Override
-		public void keyReleased(KeyEvent arg0) {/* Niet nodig*/}
+		public void keyReleased(KeyEvent arg0) {}
 		@Override
-		public void keyTyped(KeyEvent arg0) {/* Niet nodig*/}
+		public void keyTyped(KeyEvent arg0) {}
 	}
 	
 	private void setSpel(Pictionary spel){
