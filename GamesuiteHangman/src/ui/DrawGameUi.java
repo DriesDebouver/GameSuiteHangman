@@ -23,7 +23,7 @@ public class DrawGameUi {
 	}
 	
 	public void showMenu() throws Exception {
-		Object[] shapes = {"Lijnstuk","Cirkel","Rechthoek","Driehoek","HangMan"};
+		Object[] shapes = {"Lijnstuk","Cirkel","Rechthoek","Driehoek"};
 		Object keuze = JOptionPane.showInputDialog(null,"Wat wilt u tekenen", "input", JOptionPane.INFORMATION_MESSAGE, null, shapes, null);
 		if (keuze != null) {
 			if (keuze.equals("Lijnstuk")) {
